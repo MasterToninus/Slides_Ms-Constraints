@@ -1,18 +1,15 @@
-# Slides: Multisymplectic Reduction
+# Slides: Multisymplectic Constraints Observables
 60 minute talk about my work with Casey and Leonid.
 
-Slides for a contributed talk at the [MPI-Oberseminar](https://www.mpim-bonn.mpg.de/node/158).
+Slides for a contributed talk at the [XIX Young Researchers Workshop in Geometry, Dynamics and Field Theory](https://sites.google.com/view/xix-yrw-verona/home?authuser=0).
 
 
-Place: MPIM, Bonn, Germany
-Date: 07/04/2022
+Place: University of Verona, Italy
+Date: January 2025
 Title: Symmetries and Reduction of Multisymplectic manifolds
 Contents: Broad mathematical audience.
-Lenght: 60 min
+Length: 30 min
 
 
 ## TODO: possible improvements
-- add a slide on normal forms and Darboux (take it from Leo's talk)
-- Expand the explanation about our reduction. In particular, argue why the ingredients are constructed this way.
-
-
+- 
