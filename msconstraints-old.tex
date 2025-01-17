@@ -14,12 +14,14 @@
 %Handling of flags it is not preserved when passing to standalone-subfiles!
 
 %- D0cum3nt ----------------------------------------------------------------------------------------------
-\ifHandout
-\documentclass[handout,10pt]{beamer}
-\setbeameroption{show notes} %print notes
-\else
 \documentclass[10pt]{beamer}
-\fi
+
+%\ifHandout
+%{
+%\documentclass[handout,10pt]{beamer}
+%\setbeameroption{show notes} %print notes
+%}
+%\fi
 
 %- Packages ----------------------------------------------------------------------------------------------
 \usepackage{custom-style}

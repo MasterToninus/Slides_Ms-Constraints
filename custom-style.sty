@@ -34,7 +34,7 @@
 \RequirePackage[english]{babel} % Language-specific features
 \RequirePackage{csquotes} % Context-sensitive quotes
 \RequirePackage{wasysym} % Additional symbols
-%\usepackage{enumitem} % Uncomment for enhanced itemization
+\RequirePackage{enumitem} % Uncomment for enhanced itemization
 \RequirePackage{xcolor} % Color management
 \RequirePackage{pifont} % Additional dingbats
 \RequirePackage{empheq} % Emphasized equations
@@ -51,6 +51,9 @@
 \RequirePackage[export]{adjustbox} % Adjust image boxes
 \RequirePackage{textpos, eso-pic} % Text positioning and overlays
 
+\RequirePackage{multicol}
+\RequirePackage{xfrac}
+
 %------------------------------------------------------------------------------
 % Custom commands
 %------------------------------------------------------------------------------
@@ -61,13 +64,7 @@
 %------------------------------------------------------------------------------
 % Standalone mode support
 %------------------------------------------------------------------------------
-    \RequirePackage[mode=buildnew,subpreambles=true]{standalone} % Manage standalone files
-    \providecommand{\includestandalonewithpath}[3][]{% Include standalone with relative path
-        \begingroup
-        \newcommand{\datapath}{#2}%
-        \includestandalone[#1]{\datapath/#3}%
-        \endgroup
-    }
+\RequirePackage[mode=buildnew,subpreambles=true]{standalone} % Manage standalone files
 
 
 %------------------------------------------------------------------------------
