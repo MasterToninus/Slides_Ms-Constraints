@@ -11,7 +11,7 @@
 
 %- HandOut Flag -----------------------------------------------------------------------------------------
 	\newif\ifHandout
-	\Handouttrue  %uncomment for the printable version
+	%\Handouttrue  %uncomment for the printable version
 	%Handling of flags it is not preserved when passing to standalone-subfiles!
 
 
@@ -38,6 +38,9 @@
 \usetikzlibrary{decorations.pathmorphing} 
 \renewcommand{\Ham}{\mathrm{Ham}}
 \newcommand{\Der}{\mathrm{Der}}
+\usepackage{enumitem}
+\setlist{topsep=0pt, leftmargin=*,label=$\bullet$}
+
 
 %--Beamer Style-----------------------------------------------------------------------------------------------
 \usetheme{toninus}
@@ -238,31 +241,104 @@ This talk reviews higher versions of observable algebras and moment maps in mult
 %------------------------------------------------------------------------------------------------
 
 %------------------------------------------------------------------------------------------------
-\section{Symplectic Reduction}
+\section{Motivation: Symplectic Reduction}
 \checkpoint	
 %------------------------------------------------------------------------------------------------
 
 %- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%
-\begin{frame}{Reduction in Classical Mechanics} 
-
-
+\begin{frame}{Symplectic geometry (mechanics flavour)}
+	\begin{columns}[T]
+		\begin{column}{.50\linewidth}
+			\centering
+			\textit{ "geometric approach" to mechanics \dots}
+			%
+			\begin{columns}
+				\begin{column}{.60\linewidth}
+					\begin{center}
+						\includegraphics[width=0.6\linewidth]{Pictures/pendulum13}			
+					\end{center}
+				\end{column}	
+				\begin{column}{.40\linewidth}
+					\begin{center}
+						\includegraphics[width=0.45\linewidth]{Pictures/pendulum-phase-space}			
+					\end{center}
+				\end{column}	
+			\end{columns}
+			%
+			\begin{defblock}[Symplectic Manifold]
+				\vspace{-1em}
+				\includestandalone[width=1\textwidth]{Pictures/Figure_sym}	
+			\end{defblock}
+			%
+			\pause
+			\begin{exblock}[$M = T^\ast Q$ is symplectic]
+				with $\omega = d \theta $ given by
+				$$ \left.\theta\right\vert_{(q,p)} (v) = p (\pi_\ast v) ~.$$
+			\end{exblock}
+			%
+			\pause
+			\vspace{1.2em}
+			\centering
+			\textit{ based on the notion of \\"states".}		
+		\end{column}
+		\onslide<1->{\vrule{}}
+		\pause
+		\begin{column}{.50\linewidth}
+			\centering
+			\textit{ "algebraic approach" to mechanics \dots}
+			\vspace{.5em}	
+			\begin{defblock}[Classical Observables]
+				Unital, associative, commutative algebra $C^\infty(M)$.
+			\end{defblock}
+			%
+			\vspace{.1em}
+			\pause
+			\begin{defblock}[Hamiltonian vector fields]
+				$\vHam_f \in \mathfrak{X}(M)$ such that:
+				$$\iota_{\vHam_f} \omega = -df \quad$$ %$\in B^1(M)$
+				%
+				\footnotetext{	$\vHam_f$ = \emph{Ham.v.f. pertaining to $f\in C^\infty(M)$}.}
+			\end{defblock}
+			\vspace{.1em}
+			%
+			\begin{defblock}[Poisson Algebra of Observables]
+				$C^\infty(M)$ is a Poisson algebra with
+				$$\{f,g\} = \iota_{\vHam_g} \iota_{\vHam_f} \omega = \omega(\vHam_f,\vHam_g) ~.$$
+			\end{defblock}
+			%
+			\pause
+			\vspace{.15em}
+			\centering
+			\textit{ based on the notion of \\"measurable quantities".}						
+		\end{column}
+	\end{columns}
 \end{frame}
 \note[itemize]{
-	\item  In classical mechanics symmetry reduction plays an important role.
-	\item Mathematically, this is usually phrased in terms of Marsden-Weinstein reduction
-}
-%- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%
-
-%- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%
-\begin{frame}{Geometric Reduction} 
-	{Def. Symplectic manifold $(M,\omega)$} $M$ a smooth manifold, $\omega\in \Omega^{2}(M)$ closed and non-degenerate, i.e.:
+		\footnotesize
+	
+		\item We work in the framework of multisymplectic geometry which is one of the possible generalizations of the well-established field of symplectic geometry.
+		
+		\item To recall what symplectic geometry is let me assume a particular point of view: mechanics.
+		\\
+		Idea:"
+		Symplectic geometry is a branch of differential geometry studying symplectic manifolds; it originated as a formalization of the mathematical apparatus of classical mechanics and geometric optics."{\href{https://ncatlab.org/nlab/show/symplectic+geometry}{nlab}}
+		
+		Namely, a sym. mfd. is the geometric structure encoding the phase space of conservative, ordinary, classical, mechanical systems.
+		
+		\item $\theta$ = \emph{tautological 1-form}.
+			$\theta$ evaluated at $p\in T^*Q$ in the fibre of $q\in Q$ and contracted with $v$ coincides with the form $p$ evaluated at $q$ and contracted with the push forward of $v$.
+		
+		\item We identify a special class of vector fields.
+			Out of them one can define a Lie bracket.
+		
+		\item Poisson is a Lie algebra with the extra property of compatibility with the associative product (Leibniz rule)
+		
+		\item take away message: geometric (based on "states") vs algebraic (based on "measurable quantities").
+		\item 	{Def. Symplectic manifold $(M,\omega)$} $M$ a smooth manifold, $\omega\in \Omega^{2}(M)$ closed and non-degenerate, i.e.:
 		\begin{itemize} 	
 			\item $d\omega=0$
 			\item $\omega^\flat:TM\to T^*M, v\mapsto \iota_v\omega$ is injective
-		\end{itemize}	
-
-\end{frame}
-\note[itemize]{
+		\end{itemize}
 	\item   Examples:
 		\begin{itemize}
 			\item orientable 2-manifolds with volume, e.g. $S^2$, $T^2$, $\mathbb R^2$
@@ -272,56 +348,326 @@ This talk reviews higher versions of observable algebras and moment maps in mult
 }
 %- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%
 
+
+
+
+	
 %- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%
-\begin{frame}{Poisson Reduction} 
-{Def. Poisson algebra of observables} Let $(M,\omega)$ be symplectic.
-		\begin{itemize}
-			\item $X_f:=-(\omega^\flat)^{-1}(df)$  \emph{Hamiltonian vector field} of $f\in C^\infty(M)$.
-			\item $\{f,g\}:=\omega(X_f,X_g)=L_{X_f}g$ \emph{Poisson bracket of observables}
-		\end{itemize}
-	Indeed $(C^{\infty}(M), \cdot, \{-,-\})$ Poisson algebra:
-			\begin{itemize}
-		\item $\cdot$ is a commutative, associative mutliplication
-		\item $\{-,-\}$ is a Lie bracket
-		\item $\{f,- \}$ is a derivation
-	\end{itemize}\pause
-	And $f\mapsto X_f$ is a Lie algebra map. 
+\begin{frame}{Reminder: momentum maps in symplectic geometry}\label{frame:symplecticmomaps}
+	Consider $\theta:G\curvearrowright M$ symplectic,~~ $\underline{\cdot}:\mathfrak{g}\to \mathfrak{X}(M)$ infinitesimal action.
+	\vfill
+
+	\begin{columns}[T]
+		\setlength{\belowdisplayskip}{5pt}
+		\begin{column}{.50\linewidth}
+			%
+			\centering \it
+			\onslide<2->{
+				\begin{defblock}[Equivariant moment map]
+					Smooth map $$\mu:M\to \mathfrak{g}^\ast$$
+					such that:
+					\begin{itemize}
+						\item[i.] $d\langle \mu,\xi\rangle = -\iota_{\underline{\xi}}\omega$ 
+						~\qquad, $\forall \xi \in \mathfrak{g}$
+						\item[ii.] $\mu \circ \theta_g = Ad_g^\ast \circ \mu$
+						 \qquad\small, $\forall g \in G$
+					\end{itemize}
+				\end{defblock}
+			}
+		\end{column}	
+		%
+		\onslide<2->{\vrule{}}
+		%
+		\begin{column}{.50\linewidth}
+			\onslide<3->{			
+				\begin{defblock}[Comoment map]
+					Linear map $$\widetilde{\mu}: \mathfrak{g}\to C^\infty(M,\omega)$$
+					such that:
+					\begin{itemize}
+						\item[i.] $d\widetilde{\mu}(\xi) = -\iota_{\underline{\xi}}\omega$ 
+						\qquad~\small, $\forall \xi \in \mathfrak{g}$
+						\item[ii.] $\widetilde{\mu}([\xi,\eta]) = \lbrace\widetilde{\mu}(\xi),\widetilde{\mu}(\eta)\rbrace$ \small, $\forall \xi,\eta \in \mathfrak{g}$
+					\end{itemize}
+				\end{defblock}
+			}
+		\end{column}	
+	\end{columns}	
+	%
+	\pause
+	\vspace{1em}
+	%
+	\begin{columns}[]
+		\setlength{\belowdisplayskip}{5pt}
+		\begin{column}{.40\linewidth}
+			%
+			\centering \it
+			\onslide<5->{
+				\begin{upshotblocktitle}[Duality]
+					\begin{displaymath}
+						\mu(x) : \mathfrak{\xi} \mapsto \widetilde{\mu}(\xi)\big\vert_x
+					\end{displaymath}
+					%
+					\emph{
+					\small
+					"duality wrt. the currying operation"					
+					}
+				\end{upshotblocktitle}
+			}
+		\end{column}	
+		%
+		%
+		\begin{column}{.60\linewidth}
+			\onslide<4->{			
+				\begin{upshotblocktitle}[$\widetilde{\mu}$ as a lift]
+					\begin{displaymath}
+						\begin{tikzcd}[ampersand replacement = \&]
+						 \& C^\infty(M,\omega) \ar[d,"\vHam"]
+						 \\
+						 \mathfrak{g} \ar[ur,dashed,sloped,"\widetilde{\mu}"]\ar[r,"\underline{\cdot}"'] \& \mathfrak{X}(M)
+						\end{tikzcd}
+					\end{displaymath}
+					%
+					\emph{
+					\small
+					"it is a lift (in the Lie category) of the infinitesimal action by the assigment of hamiltonian v.fields."					
+					}
+				\end{upshotblocktitle}
+			}
+		\end{column}	
+	\end{columns}		
 \end{frame}
 \note[itemize]{
-	\item  
+		\item consider an action preserving the symplectic form.
+		\item[-] $\langle \cdot, \cdot \rangle$ is the natural pairing of $\mathfrak{g}$ and $\mathfrak{g}^\ast$.
+			\item[-] $\theta_g$ is the diffeomorphism associated to $g\in G$ via $\theta:G\curvearrowright M$
+			\item[-] $Ad^\ast_g$ is the coadjoint action $G\curvearrowright \mathfrak{g}^\ast$
+		\item The moment map can be reexpressed as a comomentum map.
+		\item Observe that ii. on the left always implies ii. on the right. The converse is trure only if $G$ is connected.
+		\item $G\curvearrowright M$ is said "Hamiltonian" (see slide \ref{frame:gisthamaction} in appendix) iff $\exists$ comoment map $\widetilde{\mu}$.
+		\item \emph{moment map: Describe ${\color{orange}G\curvearrowright M}$ in terms of $\color{blue}C^\infty(M)\to\X(M)$.}
+		\begin{center}
+		\begin{tikzpicture}[scale=1.5]
+			\node[orange] (A) at (0,0) {$\g$};
+			\node[gray] (A1) at (0,-.3) {$\xi$};
+			\node[blue] (B) at (1,1) {$C^\infty(M)$};
+			\node[gray] (B2) at (1.55,1) {$f$};
+			\node[orange] (C) at (1,0) {$\X(M)$};
+			\node[gray] (C1) at (1,-.3) {$\underline\xi$};
+			\node[gray] (C2) at (1.55,0) {$X_f$};
+	
+			\path[->,blue,dashed] (A) edge node[above left] {$\langle\mu,\cdot\,\rangle$} (B);
+			\path[->,orange] (A) edge (C);
+			\path[->] (B) edge (C);
+			\path[|->,gray] (A1) edge (C1);
+			\path[|->,gray] (B2) edge (C2);
+	
+			\begin{scope}[xshift=3cm]
+				\node at (-.32,.8) {as Lie algebras};
+				\node at (-.13,.2) {i.e., {\color{blue}$\mu_\xi$} generates {\color{orange}$\underline\xi$}};
+			\end{scope}
+		\end{tikzpicture}
+		
+			\footnotesize		(\emph{moment map:} ${\color{blue}\mu:M\to\g^*}$, 
+		 \emph{Hamiltonian $G$-space:} 	$(M,\omega,G,\mu)$)
+		\end{center}
+		\item
+		 $\alpha\mapsto X_\alpha$ is a homomorphism of Leibniz algebras:
+		$$\d\{\alpha,\beta\} = \d\L_{X_\alpha}\beta = \L_{X_\alpha}\iota_{X_\beta}\omega = \iota_{[X_\alpha,X_\beta]}\omega ~{\color{black!80} \implies}~
+		X_{\{\alpha,\beta\}} = [X_\alpha,X_\beta]$$
 }
 %- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%
 
+
+%- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%	
+\subsection{Regular reduction} 
+%- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%	
+\begin{frame}{Regular reduction in symplectic geometry}
+	\textbf{\color{UniGreen}Symplectic reduction:}~~
+	\\ 
+	{\it \small
+	Procedure associating to any (suitably regular) pair of symplectic manifold and Hamiltonian action another symplectic manifold of smaller dimension.}
+	\vfill
+
+	\pause
+	\begin{columns}
+		\begin{column}{0.40\textwidth}
+			\includegraphics[width=\textwidth]{Pictures/Reduction}
+		\end{column}	
+		
+		\begin{column}{0.6\textwidth}
+				\textbf{\color{UniGreen}In mechanics:}~~
+				\\
+			{\it \small
+				it embodies the process of restricting the dynamics of the system to the level sets of the conserved quantities pertaining to the symmetry group.		
+			}
+			\\[.2em]
+			\color{gray}\small( e.g. restricting to studying a point-like particle in a central potential by studying it in radial coordinates)
+		\end{column}	
+	\end{columns}	
+\end{frame}
+\note[itemize]{
+	\item  In classical mechanics symmetry reduction plays an important role. Mathematically, this is usually phrased in terms of Marsden-Weinstein reduction
+	\item {Symplectic Reduction} takes two inputs:
+	\\ 1. Hamiltonian $G$-space $(M,\omega,{\color{orange}G},{\color{blue}\mu})$
+	\\ 2. parameter ${\color{blue}\phi}\in\g^*$
+	\item The \emph{reduced space} is $M_\phi:={\color{blue}\mu^{-1}(\phi)}{\color{orange}/G_\phi}$.
+	\item (Marsden--Weinstein '74, Meyer '73) THM:\\
+		If $\mu^{-1}(\phi)\subset M$ is smooth and $G_\phi\curvearrowright \mu^{-1}(\phi)$ is free and proper, then there is a \textbf{unique symplectic form} $\omega_\phi\in\Omega^2(M_\phi)$ such that $\pi^*\omega_\phi = i^*\omega$.
+
+
+
+	\item Heuristic Approach to Reduction:
+	\\1. describe $G\curvearrowright M$ in terms of $\omega$ 	\hspace{1cm}
+	({\color{green}moment map $\mu$})
+	\\2. identify a distinguished reduced space \hspace{1cm}
+	({\color{green}reduction at $\mu=0$})
+	\\3. use the ambiguity in 1.\ to obtain a family of reduced spaces \hspace{1cm}
+	({\color{green}reduction at $\mu-\phi=0$, i.e.\ reduction at $\mu=\phi$}
+	\\
+	{\tiny Note: If $G_\phi\neq G$, then $\mu-\phi:M\to\g^*$ is not a moment map for either $G\curvearrowright M$ or $G_\phi\curvearrowright M$.}
+	
+}
+%- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%	
+
+
+ 
+
 %- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%
-\subsection{Marsden-Weinstein-Meyer reduction}
 \begin{frame}[fragile]{Marsden-Weinstein-Meyer reduction}
-Let $(M,\omega)$ symplectic, $G\circlearrowright M$ be a Lie group action\pause and $\mu:M\to \mathfrak g^*$ such that:\pause
-\begin{itemize}
-\item  $\mu$ is a momentum, i.e. the infinitesimal action $\xi\mapsto \underline\xi:\mathfrak g\to \mathfrak X(M)$ of $G$ satisfies $X_{\langle\mu,\xi\rangle}=\underline \xi$. \pause
-\item $\mu$ is $G$-equivariant, i.e. $\mu(gm)=Ad^*_g\mu(m)$ \pause
-\item The action of $G$ on $\mu^{-1}(0)$ is free and proper.\\ (This implies $0$ is reg. val. of $\mu$) \pause
-\end{itemize}
-Then $\exists!$ symplectic form $\omega_r$ on $M_r=\frac{\mu^{-1}(0)}{G}$ such that $\pi^*\omega_r=i^*\omega$.
+	\begin{thmblock}[Marsden-Weinstein reduction \cite{MarsdenWeinstein74}]
+		\vspace{-.4em}\hspace{-1em}
+		\begin{tabular}{l p{14cm}}
+			Given: & $(M,\omega)$ symplectic
+			\\
+			& $\color{orange}G\curvearrowright M$ symplectic with equivariant momap. $\mu:M\to \mathfrak{g}^*$
+			\\[.2em]
+			Assume: & ${\color{blue}\phi} \in \mathfrak{g}^*$ regular value of $\mu$ 
+			\qquad\quad \footnotesize \textcolor{gray}{($\Rightarrow$ $\mu^{-1}(\phi)\hookrightarrow M$ smooth embedding)}
+			\\
+			& $G_\phi\curvearrowright \mu^{-1}(\phi)$ free and proper
+			\quad \footnotesize \textcolor{gray}{($\Rightarrow$ $\mu^{-1}(\phi)/G_\phi$ smooth manifold)}
+			\\[.4em]
+			Then: & \textbf{$\exists!$ symplectic structure} $\omega_\phi$ in $M_\phi:={\color{blue}\mu^{-1}(\phi)}{\color{orange}/G_\phi}$ \\
+			& s.t. $\pi^\ast \omega_\phi = j^\ast \omega$ 
+			\qquad {\footnotesize with $j:\mu^{-1}(\phi) \hookrightarrow M$ and $\pi:\mu^{-1}(\phi)\twoheadrightarrow M_\mu$}
+		\end{tabular}
+		\vspace{-.4em}
+	\end{thmblock}
+	%
+	\vfill
+	\begin{center}
+	\begin{tikzpicture}[scale=2]
+		\node[blue] (A) at (0,0) {$\mu^{-1}(\phi)$};
+		\node[gray] (A1) at (0,.3) {$i^*\omega$};
+		\node[gray] (A2) at (-.6,0) {$\pi^*\omega_\phi$};
+		\node[blue] (B) at (1,0) {$M$};
+		\node[gray] (B1) at (1,.3) {$\omega$};
+		\node[orange] (C) at (0,-.8) {$M_\phi$};
+		\node[gray] (C2) at (-.6,-.8) {$\omega_\phi$};
 
-% https://q.uiver.app/#q=WzAsMyxbMCwwLCJNIl0sWzMsMCwiXFxtdV57LTF9KDApIl0sWzYsMCwiTV9yIl0sWzEsMCwiaVxcXFwgXFxzdWJzdGFja3tpbmNsdXNpb25+b2Z+c3Vic3BhY2V9IiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJib3R0b20ifX19XSxbMSwyLCJcXHBpXFxcXCBcXHN1YnN0YWNre3F1b3RpZW50fmJ5fnJlbGF0aW9ufSJdXQ==
-\[\begin{tikzcd}
-	M &&& {\mu^{-1}(0)} &&& {M_r}
-	\arrow["\begin{array}{c} i\\ \substack{inclusion~of~subspace} \end{array}"', hook', from=1-4, to=1-1]
-	\arrow["\begin{array}{c} \pi\\ \substack{quotient~by~relation} \end{array}", two heads, from=1-4, to=1-7]
-\end{tikzcd}\]
-
-\pause
-Examples: $\mathbb CP^n$ from $S^1$-action on $\mathbb C^{n+1}$.
-
+		\path[right hook->,blue] (A) edge node[above] {$i$} (B);
+		\path[orange,->] (A) edge node[left] {$\pi$} (C);
+		\begin{scope}[xshift=-1.8cm]
+			\node[blue] at (0,0) {\small restrict to $\{\mu=\phi\}$};
+			\node[orange] at (.15,-.4) {\small quotient by $G_\phi$};
+		\end{scope}
+	\end{tikzpicture}
+	\end{center}
+	\pause
+	\vfill
+	\centering
+	The action of $G$ on $\mu^{-1}(0)$ is free and proper $\Rightarrow$ $0$ is reg. val. of $\mu$
 
 \end{frame}
+\note[itemize]{
+ \item 
+	Let $(M,\omega)$ symplectic, $G\circlearrowright M$ be a Lie group action\pause and $\mu:M\to \mathfrak g^*$ such that: 
+	\item  $\mu$ is a momentum, i.e. the infinitesimal action $\xi\mapsto \underline\xi:\mathfrak g\to \mathfrak X(M)$ of $G$ satisfies $X_{\langle\mu,\xi\rangle}=\underline \xi$. 
+	\item $\mu$ is $G$-equivariant, i.e. $\mu(gm)=Ad^*_g\mu(m)$ 
+	\item Then $\exists!$ symplectic form $\omega_r$ on $M_r=\frac{\mu^{-1}(0)}{G}$ such that $\pi^*\omega_r=i^*\omega$.
+%% https://q.uiver.app/#q=WzAsMyxbMCwwLCJNIl0sWzMsMCwiXFxtdV57LTF9KDApIl0sWzYsMCwiTV9yIl0sWzEsMCwiaVxcXFwgXFxzdWJzdGFja3tpbmNsdXNpb25+b2Z+c3Vic3BhY2V9IiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJib3R0b20ifX19XSxbMSwyLCJcXHBpXFxcXCBcXHN1YnN0YWNre3F1b3RpZW50fmJ5fnJlbGF0aW9ufSJdXQ==
+%\[\begin{tikzcd}
+%	M &&& {\mu^{-1}(0)} &&& {M_r}
+%	\arrow["\begin{array}{c} i\\ \substack{inclusion~of~subspace} \end{array}"', hook', from=1-4, to=1-1]
+%	\arrow["\begin{array}{c} \pi\\ \substack{quotient~by~relation} \end{array}", two heads, from=1-4, to=1-7]
+%\end{tikzcd}\]
+
+}
+%- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%
+
+
+ 
+
+
+%- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%
+\subsection{Singular reduction}
+\begin{frame}{Symplectic singular reduction schemes}
+	\begin{block}{The gist of singular reduction}
+		 \begin{itemize}
+			 \item[-] when $\mu$ is singular (i.e. $\mu^{-1}(0)$ is not a mfd.), the (geometrically) reduced space may not exist.
+			 \item[-] a \emph{singular reduction scheme} is a procedure to construct a "reduced" algebra of observable out of the given data
+			 \item[-] such that it corresponds to the algebra of observable of the reduced manifold in the regular case.
+		 \end{itemize}
+	\end{block}
+	 %
+	 \pause
+	 %
+	\begin{thmblock}[Sniatycki-Weinstein reduction \cite{SniatyckiWeinstein83}]
+		\vspace{-.4em}\hspace{-1em}
+		\begin{tabular}{l p{14cm}}
+			Given: & $(M,\omega)$ symplectic
+			\\
+			& $G\curvearrowright M$ symplectic with equivariant momap. $\mu:M\to \mathfrak{g}^*$
+			\\[.4em]
+			Then: & 
+			$\displaystyle \left[\sfrac{C^\infty(M)}{I_\mu}\right]^G$
+			admits a Poisson algebra structure 
+			\footnote{$I_\mu$ = associative ideal generated by $\widetilde{\mu}(\g)$}			
+			\\
+			& it agrees with the M--W reduction in the regular case.		
+		\end{tabular}
+		\vspace{-.4em}
+	\end{thmblock}
+ \end{frame}
+\note[itemize]{
+ \item Let $(M,\omega,G,\mu)$ be a symplectic Hamiltonian $G$-space.
+ \item The \emph{momentum ideal} is the associative ideal $I_\mu\subset C^\infty(M)$ generated by the momenta $\mu_{\xi}$ for any $\xi\in \mathfrak{g}$.
+		Namely
+		\[
+			I_\mu 
+			= 
+			\Big\langle \mu_\xi \Big\rangle_{\xi \in \mathfrak{g}}^{\text{\tiny asso.}} 
+			=
+			\left\{
+				\left.
+					\sum_{i=1}^n f_i ~ \mu_{\xi_i}
+				\right|~
+					f_i \in C^\infty(M),~ \xi_i\in \mathfrak{g},~  1 \leq i \leq n
+			\right\}
+		\]
+
+ \item The \emph{\'Sniatycki--Weinstein reduction} is the Poisson algebra
+		\[
+			\left(C^\infty(M)/I_\mu\right)^G.
+		\]
+
+
+}
+%- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%	
 
 
 
 
-\subsection{Attempting algebraic reduction}
 
-\begin{frame}[fragile]
+
+
+
+
+
+
+%- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%
+\subsection{Constraints Algebras}
+\begin{frame}[fragile]{Attempting algebraic reduction}
 When the action is not 'free and proper', we can try to mimic this directly using the function algebras:
 % https://q.uiver.app/#q=WzAsNixbMCwwLCJNIl0sWzEsMCwiXFxtdV57LTF9KDApPVMiXSxbMywwLCJNX3IiXSxbMCwxLCJDXlxcaW5mdHkoTSkiXSxbMSwxLCJDXntcXGluZnR5fShTKT1cXGZyYWN7Q157XFxpbmZ0eX0oTSl9e0lfe1N9fSJdLFszLDEsIkNee1xcaW5mdHl9KE1fcik9Q15cXGluZnR5KFMpXkciXSxbMSwyLCJcXHN1YnN0YWNre3F1b3RpZW50fSIsMCx7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFszLDQsIlxcc3Vic3RhY2t7cXVvdGllbnR9IiwwLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzAsMSwiXFxzdWJzdGFja3tyZXN0cmljdGlvbn0iLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJzcXVpZ2dseSJ9fX1dLFs0LDUsIlxcc3Vic3RhY2t7cmVzdHJpY3Rpb259IiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoic3F1aWdnbHkifX19XV0=
 \[\begin{tikzcd}
@@ -333,7 +679,10 @@ When the action is not 'free and proper', we can try to mimic this directly usin
 	\arrow["{\substack{restriction}}", squiggly, from=2-2, to=2-4]
 \end{tikzcd}\]
 
-where $I_S=\{f\in C^{\infty}(M)~|~f|_S=0\}$.\pause Equivalently:
+where $I_S=\{f\in C^{\infty}(M)~|~f|_S=0\}$.
+\pause 
+\vfill
+Equivalently:
 
 % https://q.uiver.app/#q=WzAsMyxbMCwwLCJDXlxcaW5mdHkoTSkiXSxbMiwwLCJOX1M9XFx7Zn58fiBmXFxpbiBDXlxcaW5mdHkoTSl8X1N+fkdcXG1hdGhybXstaW52YXJpYW50fVxcfSJdLFs0LDAsIlxcZnJhY3tOX1N9e0lfU30iXSxbMCwxLCJcXHN1YnN0YWNre3Jlc3RyaWN0aW9ufSIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6InNxdWlnZ2x5In19fV0sWzEsMiwiXFxzdWJzdGFja3txdW90aWVudH0iLDAseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XV0=
 \[\small\begin{tikzcd}
@@ -342,14 +691,59 @@ where $I_S=\{f\in C^{\infty}(M)~|~f|_S=0\}$.\pause Equivalently:
 	\arrow["{\substack{quotient}}", two heads, from=1-3, to=1-5]
 \end{tikzcd}\]
 \pause
+\vfill
 
 \begin{alertblock}{Problem}
 	$C^\infty(S)^G=\frac{N_S}{I_S}$ is not a Poisson algebra in general.
 \end{alertblock}
 (when constraints not first class, cf. Dirac reduction)
 \end{frame}
+\note[itemize]{
+	\item
+}
+%- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%
 
- \begin{frame}{Other approaches to reduction}
+%- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%
+\begin{frame}{Constraint Algebras} 
+	\begin{block}{Idea:}
+	    \begin{itemize}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]
+			\item[-] Both regular/geometric and singular/algebraic reduction are 2-steps procedures (1. restrict 2. quotient).
+			\item[-] Let's work in a category where all data needed for the reduction are bundled together in suitable categorical objects. {\tiny (To avoid pathologies arising from these steps)}
+	    \end{itemize}
+	\end{block}
+	\pause
+	\vfill
+	\begin{defblock}[Constraint algebra triples \cite{Dippell2023}]
+		A (strong embedded) constraint algebra $\mathcal A$ is given by a triple $(\mathcal A_T, \mathcal A_N, \mathcal A_0)$, where
+		\begin{itemize}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]
+			\item[•] $\mathcal A_T$ is an algebra \emph{("total space")}
+			\item[•] $\mathcal A_N\subset \mathcal A_T$ a subalgebra  \emph{("normal space")}
+			\item[•] $\mathcal A_0\subset \mathcal A_N$ a two-sided ideal in $\mathcal A_T$ \emph{("zero space")}
+		\end{itemize}
+	\end{defblock}
+	\vfill
+	\pause
+	\begin{exblock}
+		Let $S$ be a closed set. Algebraically, we describe $C^\infty(S)$ by $\frac{C^\infty(M)}{I_S}$.
+		\\ 
+		We can think of it as the constraint triple:
+		$$
+			\mathcal A=(\mathcal A_T,\mathcal A_N,\mathcal A_0)=(C^\infty(M),C^\infty(M), I_S)
+		$$
+	\end{exblock}
+
+\end{frame}
+\note[itemize]{
+	\item  triples of the type (algebra , subalgebra, ideal).
+	\item After \cite{Dippell2023} we call such triples { \bf constraint triples} and their parts \emph{total space, normal space, zero space}.
+	\item It is a (strong) constraint algebra if $\mathcal A_0\subset \mathcal A_N\subset \mathcal A_T$ subalgebras and $\mathcal A_0\subset \mathcal A_T$ ideal.
+}
+%- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%
+
+
+
+%- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%
+\begin{frame}{Other approaches to reduction}
  
 \begin{table}[]
 	\begin{tabular}{l|l|l||l}
@@ -373,29 +767,17 @@ where $I_S=\{f\in C^{\infty}(M)~|~f|_S=0\}$.\pause Equivalently:
 		
 	\end{tabular}\pause
 \end{table}
+	\vfill
 {\bf Remarks }names in order: 'naive' , Dirac, Sniatycki, Arms-Cushman-Gotay, Sniatycki-Weinstein.\pause \\
 When $G$ connected $N_\mu=N(I_\mu):=\{f~|~\{f,I_\mu\}\subset I_\mu\}$. 
- \end{frame}
+\end{frame}
+\note[itemize]{
+	\item  
+}
+%- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%
  
-%- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%
-\begin{frame}{Algebraic Reduction} 
- a
 
-\end{frame}
-\note[itemize]{
-	\item  
-}
-%- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%
 
-%- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%
-\begin{frame}{Constraint Algebras} 
- a
-
-\end{frame}
-\note[itemize]{
-	\item  
-}
-%- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%
 
 
 %------------------------------------------------------------------------------------------------
@@ -404,6 +786,7 @@ When $G$ connected $N_\mu=N(I_\mu):=\{f~|~\{f,I_\mu\}\subset I_\mu\}$.
 %------------------------------------------------------------------------------------------------
  
 %- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%
+\subsection{Multisymplectic manifolds}
 \begin{frame}{From symplectic to {multi}symplectic} 
 	%
 	\begin{center}
@@ -504,22 +887,7 @@ manifold to any classical field system (e.g. a continuous medium like a filament
 
 
 %- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%
-\begin{frame}{Geometric Multisymplectic Reduction} 
- a
-
-\end{frame}
-\note[itemize]{
-	\item  
-}
-%- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%
-
-
-%------------------------------------------------------------------------------------------------
-\section{Multisymplectic observables reduction}
-\checkpoint	
-%------------------------------------------------------------------------------------------------
- 
-%- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%
+\subsection{Higher Observables}
 \begin{frame}{Observables in $n$-plectic geometry}
 	%
 	\begin{defblock}[Hamiltonian $(n-1)$-forms]
@@ -604,7 +972,6 @@ manifold to any classical field system (e.g. a continuous medium like a filament
 
 
 %- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%
-\subsection{$L_\infty$-algebra of Observables}
 \begin{frame}[fragile,t]{$L_\infty$-algebra of Observables (higher observables) }
 	Let be $(M,\omega)$ a $n$-plectic manifold.
 	\begin{defblock}[$L_\infty$-algebra of observables ~\emph{(Rogers)} ~\cite{Rogers2010}]
@@ -650,7 +1017,217 @@ manifold to any classical field system (e.g. a continuous medium like a filament
 %- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%
 
 
+%------------------------------------------------------------------------------------------------
+\section{Multisymplectic observables reduction}
+\checkpoint	
+%------------------------------------------------------------------------------------------------
+ 
+ %- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%
+\subsection{General idea}
+\begin{frame}{Singular Reduction: Roadmap}
+	%
+	\begin{block}{Data:}
+			\begin{itemize}
+				\item $(M,\omega)$ multisymplectic,
+				\item $S\subset M$ closed $N$ (possibly singular),
+				\item $I_S$ the ideal of smooth functions vanishing on $S$,
+				\item $F\subset \mathfrak X(M)$ a Lie subalgebra s.th. $F(I_S)\subset I_S$.
+			\end{itemize}
+	\end{block}
+	%
+	\vfill
+	\pause
+	%
+	\begin{block}{Goal:}
+		\begin{itemize}
+			\item Identify a constraint triple of the type (algebra , subalgebra, ideal) pertaining to the $L_\infty$ algebra of observables.
+		\end{itemize}
+	\end{block}
+	%
+	\vfill
+	\pause
+	%
+	\begin{block}{Strategy:}
+		\begin{enumerate}
+			\item Define smooth fields/forms \emph{tangent to $N$},
+			\item define smooth fields/forms \emph{vanishing along $N$},
+			\item define \emph{reducible fields} requiring the preservation of the vanishing objects,
+			\item define \emph{reducible forms} requiring their conservation w.r.t. the infinitesimal action,
+			\item define \emph{reducible and vanishing observables},
+			\item \textbf{quotient}
+		\end{enumerate}
+	\end{block}
 
+
+
+
+
+
+\end{frame}
+\note[itemize]{
+	\item
+}
+ %- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .% 
+ 
+ %- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%
+\begin{frame}{Translating geometry to algebra}
+
+	\vfill
+	\begin{table}[]
+		\begin{tabular}{l|l|l}
+		 geometry & algebra & translation \\
+			\hline	
+		smooth manifold $M$ & comm. algebra $\mathcal A_T$  	& $\mathcal A_T=C^{\infty}(M)$\\ \hline\pause
+		vector fields $\mathfrak X(M)$ & derivations $\Der(\mathcal A_T)$ &  $\Der(C^\infty(M))=\mathfrak X(M)$\\ \hline\pause
+		closed subset $S\subset M$ & ideals $\mathcal A_0\subset \mathcal A_T$ & $\mathcal A_0=I_S=\{f~|~f|_S=0\}$ \\ \hline\pause
+		action $G\circlearrowleft M$ & Lie algebra map & infinitesimal generators\\
+		 of connected group &$\underline{\cdot}:\mathfrak g\to \Der(\mathcal A_T)$ & of the action \\ \hline \pause
+		 $G$ action preserves $S$ & $\underline \xi(I_S)\subset I_S$ $\forall \xi\in\mathfrak g$& \color{red} Careful! Not equivalent! 
+		 \\ \hline
+		\end{tabular}\pause
+	\end{table}
+	\vfill
+
+
+\end{frame}
+\note[itemize]{
+	\item {Warning}
+	$\partial_x$ is algebraically preserving $S=[0,1]\subset \mathbb R=M$, even though the flow leads out of the set.
+}
+%- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%
+
+
+
+
+
+
+
+%- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%
+\subsection{Higher Observables Constraint Algebra}
+\begin{frame}[fragile]{Higher Observables Constraint Algebra}
+	\begin{defpropblock}[$L_\infty$-observables constraint algebra]
+		The following $L_\infty$ algebras form a constraint triple
+		\begin{align*}
+			\Ham_T =&~ L_\infty(M,\omega) \\
+			\Ham_N =&~
+			{\small
+			\left\lbrace
+			\begin{array}{l}
+				\alpha\in \Omega^{\leq n-2}(M) ~\mathrm{, respectively}\\	
+				(\alpha,X) \in \Omega^{n{-}1}(M) \oplus\mathfrak X(M)
+			\end{array}
+			~\left\vert~
+			\begin{array}{l l}
+				\iota_\xi \alpha \in (\Lambda \mathfrak L)^*_0 &\\
+				L_\xi\alpha \in (\Lambda \mathfrak L)^*_0&~\forall \xi \in F\\
+				\hline
+				\iota_X \omega = -d \alpha &\\
+				X(I_S)\subset I_S &\\
+				L_\xi X \in C^{\infty}(M) F + I_S\mathfrak X(M)
+				&~\forall \xi \in F\\
+			\end{array}
+			\right.
+			\right\rbrace 
+			}
+			\\
+			\Ham_0 =&~
+		{\small
+			\left\lbrace
+			\begin{array}{l}
+				\alpha\in \Omega^{\leq n-2}(M) ~\mathrm{, respectively}\\	
+				(\alpha,X) \in \Omega^{n{-}1}(M) \oplus \mathfrak X(M)
+			\end{array}
+			~\left\vert~
+			\begin{array}{l}
+				\alpha \in (\Lambda \mathfrak L)^*_0\\
+				\hline
+				\iota_X \omega = -d \alpha\\
+				X \in C^{\infty}(M) F + I_S\mathfrak X(M)
+			\end{array}
+			\right.
+			\right\rbrace
+		}
+		\end{align*}
+		where $(\Lambda^k \mathfrak L)^*_0=\{\alpha~|~\alpha(v_1,...,v_k)\in \mathcal A_0~\forall v_i\in \mathfrak L_N\}$.
+	\end{defpropblock}
+	\vfill
+	\pause
+	Hence, The following subquotient $\frac{\Ham_N}{\Ham_0}$ of $\Ham_T$ forms an $L_\infty$-algebra.
+\end{frame}
+\note[itemize]{
+	\item 	\begin{defblock}[Reducible v.fields ]
+			\begin{displaymath}
+				\X(M)_{[N]} :=
+				\left\lbrace
+					v \in \X(M)
+				~\left\vert~
+					\begin{array}{l}
+						\L_v (I_N) \subseteq I_N	\\		
+						\L_v (\X_g) \subseteq \X_g + I_\X
+					\end{array}
+				\right\rbrace\right.
+			\end{displaymath}
+%			\blfootnote{
+%			 $\X_g$ = $C^\infty(M)$-module generated by the fundamental distribution.
+%			}	
+
+	\end{defblock}	
+	%
+	\pause
+	%
+	\begin{defblock}[Reducible forms ]
+		\begin{displaymath}
+			\Omega(M)_{[N]} :=
+			\left\lbrace
+				\alpha \in \Omega(M)
+			~\left\vert~
+				\begin{array}{l r}
+					\L_\underline{\xi} \,\alpha \in I_{\Omega(N)}	\\		
+					\iota_\underline{\xi} \,\alpha \in I_{\Omega(N)}	& \forall \xi \in \g				\end{array}
+			\right\rbrace\right.
+		\end{displaymath}	
+	\end{defblock}	
+	%
+	\pause
+	%
+	\begin{defblock}[Reducible Hamiltonian forms]
+		\begin{displaymath}
+			(\Omega(M)_{ham}^{n-1})_{[N]} :=
+			\left\lbrace
+				\alpha \in \Omega(M)_{ham}^{n-1}
+			~\left\vert~
+				\begin{array}{l r}
+					\alpha \text{ is a reducible form} \\
+					\vHam_\alpha \text{ is a reducible v.field}
+				\end{array}
+			\right\rbrace\right.
+		\end{displaymath}	
+	\end{defblock}	
+}
+%- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%
+
+%- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%
+\subsection{Conclusions}
+\begin{frame}{Lessons learned}
+	\begin{itemize} 
+\item Constraint triples permit to do differential geometry/ Cartan calculus on singular subquotients,\\ ... in particular constructing observable algebras on them.\pause
+\item Even if $\omega$ is non-degenerate, $\omega_r$ could degenerate, forcing us to pull along the Hamiltonian vector fields explicitly\pause
+\item Coomentum maps in the sense of the Leibniz structure seem better for reducing than $L_\infty$-comomenta \pause
+\item The algebraic approach can treat algebroid / singular foliation symmetries and remembers vanishing orders a the singularities. \pause
+\item The reduction seems to give something novel even in the symplectic case \pause
+\item A 'softer' notion of constraint $L_\infty$ algebra is necessary to obtain all observables of the reduced space.
+	\pause
+			\vfill
+		  \centering 
+		  {\Huge\color{red} 
+		  \emph{Thank you for your attention!}}
+			\vfill
+	\end{itemize}
+\end{frame}
+\note[itemize]{
+	\item 
+}
+%- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%
 
 
 
@@ -872,367 +1449,6 @@ manifold to any classical field system (e.g. a continuous medium like a filament
 
 
 
-%------------------------------------------------------------------------------------------------
-\begin{frame}{Symplectic geometry (mechanics flavour)}
-	\begin{columns}[T]
-		\begin{column}{.50\linewidth}
-			\centering
-			\textit{ "geometric approach" to mechanics \dots}
-			%
-			\begin{columns}
-				\begin{column}{.60\linewidth}
-					\begin{center}
-						\includegraphics[width=0.6\linewidth]{Pictures/pendulum13}			
-					\end{center}
-				\end{column}	
-				\begin{column}{.40\linewidth}
-					\begin{center}
-						\includegraphics[width=0.45\linewidth]{Pictures/pendulum-phase-space}			
-					\end{center}
-				\end{column}	
-			\end{columns}
-			%
-			\begin{defblock}[Symplectic Manifold]
-				\vspace{-1em}
-				\includestandalone[width=1\textwidth]{Pictures/Figure_sym}	
-			\end{defblock}
-			%
-			\pause
-			\begin{exblock}[$M = T^\ast Q$ is symplectic]
-				with $\omega = d \theta $ given by
-				$$ \left.\theta\right\vert_{(q,p)} (v) = p (\pi_\ast v) ~.$$
-			\end{exblock}
-			%
-			\pause
-			\vspace{1.2em}
-			\centering
-			\textit{ based on the notion of \\"states".}		
-		\end{column}
-		\onslide<1->{\vrule{}}
-		\pause
-		\begin{column}{.50\linewidth}
-			\centering
-			\textit{ "algebraic approach" to mechanics \dots}
-			\vspace{.5em}	
-			\begin{defblock}[Classical Observables]
-				Unital, associative, commutative algebra $C^\infty(M)$.
-			\end{defblock}
-			%
-			\vspace{.1em}
-			\pause
-			\begin{defblock}[Hamiltonian vector fields]
-				$\vHam_f \in \mathfrak{X}(M)$ such that:
-				$$\iota_{\vHam_f} \omega = -df \quad$$ %$\in B^1(M)$
-				%
-				\footnotetext{	$\vHam_f$ = \emph{Ham.v.f. pertaining to $f\in C^\infty(M)$}.}
-			\end{defblock}
-			\vspace{.1em}
-			%
-			\begin{defblock}[Poisson Algebra of Observables]
-				$C^\infty(M)$ is a Poisson algebra with
-				$$\{f,g\} = \iota_{\vHam_g} \iota_{\vHam_f} \omega = \omega(\vHam_f,\vHam_g) ~.$$
-			\end{defblock}
-			%
-			\pause
-			\vspace{.15em}
-			\centering
-			\textit{ based on the notion of \\"measurable quantities".}						
-		\end{column}
-	\end{columns}
-	\end{frame}
-	\note[itemize]{
-		\footnotesize
-	
-		\item We work in the framework of multisymplectic geometry which is one of the possible generalizations of the well-established field of symplectic geometry.
-		
-		\item To recall what symplectic geometry is let me assume a particular point of view: mechanics.
-		\\
-		Idea:"
-		Symplectic geometry is a branch of differential geometry studying symplectic manifolds; it originated as a formalization of the mathematical apparatus of classical mechanics and geometric optics."{\href{https://ncatlab.org/nlab/show/symplectic+geometry}{nlab}}
-		
-		Namely, a sym. mfd. is the geometric structure encoding the phase space of conservative, ordinary, classical, mechanical systems.
-		
-		\item $\theta$ = \emph{tautological 1-form}.
-			$\theta$ evaluated at $p\in T^*Q$ in the fibre of $q\in Q$ and contracted with $v$ coincides with the form $p$ evaluated at $q$ and contracted with the push forward of $v$.
-		
-		\item We identify a special class of vector fields.
-			Out of them one can define a Lie bracket.
-		
-		\item Poisson is a Lie algebra with the extra property of compatibility with the associative product (Leibniz rule)
-		
-		\item take away message: geometric (based on "states") vs algebraic (based on "measurable quantities").7
-	}
-	%------------------------------------------------------------------------------------------------
-	
-	%------------------------------------------------------------------------------------------------
-	\begin{frame}{Reminder: momentum maps in symplectic geometry}\label{frame:symplecticmomaps}
-		Consider $\theta:G\curvearrowright M$ symplectic,~~ $\underline{\cdot}:\mathfrak{g}\to \mathfrak{X}(M)$ infinitesimal action.
-		\vfill
-	
-		\begin{columns}[T]
-			\setlength{\belowdisplayskip}{5pt}
-			\begin{column}{.50\linewidth}
-				%
-				\centering \it
-				\onslide<2->{
-					\begin{defblock}[Equivariant moment map]
-						Smooth map $$\mu:M\to \mathfrak{g}^\ast$$
-						such that:
-						\begin{itemize}
-							\item[i.] $d\langle \mu,\xi\rangle = -\iota_{\underline{\xi}}\omega$ 
-							~\qquad, $\forall \xi \in \mathfrak{g}$
-							\item[ii.] $\mu \circ \theta_g = Ad_g^\ast \circ \mu$
-							 \qquad\small, $\forall g \in G$
-						\end{itemize}
-					\end{defblock}
-				}
-			\end{column}	
-			%
-			\onslide<2->{\vrule{}}
-			%
-			\begin{column}{.50\linewidth}
-				\onslide<3->{			
-					\begin{defblock}[Comoment map]
-						Linear map $$\widetilde{\mu}: \mathfrak{g}\to C^\infty(M,\omega)$$
-						such that:
-						\begin{itemize}
-							\item[i.] $d\widetilde{\mu}(\xi) = -\iota_{\underline{\xi}}\omega$ 
-							\qquad~\small, $\forall \xi \in \mathfrak{g}$
-							\item[ii.] $\widetilde{\mu}([\xi,\eta]) = \lbrace\widetilde{\mu}(\xi),\widetilde{\mu}(\eta)\rbrace$ \small, $\forall \xi,\eta \in \mathfrak{g}$
-						\end{itemize}
-					\end{defblock}
-				}
-			\end{column}	
-		\end{columns}	
-		%
-		\pause
-		\vspace{1em}
-		%
-		\begin{columns}[]
-			\setlength{\belowdisplayskip}{5pt}
-			\begin{column}{.40\linewidth}
-				%
-				\centering \it
-				\onslide<5->{
-					\begin{upshotblocktitle}[Duality]
-						\begin{displaymath}
-							\mu(x) : \mathfrak{\xi} \mapsto \widetilde{\mu}(\xi)\big\vert_x
-						\end{displaymath}
-						%
-						\emph{
-						\small
-						"duality wrt. the currying operation"					
-						}
-					\end{upshotblocktitle}
-				}
-			\end{column}	
-			%
-			%
-			\begin{column}{.60\linewidth}
-				\onslide<4->{			
-					\begin{upshotblocktitle}[$\widetilde{\mu}$ as a lift]
-						\begin{displaymath}
-							\begin{tikzcd}[ampersand replacement = \&]
-							 \& C^\infty(M,\omega) \ar[d,"\vHam"]
-							 \\
-							 \mathfrak{g} \ar[ur,dashed,sloped,"\widetilde{\mu}"]\ar[r,"\underline{\cdot}"'] \& \mathfrak{X}(M)
-							\end{tikzcd}
-						\end{displaymath}
-						%
-						\emph{
-						\small
-						"it is a lift (in the Lie category) of the infinitesimal action by the assigment of hamiltonian v.fields."					
-						}
-					\end{upshotblocktitle}
-				}
-			\end{column}	
-		\end{columns}		
-	\end{frame}
-	\note[itemize]{
-		\item consider an action preserving the symplectic form.
-		\item[-] $\langle \cdot, \cdot \rangle$ is the natural pairing of $\mathfrak{g}$ and $\mathfrak{g}^\ast$.
-			\item[-] $\theta_g$ is the diffeomorphism associated to $g\in G$ via $\theta:G\curvearrowright M$
-			\item[-] $Ad^\ast_g$ is the coadjoint action $G\curvearrowright \mathfrak{g}^\ast$
-		\item The moment map can be reexpressed as a comomentum map.
-		\item Observe that ii. on the left always implies ii. on the right. The converse is trure only if $G$ is connected.
-		\item $G\curvearrowright M$ is said "Hamiltonian" (see slide \ref{frame:gisthamaction} in appendix) iff $\exists$ comoment map $\widetilde{\mu}$.
-		\item \emph{moment map: Describe ${\color{orange}G\curvearrowright M}$ in terms of $\color{blue}C^\infty(M)\to\X(M)$.}
-		\begin{center}
-		\begin{tikzpicture}[scale=1.5]
-			\node[orange] (A) at (0,0) {$\g$};
-			\node[gray] (A1) at (0,-.3) {$\xi$};
-			\node[blue] (B) at (1,1) {$C^\infty(M)$};
-			\node[gray] (B2) at (1.55,1) {$f$};
-			\node[orange] (C) at (1,0) {$\X(M)$};
-			\node[gray] (C1) at (1,-.3) {$\underline\xi$};
-			\node[gray] (C2) at (1.55,0) {$X_f$};
-	
-			\path[->,blue,dashed] (A) edge node[above left] {$\langle\mu,\cdot\,\rangle$} (B);
-			\path[->,orange] (A) edge (C);
-			\path[->] (B) edge (C);
-			\path[|->,gray] (A1) edge (C1);
-			\path[|->,gray] (B2) edge (C2);
-	
-			\begin{scope}[xshift=3cm]
-				\node at (-.32,.8) {as Lie algebras};
-				\node at (-.13,.2) {i.e., {\color{blue}$\mu_\xi$} generates {\color{orange}$\underline\xi$}};
-			\end{scope}
-		\end{tikzpicture}
-		
-			\footnotesize		(\emph{moment map:} ${\color{blue}\mu:M\to\g^*}$, 
-		 \emph{Hamiltonian $G$-space:} 	$(M,\omega,G,\mu)$)
-		\end{center}
-		\item
-		 $\alpha\mapsto X_\alpha$ is a homomorphism of Leibniz algebras:
-		$$\d\{\alpha,\beta\} = \d\L_{X_\alpha}\beta = \L_{X_\alpha}\iota_{X_\beta}\omega = \iota_{[X_\alpha,X_\beta]}\omega ~{\color{black!80} \implies}~
-		X_{\{\alpha,\beta\}} = [X_\alpha,X_\beta]$$
-	}
-	%------------------------------------------------------------------------------------------------
-	
-	\subsection{Regular reduction}
-	%------------------------------------------------------------------------------------------------
-	\begin{frame}{Regular reduction in symplectic geometry}
-		\textbf{\color{UniGreen}Symplectic reduction:}~~
-		\\ 
-		{\it \small
-		Procedure associating to any (suitably regular) pair of symplectic manifold and Hamiltonian action another symplectic manifold of smaller dimension.}
-		\vfill
-		\pause
-		\begin{thmblock}[Marsden-Weinstein reduction \cite{MarsdenWeinstein74}]
-			\vspace{-.4em}\hspace{-1em}
-			\begin{tabular}{l p{14cm}}
-				Given: & $(M,\omega)$ symplectic
-				\\
-				& $G\curvearrowright M$ symplectic with equivariant momap. $\mu:M\to \mathfrak{g}^*$
-				\\[.2em]
-				Assume: & $\phi \in \mathfrak{g}^*$ regular value of $\mu$ 
-				\qquad\quad \footnotesize \textcolor{gray}{($\Rightarrow$ $\mu^{-1}(\phi)\hookrightarrow M$ smooth embedding)}
-				\\
-				& $G_\phi\curvearrowright \mu^{-1}(\phi)$ free and proper
-				\quad \footnotesize \textcolor{gray}{($\Rightarrow$ $\mu^{-1}(\phi)/G_\phi$ smooth manifold)}
-				\\[.4em]
-				Then: & $\exists!$ symplectic structure $\omega_\phi$ in $M_\phi:= \mu^{-1}(\phi)/G_\phi$ \\
-				& s.t. $\pi^\ast \omega_\phi = j^\ast \omega$ 
-				\qquad {\footnotesize with $j:\mu^{-1}(\phi) \hookrightarrow M$ and $\pi:\mu^{-1}(\phi)\twoheadrightarrow M_\mu$}
-			\end{tabular}
-			\vspace{-.4em}
-		\end{thmblock}
-		%
-		\vfill
-		\pause
-		\begin{columns}
-			\begin{column}{0.40\textwidth}
-				\includegraphics[width=\textwidth]{Pictures/Reduction}
-			\end{column}	
-			
-			\begin{column}{0.6\textwidth}
-					\textbf{\color{UniGreen}In mechanics:}~~
-					\\
-				{\it \small
-					it embodies the process of restricting the dynamics of the system to the level sets of the conserved quantities pertaining to the symmetry group.		
-				}
-				\\[.2em]
-				\color{gray}\small( e.g. restricting to studying a point-like particle in a central potential by studying it in radial coordinates)
-			\end{column}	
-		\end{columns}	
-	\end{frame}
-	\note[itemize]{
-		\item {Symplectic Reduction} takes two inputs:
-		\\ 1. Hamiltonian $G$-space $(M,\omega,{\color{orange}G},{\color{blue}\mu})$
-		\\ 2. parameter ${\color{blue}\phi}\in\g^*$
-		\item The \emph{reduced space} is $M_\phi:={\color{blue}\mu^{-1}(\phi)}{\color{orange}/G_\phi}$.
-		\item (Marsden--Weinstein '74, Meyer '73) THM:\\
-			If $\mu^{-1}(\phi)\subset M$ is smooth and $G_\phi\curvearrowright \mu^{-1}(\phi)$ is free and proper, then there is a \textbf{unique symplectic form} $\omega_\phi\in\Omega^2(M_\phi)$ such that $\pi^*\omega_\phi = i^*\omega$.
-	
-	
-		\begin{center}
-		\begin{tikzpicture}[scale=2]
-			\node[blue] (A) at (0,0) {$\mu^{-1}(\phi)$};
-			\node[gray] (A1) at (0,.3) {$i^*\omega$};
-			\node[gray] (A2) at (-.6,0) {$\pi^*\omega_\phi$};
-			\node[blue] (B) at (1,0) {$M$};
-			\node[gray] (B1) at (1,.3) {$\omega$};
-			\node[orange] (C) at (0,-.8) {$M_\phi$};
-			\node[gray] (C2) at (-.6,-.8) {$\omega_\phi$};
-	
-			\path[right hook->,blue] (A) edge node[above] {$i$} (B);
-			\path[orange,->] (A) edge node[left] {$\pi$} (C);
-			\begin{scope}[xshift=-1.8cm]
-				\node[blue] at (0,0) {\small restrict to $\{\mu=\phi\}$};
-				\node[orange] at (.15,-.4) {\small quotient by $G_\phi$};
-			\end{scope}
-		\end{tikzpicture}
-		\end{center}
-		\item Heuristic Approach to Reduction:
-		\\1. describe $G\curvearrowright M$ in terms of $\omega$ 	\hspace{1cm}
-		({\color{green}moment map $\mu$})
-		\\2. identify a distinguished reduced space \hspace{1cm}
-		({\color{green}reduction at $\mu=0$})
-		\\3. use the ambiguity in 1.\ to obtain a family of reduced spaces \hspace{1cm}
-		({\color{green}reduction at $\mu-\phi=0$, i.e.\ reduction at $\mu=\phi$}
-		\\
-		{\tiny Note: If $G_\phi\neq G$, then $\mu-\phi:M\to\g^*$ is not a moment map for either $G\curvearrowright M$ or $G_\phi\curvearrowright M$.}
-		
-	}
-	%------------------------------------------------------------------------------------------------
-	
-	%------------------------------------------------------------------------------------------------
-	\subsection{Singular reduction}
-	\begin{frame}{Symplectic singular reduction schemes}
-		\begin{block}{The gist of singular reduction}
-			 \begin{itemize}
-				 \item[-] when $\mu$ is singular (i.e. $\mu^{-1}(0)$ is not a mfd.), the (geometrically) reduced space may not exist.
-				 \item[-] a \emph{singular reduction scheme} is a procedure to construct a "reduced" algebra of observable out of the given data
-				 \item[-] such that it corresponds to the algebra of observable of the reduced manifold in the regular case.
-			 \end{itemize}
-		\end{block}
-		 %
-		 \pause
-		 %
-		\begin{thmblock}[Sniatycki-Weinstein reduction \cite{SniatyckiWeinstein83}]
-			\vspace{-.4em}\hspace{-1em}
-			\begin{tabular}{l p{14cm}}
-				Given: & $(M,\omega)$ symplectic
-				\\
-				& $G\curvearrowright M$ symplectic with equivariant momap. $\mu:M\to \mathfrak{g}^*$
-				\\[.4em]
-				Then: & 
-				$\displaystyle \left[\sfrac{C^\infty(M)}{I_\mu}\right]^G$
-				admits a Poisson algebra structure 
-				\footnote{$I_\mu$ = associative ideal generated by $\widetilde{\mu}(\g)$}			
-				\\
-				& it agrees with the M--W reduction in the regular case.		
-			\end{tabular}
-			\vspace{-.4em}
-		\end{thmblock}
-	 
-	
-	\end{frame}
-	\note[itemize]{
-	 \item Let $(M,\omega,G,\mu)$ be a symplectic Hamiltonian $G$-space.
-	 \item The \emph{momentum ideal} is the associative ideal $I_\mu\subset C^\infty(M)$ generated by the momenta $\mu_{\xi}$ for any $\xi\in \mathfrak{g}$.
-			Namely
-			\[
-				I_\mu 
-				= 
-				\Big\langle \mu_\xi \Big\rangle_{\xi \in \mathfrak{g}}^{\text{\tiny asso.}} 
-				=
-				\left\{
-					\left.
-						\sum_{i=1}^n f_i ~ \mu_{\xi_i}
-					\right|~
-						f_i \in C^\infty(M),~ \xi_i\in \mathfrak{g},~  1 \leq i \leq n
-				\right\}
-			\]
-	
-	 \item The \emph{\'Sniatycki--Weinstein reduction} is the Poisson algebra
-			\[
-				\left(C^\infty(M)/I_\mu\right)^G.
-			\]
-	
-	
-	}
-	%------------------------------------------------------------------------------------------------
 
 
 
@@ -1424,45 +1640,43 @@ with $Q=\{f\in J|~\{f,P\}\subset J\}$
 
 
 
-\section{Reduction using Constraint triples}
 
-
-\subsection{General idea}
-\begin{frame}
-\begin{exampleblock}{Idea of multisymplectic observable reduction:}
-	Mimic the above construction of $\Ham^\bullet$\\ with triples of the type (algebra , subalgebra, ideal).
-\end{exampleblock}\pause
-After [Dippel2023] we call such triples { \bf constraint triples} and their parts \emph{total space, normal space, zero space}.\\~
-
-Let $S$ be a closed set. We describe $C^\infty(S)$ by $\frac{C^\infty(M)}{I_S}$.\\ We think of it as the constraint triple:
-$$
-\mathcal A=(\mathcal A_T,\mathcal A_N,\mathcal A_0)=(C^\infty(M),C^\infty(M), I_S)
-$$
-It is a (strong) constraint algebra,\\ i.e. $\mathcal A_0\subset \mathcal A_N\subset \mathcal A_T$ subalgebras and $\mathcal A_0\subset \mathcal A_T$ ideal.
-
-
+\subsection{Main application}
+\begin{frame}[fragile]{Geometric Multisymplectic reduction}
+Let $(M,\omega)$ premultisymplectic, $\underline{\cdot}:\mathfrak g\to \mathfrak X(M)$ an action and\\
+ $\mu:\mathfrak g\to \Omega^{n-1}(M)$ a Leibniz momentum, i.e.
+\[
+X_{\mu(\xi)}=\underline \xi ~~\forall \xi ~~~~~~~\mu([\xi,\zeta])=L_{\underline \xi}\mu(\zeta)~\forall \xi,\zeta
+\]
+Then $F=\underline {\mathfrak g}$ and $S=\{p\in M~|~\mu(\xi)_p=0\forall \xi\in\mathfrak g\}$ satisfy the necessary condition. \pause  Moreover:
+\begin{block}{Thm: The geometric case [Blacker21]}
+If in the above $S$ is smooth and the foliation spannd by $\underline{\mathfrak g}|_S$ is simple, then $M_{r}=\frac{S}{\underline{\mathfrak g}|_S}$ is premultisymplectic with $\omega_r$ unique, satisfying $\pi^*\omega_r=i^*\omega$.
+\[\begin{tikzcd}
+	M &&& S &&& {M_r}
+	\arrow["\begin{array}{c} i \end{array}"', hook', from=1-4, to=1-1]
+	\arrow["\begin{array}{c} \pi \end{array}", two heads, from=1-4, to=1-7]
+\end{tikzcd}\]
+\end{block}
 \end{frame}
 
 
-\subsection{A dictionary between algebra and geometry}
-\begin{frame}{Translating geometry to algebra}
-
-\begin{table}[]
-	\begin{tabular}{l|l|l}
-	 geometry & algebra & translation \\
-		\hline	
-	smooth manifold $M$ & comm. algebra $\mathcal A_T$  	& $\mathcal A_T=C^{\infty}(M)$\\ \hline\pause
-	vector fields $\mathfrak X(M)$ & derivations $\Der(\mathcal A_T)$ &  $\Der(C^\infty(M))=\mathfrak X(M)$\\ \hline\pause
-	closed subset $S\subset M$ & ideals $\mathcal A_0\subset \mathcal A_T$ & $\mathcal A_0=I_S=\{f~|~f|_S=0\}$ \\ \hline\pause
-	action $G\circlearrowleft M$ & Lie algebra map & infinitesimal generators\\
-	 of connected group &$\underline{\cdot}:\mathfrak g\to \Der(\mathcal A_T)$ & of the action \\ \hline \pause
-	 $G$ action preserves $S$ & $\underline \xi(I_S)\subset I_S$ $\forall \xi\in\mathfrak g$& \color{red} Careful! Not equivalent! \\ \hline
-	\end{tabular}\pause
-\end{table}
-	\begin{alertblock}{Warning}
-	$\partial_x$ is algebraically preserving $S=[0,1]\subset \mathbb R=M$, even though the flow leads out of the set.
-\end{alertblock}
+\begin{frame}{Relating Geometric and Algebraic reduction}
+\begin{block}{Lemma: Relating the reductions}	
+There is a natural injection $R:\frac{\Ham(M,\omega)_N}{\Ham(M,\omega)_0}\hookrightarrow \Ham(M_r,\omega_r)$.
+\end{block}
+\pause 
+\begin{exampleblock}{Non-surjectivity in general}
+	\begin{itemize} 
+	\item 	$M=\mathbb R^5$, $\omega=dt\wedge (dx_1\wedge dy_1+dx_2\wedge dy_2)$\pause 
+	\item $\mathfrak g=\langle\xi\rangle, \underline{\xi}=\partial_{x_1}$, $\mu(\xi)=-y_1dt$\pause 
+	\item $S=\{y_1=0\}$, $M_r\cong \mathbb R^3$ with $t,x_2,y_2$ and $\omega_r=dt\wedge dx_2\wedge dy_2$\pause 
+	\item $(\alpha,v)=(x_2tdy_2,x_2\partial_t-t\partial_{x_2})$ is not in the image of $R$.\pause 
+	\end{itemize}
+\end{exampleblock}
+{\bf Reason for non-surjectivity:} From the perspective of $M_r$ it does not make sense to require $d\alpha=-\iota_v\omega$ on all of $M$.\pause \\
+{\bf Remark:} We can easily construct examples where $\omega_r$ degenerates.
 \end{frame}
+
 
 
 
@@ -1525,104 +1739,6 @@ Let $F\subset \Der(\mathcal A)_N$ a Lie subalgebra  (typically $F=\underline{\ma
 	In particular, from the premultisymplectic form $\omega$ we obtain a constraint $L_{\infty}$-algebra.
 \end{block}
 \end{frame}
-
-\subsection{The reduced $L_\infty$-algebra}
-\begin{frame}[fragile]
-Let $(M,\omega)$ premultisymplectic, $S\subset M$ closed and \\ $F\subset \mathfrak X(M)$ a Lie subalgebra s.th. $F(I_S)\subset I_S$\\ ~\\
-The following subquotient $\frac{\Ham(M,\omega)_N}{\Ham(M,\omega)_0}$\\ of $\Ham(M,\omega)_T=\Ham(M,\omega)$ forms an $L_\infty$-algebra:
-
-	\[\small
-		\frac{
-			\left\lbrace
-			\begin{array}{l}
-				\alpha\in \Omega^{\leq n-2}(M) ~\mathrm{, respectively}\\	
-				(\alpha,X) \in \Omega^{n{-}1}(M) \oplus\mathfrak X(M)
-			\end{array}
-			~\left\vert~
-			\begin{array}{l l}
-				\iota_\xi \alpha \in (\Lambda \mathfrak L)^*_0 &\\
-				L_\xi\alpha \in (\Lambda \mathfrak L)^*_0&~\forall \xi \in F\\
-				\hline
-				\iota_X \omega = -d \alpha &\\
-				X(I_S)\subset I_S &\\
-				L_\xi X \in C^{\infty}(M) F + I_S\mathfrak X(M)
-				&~\forall \xi \in F\\
-			\end{array}
-			\right.
-			\right\rbrace
-		}{
-			\left\lbrace
-			\begin{array}{l}
-				\alpha\in \Omega^{\leq n-2}(M) ~\mathrm{, respectively}\\	
-				(\alpha,X) \in \Omega^{n{-}1}(M) \oplus \mathfrak X(M)
-			\end{array}
-			~\left\vert~
-			\begin{array}{l}
-				\alpha \in (\Lambda \mathfrak L)^*_0\\
-				\hline
-				\iota_X \omega = -d \alpha\\
-				X \in C^{\infty}(M) F + I_S\mathfrak X(M)
-			\end{array}
-			\right.
-			\right\rbrace
-		}
-\]
-where $(\Lambda^k \mathfrak L)^*_0=\{\alpha~|~\alpha(v_1,...,v_k)\in \mathcal A_0~\forall v_i\in \mathfrak L_N\}$
-\end{frame}
-
-
-\subsection{Main application}
-\begin{frame}[fragile]
-Let $(M,\omega)$ premultisymplectic, $\underline{\cdot}:\mathfrak g\to \mathfrak X(M)$ an action and\\
- $\mu:\mathfrak g\to \Omega^{n-1}(M)$ a Leibniz momentum, i.e.
-\[
-X_{\mu(\xi)}=\underline \xi ~~\forall \xi ~~~~~~~\mu([\xi,\zeta])=L_{\underline \xi}\mu(\zeta)~\forall \xi,\zeta
-\]
-Then $F=\underline {\mathfrak g}$ and $S=\{p\in M~|~\mu(\xi)_p=0\forall \xi\in\mathfrak g\}$ satisfy the necessary condition. \pause  Moreover:
-\begin{block}{Thm: The geometric case [Blacker21]}
-If in the above $S$ is smooth and the foliation spannd by $\underline{\mathfrak g}|_S$ is simple, then $M_{r}=\frac{S}{\underline{\mathfrak g}|_S}$ is premultisymplectic with $\omega_r$ unique, satisfying $\pi^*\omega_r=i^*\omega$.
-\[\begin{tikzcd}
-	M &&& S &&& {M_r}
-	\arrow["\begin{array}{c} i \end{array}"', hook', from=1-4, to=1-1]
-	\arrow["\begin{array}{c} \pi \end{array}", two heads, from=1-4, to=1-7]
-\end{tikzcd}\]
-\end{block}
-\end{frame}
-
-
-\begin{frame}
-\begin{block}{Lemma: Relating the reductions}	
-There is a natural injection $R:\frac{\Ham(M,\omega)_N}{\Ham(M,\omega)_0}\hookrightarrow \Ham(M_r,\omega_r)$.
-\end{block}
-\pause 
-\begin{exampleblock}{Non-surjectivity in general}
-	\begin{itemize} 
-	\item 	$M=\mathbb R^5$, $\omega=dt\wedge (dx_1\wedge dy_1+dx_2\wedge dy_2)$\pause 
-	\item $\mathfrak g=\langle\xi\rangle, \underline{\xi}=\partial_{x_1}$, $\mu(\xi)=-y_1dt$\pause 
-	\item $S=\{y_1=0\}$, $M_r\cong \mathbb R^3$ with $t,x_2,y_2$ and $\omega_r=dt\wedge dx_2\wedge dy_2$\pause 
-	\item $(\alpha,v)=(x_2tdy_2,x_2\partial_t-t\partial_{x_2})$ is not in the image of $R$.\pause 
-	\end{itemize}
-\end{exampleblock}
-{\bf Reason for non-surjectivity:} From the perspective of $M_r$ it does not make sense to require $d\alpha=-\iota_v\omega$ on all of $M$.\pause \\
-{\bf Remark:} We can easily construct examples where $\omega_r$ degenerates.
-\end{frame}
-
-
-
-\subsection{Lessons learned}
-\begin{frame}{Lessons learned}
-	\begin{itemize} 
-\item Constraint triples permit to do differential geometry/ Cartan calculus on singular subquotients,\\ ... in particular constructing observable algebras on them.\pause
-\item Even if $\omega$ is non-degenerate, $\omega_r$ could degenerate, forcing us to pull along the Hamiltonian vector fields explicitly\pause
-\item Coomentum maps in the sense of the Leibniz structure seem better for reducing than $L_\infty$-comomenta \pause
-\item The algebraic approach can treat algebroid / singular foliation symmetries and remembers vanishing orders a the singularities. \pause
-\item The reduction seems to give something novel even in the symplectic case \pause
-\item A 'softer' notion of constraint $L_\infty$ algebra is necessary to obtain all observables of the reduced space.
-
-	\end{itemize}
-\end{frame}
-
-
 
 
 
