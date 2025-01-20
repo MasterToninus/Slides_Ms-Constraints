@@ -87,7 +87,6 @@
 
 
 
-
 %--------------------------------------------------------------------------------------------------
 %- D0cum3nt ----------------------------------------------------------------------------------------------------------------------------------
 \begin{document}
@@ -482,6 +481,7 @@ This talk reviews higher versions of observable algebras and moment maps in mult
 \subsection{Regular reduction} 
 %- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%	
 \begin{frame}{Regular reduction in symplectic geometry}
+
 	\textbf{\color{UniGreen}Symplectic reduction:}~~
 	\\ 
 	{\it \small
@@ -489,21 +489,19 @@ This talk reviews higher versions of observable algebras and moment maps in mult
 	\vfill
 
 	\pause
-	\begin{columns}
-		\begin{column}{0.40\textwidth}
-			\includegraphics[width=\textwidth]{Pictures/Reduction}
-		\end{column}	
-		
-		\begin{column}{0.6\textwidth}
-				\textbf{\color{UniGreen}In mechanics:}~~
+	
+	\begin{center}
+		\includegraphics[width=.5\textwidth]{Pictures/Reduction}	
+	\end{center}
+	
+	\textbf{\color{UniGreen}In mechanics:}~~
 				\\
 			{\it \small
 				it embodies the process of restricting the dynamics of the system to the level sets of the conserved quantities pertaining to the symmetry group.		
 			}
 			\\[.2em]
 			\color{gray}\small( e.g. restricting to studying a point-like particle in a central potential by studying it in radial coordinates)
-		\end{column}	
-	\end{columns}	
+
 \end{frame}
 \note[itemize]{
 	\item  In classical mechanics symmetry reduction plays an important role. Mathematically, this is usually phrased in terms of Marsden-Weinstein reduction
@@ -611,6 +609,7 @@ This talk reviews higher versions of observable algebras and moment maps in mult
 	\end{block}
 	 %
 	 \pause
+	 \vfill
 	 %
 	\begin{thmblock}[Sniatycki-Weinstein reduction \cite{SniatyckiWeinstein83}]
 		\vspace{-.4em}\hspace{-1em}
@@ -667,7 +666,7 @@ This talk reviews higher versions of observable algebras and moment maps in mult
 
 %- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%
 \subsection{Constraints Algebras}
-\begin{frame}[fragile]{Attempting algebraic reduction}
+\begin{frame}[fragile]{Attempting algebraic reduction naively}
 When the action is not 'free and proper', we can try to mimic this directly using the function algebras:
 % https://q.uiver.app/#q=WzAsNixbMCwwLCJNIl0sWzEsMCwiXFxtdV57LTF9KDApPVMiXSxbMywwLCJNX3IiXSxbMCwxLCJDXlxcaW5mdHkoTSkiXSxbMSwxLCJDXntcXGluZnR5fShTKT1cXGZyYWN7Q157XFxpbmZ0eX0oTSl9e0lfe1N9fSJdLFszLDEsIkNee1xcaW5mdHl9KE1fcik9Q15cXGluZnR5KFMpXkciXSxbMSwyLCJcXHN1YnN0YWNre3F1b3RpZW50fSIsMCx7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFszLDQsIlxcc3Vic3RhY2t7cXVvdGllbnR9IiwwLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzAsMSwiXFxzdWJzdGFja3tyZXN0cmljdGlvbn0iLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJzcXVpZ2dseSJ9fX1dLFs0LDUsIlxcc3Vic3RhY2t7cmVzdHJpY3Rpb259IiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoic3F1aWdnbHkifX19XV0=
 \[\begin{tikzcd}
@@ -708,7 +707,7 @@ Equivalently:
 	\begin{block}{Idea:}
 	    \begin{itemize}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]
 			\item[-] Both regular/geometric and singular/algebraic reduction are 2-steps procedures (1. restrict 2. quotient).
-			\item[-] Let's work in a category where all data needed for the reduction are bundled together in suitable categorical objects. {\tiny (To avoid pathologies arising from these steps)}
+			\item[-] Let's work in a category where all data needed for the reduction are bundled together in a suitable categorical objects. {\tiny (To avoid pathologies arising from these steps)}
 	    \end{itemize}
 	\end{block}
 	\pause
@@ -744,7 +743,9 @@ Equivalently:
 
 %- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%
 \begin{frame}{Other approaches to reduction}
- 
+ 	Many singular reduction schemes adhere to this pattern!
+ 	\vfill
+ 	\pause
 \begin{table}[]
 	\begin{tabular}{l|l|l||l}
 		algebra $\mathcal{A}_T$ & subalgebra $\mathcal{A}_N$ & ideal $\mathcal{A}_0$ & comment \\
@@ -762,14 +763,14 @@ Equivalently:
 	\hline \pause
 		$C^\infty(M)$&   $C^\infty(M)^G$         &   $(I_\mu)^G$   & $\substack{I_\mu=\{\sum_{i=1}^k f_i\langle \mu,\xi_i\rangle|~f_i\in C^\infty(M), \xi_i\in \mathfrak g\}}$\\
 		\hline \pause
-	$C^\infty(M)$&      $N_\mu$     &   $I_\mu$   & $\substack{N_\mu= \{ f | gf-f\in I_\mu \forall g\in G\}}$\\
+	$C^\infty(M)$&      $N_\mu$     &   $I_\mu$   & $\substack{N_\mu= \{ f | gf-f\in I_\mu \forall g\in G\}}$ \footnote{When $G$ connected $N_\mu=N(I_\mu):=\{f~|~\{f,I_\mu\}\subset I_\mu\}$.}\\
 	\hline 
 		
 	\end{tabular}\pause
 \end{table}
 	\vfill
-{\bf Remarks }names in order: 'naive' , Dirac, Sniatycki, Arms-Cushman-Gotay, Sniatycki-Weinstein.\pause \\
-When $G$ connected $N_\mu=N(I_\mu):=\{f~|~\{f,I_\mu\}\subset I_\mu\}$. 
+	{\bf Remarks }names in order: 'naive' , Dirac, Sniatycki, Arms-Cushman-Gotay, Sniatycki-Weinstein.
+
 \end{frame}
 \note[itemize]{
 	\item  
@@ -1084,7 +1085,7 @@ manifold to any classical field system (e.g. a continuous medium like a filament
 		 of connected group &$\underline{\cdot}:\mathfrak g\to \Der(\mathcal A_T)$ & of the action \\ \hline \pause
 		 $G$ action preserves $S$ & $\underline \xi(I_S)\subset I_S$ $\forall \xi\in\mathfrak g$& \color{red} Careful! Not equivalent! 
 		 \\ \hline
-		\end{tabular}\pause
+		\end{tabular}
 	\end{table}
 	\vfill
 
@@ -1104,11 +1105,11 @@ manifold to any classical field system (e.g. a continuous medium like a filament
 
 %- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%
 \subsection{Higher Observables Constraint Algebra}
-\begin{frame}[fragile]{Higher Observables Constraint Algebra}
+\begin{frame}[shrink]{Higher Observables Constraint Algebra}
 	\begin{defpropblock}[$L_\infty$-observables constraint algebra]
 		The following $L_\infty$ algebras form a constraint triple
 		\begin{align*}
-			\Ham_T =&~ L_\infty(M,\omega) \\
+			\Ham_T =&~ L_\infty(M,\omega) \\[1em]
 			\Ham_N =&~
 			{\small
 			\left\lbrace
@@ -1118,18 +1119,18 @@ manifold to any classical field system (e.g. a continuous medium like a filament
 			\end{array}
 			~\left\vert~
 			\begin{array}{l l}
-				\iota_\xi \alpha \in (\Lambda \mathfrak L)^*_0 &\\
-				L_\xi\alpha \in (\Lambda \mathfrak L)^*_0&~\forall \xi \in F\\
+				\iota_\xi \alpha \in \Omega_0 &\\
+				\L_\xi\alpha \in \Omega_0&~\forall \xi \in F\\
 				\hline
 				\iota_X \omega = -d \alpha &\\
 				X(I_S)\subset I_S &\\
-				L_\xi X \in C^{\infty}(M) F + I_S\mathfrak X(M)
+				\L_\xi X \in C^{\infty}(M) F + I_S\mathfrak X(M)
 				&~\forall \xi \in F\\
 			\end{array}
 			\right.
 			\right\rbrace 
 			}
-			\\
+			\\[1em]
 			\Ham_0 =&~
 		{\small
 			\left\lbrace
@@ -1139,7 +1140,7 @@ manifold to any classical field system (e.g. a continuous medium like a filament
 			\end{array}
 			~\left\vert~
 			\begin{array}{l}
-				\alpha \in (\Lambda \mathfrak L)^*_0\\
+				\alpha \in \Omega_0\\
 				\hline
 				\iota_X \omega = -d \alpha\\
 				X \in C^{\infty}(M) F + I_S\mathfrak X(M)
@@ -1148,11 +1149,24 @@ manifold to any classical field system (e.g. a continuous medium like a filament
 			\right\rbrace
 		}
 		\end{align*}
-		where $(\Lambda^k \mathfrak L)^*_0=\{\alpha~|~\alpha(v_1,...,v_k)\in \mathcal A_0~\forall v_i\in \mathfrak L_N\}$.
+		where: 
+			\begin{align*}
+				\small\Omega_0^k &:=~\{\alpha \in \Omega^k(M)~|~\alpha(v_1,...,v_k)\in  I_S~\forall v_i\in \X_N\} 
+				\\
+				\mathfrak{X}_N &:=~ 
+				\left\lbrace
+					v \in \X(M)
+				~\left\vert~
+					\begin{array}{l}
+						\L_v (I_N) \subseteq I_N	\\		
+						\L_v (C^{\infty}(M) F) \subseteq C^{\infty}(M) F + I_S\mathfrak X(M)
+					\end{array}
+				\right\rbrace\right.
+			\end{align*} 
 	\end{defpropblock}
 	\vfill
 	\pause
-	Hence, The following subquotient $\frac{\Ham_N}{\Ham_0}$ of $\Ham_T$ forms an $L_\infty$-algebra.
+	Hence, the subquotient $\frac{\Ham_N}{\Ham_0}$ of $\Ham_T$ forms an $L_\infty$-algebra.
 \end{frame}
 \note[itemize]{
 	\item 	\begin{defblock}[Reducible v.fields ]
@@ -1167,10 +1181,7 @@ manifold to any classical field system (e.g. a continuous medium like a filament
 					\end{array}
 				\right\rbrace\right.
 			\end{displaymath}
-%			\blfootnote{
-%			 $\X_g$ = $C^\infty(M)$-module generated by the fundamental distribution.
-%			}	
-
+			$\X_g$ = $C^\infty(M)$-module generated by the fundamental distribution.
 	\end{defblock}	
 	%
 	\pause
@@ -1208,14 +1219,20 @@ manifold to any classical field system (e.g. a continuous medium like a filament
 
 %- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%
 \subsection{Conclusions}
-\begin{frame}{Lessons learned}
+\begin{frame}{Conclusions}
 	\begin{itemize} 
 \item Constraint triples permit to do differential geometry/ Cartan calculus on singular subquotients,\\ ... in particular constructing observable algebras on them.\pause
 \item Even if $\omega$ is non-degenerate, $\omega_r$ could degenerate, forcing us to pull along the Hamiltonian vector fields explicitly\pause
 \item Coomentum maps in the sense of the Leibniz structure seem better for reducing than $L_\infty$-comomenta \pause
-\item The algebraic approach can treat algebroid / singular foliation symmetries and remembers vanishing orders a the singularities. \pause
-\item The reduction seems to give something novel even in the symplectic case \pause
-\item A 'softer' notion of constraint $L_\infty$ algebra is necessary to obtain all observables of the reduced space.
+%\item The algebraic approach can treat algebroid / singular foliation symmetries and remembers vanishing orders a the singularities. \pause
+\item The reduction seems to give something novel even in the symplectic case 
+\begin{block}{Construction: Multisymplectic reduction in the symplectic case}
+Let $Q=\{f~|~ f|_S=0\rm{~and~} df|_S=0\}$ Then the $L_\infty$-reduction is:
+$$
+\frac{N(I_S)\cap N(I_\mu+Q)}{I_\mu+Q}
+$$
+\end{block}	
+
 	\pause
 			\vfill
 		  \centering 
@@ -1225,7 +1242,13 @@ manifold to any classical field system (e.g. a continuous medium like a filament
 	\end{itemize}
 \end{frame}
 \note[itemize]{
-	\item 
+	\item We will develop a multisymplectic reduction in this talk, symplectically is (see slide).
+	\item Such a formula can be more generally applied to a Poisson algebra $P$ with associative ideals $I\subset J$ such that $\{I,I\}\subset I$ and $\{I,J\}\subset J$:
+$$
+\frac{N(J)\cap N(I+Q)}{I+Q}
+$$
+with $Q=\{f\in J|~\{f,P\}\subset J\}$
+
 }
 %- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%
 
@@ -1615,29 +1638,7 @@ such that $[\ell, a\tilde \ell]=a[\ell,\tilde \ell]+\rho(\ell)(a) \cdot \tilde\e
 
 
 
-
-
  
- 
-
-\subsection{Preview of our answer}
-\begin{frame}
-We will develop a multisymplectic reduction in this talk, symplectically it is:
-\begin{block}{Construction: Multisymplectic reduction in the symplectic case}
-Let $Q_S=\{f~|~ f|_S=0\rm{~and~} df|_S=0\}$ Then the $L_\infty$-reduction is:
-$$
-\frac{N(I_S)\cap N(I_\mu+Q)}{I_\mu+Q}
-$$
-\end{block}	\pause
-Such a formula can be more generally applied to a Poisson algebra $P$ with associative ideals $I\subset J$ such that $\{I,I\}\subset I$ and $\{I,J\}\subset J$:
-$$
-\frac{N(J)\cap N(I+Q)}{I+Q}
-$$
-with $Q=\{f\in J|~\{f,P\}\subset J\}$
-\end{frame}
-
- 
-
 
 
 
