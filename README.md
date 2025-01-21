@@ -11,5 +11,12 @@ Contents: Broad mathematical audience.
 Length: 30 min
 
 
-## TODO: possible improvements
-- 
+
+## Compilation Instructions
+The source files for these slides compile using `biber` for bibliography management. Ensure you have `biber` installed and use the following commands to compile:
+
+```sh
+pdflatex msconstraints-short.tex
+biber msconstraints-short
+pdflatex msconstraints-short.tex
+pdflatex msconstraints-short.tex
