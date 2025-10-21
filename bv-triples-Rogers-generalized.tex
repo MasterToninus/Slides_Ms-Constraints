@@ -1,0 +1,175 @@
+%- HandOut Flag -----------------------------------------------------------------------------------------
+\makeatletter
+\@ifundefined{ifHandout}{%
+  \expandafter\newif\csname ifHandout\endcsname
+}{}
+\makeatother
+
+%- D0cum3nt ----------------------------------------------------------------------------------------------
+%\documentclass[beamer,10pt]{standalone}   
+\documentclass[beamer,10pt,handout]{standalone}  \Handouttrue  
+
+\ifHandout
+	\setbeameroption{show notes} %print notes   
+\fi
+
+	
+%- Packages ----------------------------------------------------------------------------------------------
+\usepackage{custom-style}
+\usepackage{math}
+
+
+
+
+%--Beamer Style-----------------------------------------------------------------------------------------------
+\usetheme{toninus}
+\usepackage{animate}
+\usetikzlibrary{positioning, arrows}
+\usetikzlibrary{shapes}
+
+%===========================================================%
+\begin{document}
+%===========================================================%
+\checkpoint
+
+\begin{frame}{Hamiltonian Pairs}
+\begin{itemize}
+  \item Data: $G$, $M$ BV-module, $c \in M$ closed.
+  \item Pair $(X,m)$ with $\iota_X c = d m$.
+  \item Generalizes $(X_f, f)$ in symplectic geometry.
+\end{itemize}
+\end{frame}
+\note{Given an algebraic Cartan calculus as above, we can now construct the $L_\infty$-algebra of observables in complete generality. The construction mirrors the one Rogers gave on manifolds, but now in purely algebraic terms.
+
+- **Data:** Let $G$ be a Gerstenhaber algebra, $M$ a BV-module over $G$ with differential $d$, and let $c \in M^k$ be a fixed *cocycle*, meaning $d c = 0$. 
+Think of $c$ as the algebraic analog of a closed multisymplectic form (indeed in geometry $c$ could be $\omega$, which is closed by assumption). We also assume $c$ is *nondegenerate* in the sense that it induces the relevant pairings (this is automatic in the geometric case and can be treated as a cocycle condition in the algebraic case; for simplicity, we proceed assuming $c$ behaves like a  "volume form " or  "top form " to contract with).
+- **Hamiltonian Pairs:** We define a **Hamiltonian pair** as a pair $(X, m)$ with $X \in G$ (a multivector) and $m \in M$ (an element of the module) such that $X$ and $m$ are related by the cocycle $c$ via:
+
+    $i_X(c) = d m$.
+
+    In other words, $m$ is an element whose BV-differential equals the contraction of $c$ with $X$. This is directly analogous to the condition $i_{X_f}\omega = d f$ in the geometric case (here $X$ plays the role of $X_f$ and $m$ plays the role of the observable like $f$ or $\alpha$). We denote by $\mathsf{Ham}(G,M;c)$ the set of all Hamiltonian pairs. In graded terms, one typically considers homogeneous $X$ and $m$ of complementary degrees summing to $k-1$ (so that $i_X c$ has the same degree as $d m$).
+    
+    **Intuition:** A Hamiltonian pair $(X,m)$ means that $m$ is an *observable* whose  "derived bracket " with the cocycle $c$ yields $X$. If $c$ is nondegenerate, $X$ is uniquely determined by $m$ (just as a symplectic form gives a unique $X_f$ for each $f$), so we can think of $m$ as the *observable element* and $X$ as its *Hamiltonian generator*. However, in singular or degenerate cases, there could be multiple $X$ for a given $m$ or vice versa, hence it is safer to keep the pair. (In the construction we actually consider an appropriate quotient to identify pairs that give the same physical observable; more formally $\mathsf{Ham}(G,M;c)$ can be constructed as a fiber product $G \times_{M} M$ via the maps $X \mapsto i_X c$ and $m \mapsto d m$ .)}
+
+\begin{frame}{The Space and the Multibrackets}
+\begin{itemize}
+  \item Graded space $\mathcal{O}(G,M;c)$.
+  \item Brackets $\ell_k$ built from $d$, $\iota_X$, $L_X$, $[\cdot,\cdot]$.
+  \item $\ell_1 = d$, $\ell_2 = $ Lie + derived terms, $\ell_3 = i_{X_1}i_{X_2}i_{X_3}(c)$.
+\end{itemize}
+\end{frame}
+\note{- \textbf{Graded observables space:} We assemble the observables into a graded vector space as follows.
+
+\[
+\mathcal{O}(G,M;c)\;=\;\bigoplus_{j\ge 0}\mathcal{O}^j,
+\]
+
+where:
+
+- $\mathcal{O}^0$ (degree~0 part) is the space of Hamiltonian pairs $(X,m)$ as above (with $i_X c = d m$).
+- For higher degrees $j>0$, roughly speaking $\mathcal{O}^j$ consists of elements of $M$ of degree $(k-1+j)$ (or related shifts) corresponding to forms of lower degree than $c$. In fact, in Rogers' original construction for an $n$-plectic manifold, the $L_\infty$-algebra of observables was an $n$-term complex concentrated in degrees $0,1,\dots,n-1$. Here $k=n+1$ (degree of $c$), so one can show $\mathcal{O}(G,M;c)$ is concentrated in degrees $0$ up to $n-1$ (i.e. $0$ up to $k-2$). Degree~0 are Hamiltonian $(n-1)$-forms (with vector fields), degree~1 would be Hamiltonian $(n-2)$-forms, ..., up to degree $n-1$ corresponding to Hamiltonian $0$-forms (basic observables). We will not need the explicit formula for each degree in this talk; the key is that this graded space includes all would-be observables and their "Hamiltonian partners."}
+
+\begin{frame}{Examples}
+\begin{itemize}
+  \item Classical: $G=\mathfrak{X}^\bullet(M)$, $M=\Omega^\bullet(M)$, $c=\omega$.
+  \item Recovers Rogers’ multisymplectic $L_\infty$.
+  \item Other contexts: algebraic, noncommutative, etc.
+\end{itemize}
+\end{frame}
+\note{- **$L_{\infty}$-Algebra Structure:** **Theorem A** (Miti-Ryvkin 2025) states that under the above setup, $\mathcal{O}(G,M;c)$ carries a natural structure of an $L_\infty$-algebra (homotopy Lie algebra) whose brackets are defined using the data of the Gerstenhaber algebra $G$, the BV-module operations, and the cocycle $c$ . Concretely, the multilinear $L_\infty$ operations $\ell_r: \mathcal{O}^{\otimes r} \to \mathcal{O}$ (of degree $2-r$) are given by formulas analogous to those in the multisymplectic manifold case :
+    - The unary bracket $\ell_1$ (degree $+1$ map) is essentially induced by the BV differential $d$ on the observable part (it maps a degree~1 element to degree~0 by $\ell_1(m) = (X,d m)$ or something similar, and is zero on degree~0 pairs in the fully nondegenerate case).
+    - The binary bracket $\ell_2((X_1,m_1), (X_2,m_2))$ has a result in degree~0 and is given by
+
+        \[
+        \ell_2((X_1,m_1),(X_2,m_2)) \;=\; \big([X_1,X_2],\; L_{X_1}m_2 * (-1)^{|X_1|\cdot|X_2|}L_{X_2}m_1\big),
+        \]
+
+        which in the simplest case recovers the Poisson bracket structure (when $m$’s are functions, $L_{X_1}m_2 = X_1(m_2)$). The precise formula involves appropriate Koszul signs for graded elements .
+        
+    - A tertiary bracket $\ell_3((X_1,m_1),(X_2,m_2),(X_3,m_3))$ can be defined using the cocycle $c$: essentially one can take $i_{X_1}i_{X_2}i_{X_3}(c)$ (which is an element of $M$) as part of the output (this corresponds to evaluating the 3-form on three vector fields to get a number or top-form), ensuring that the Jacobi identity holds up to homotopy.
+    - Higher brackets $\ell_r$ for $r>3$ may be zero or determined similarly by $c$ if its degree is larger. In fact, for an $(n+1)$-form $c$, all brackets $\ell_r$ with $r> n$ will vanish (so the $L_\infty$ is  "finite " or $n$-term) .
+    
+    The upshot is that **all these brackets are built out of the operations $[\cdot,\cdot]$ in $G$, $i_X$, $L_X$, $d$, and contraction with $c$**, mimicking the standard formulas in coordinates. It is nontrivial but true that these operations satisfy the required homotopy Jacobi identities. The verification is essentially a translation of Rogers’ original proof to this abstract setting - since Rogers’ proof was  "purely algebraic in nature, " it adapts directly here . We have thus constructed an **$L_\infty$-algebra of observables** $\mathcal{O}(G,M;c)$ associated to any BV-module with a cocycle. This is the main result of the first part of the talk.
+
+    Example (Geometric Case): If we take $G = \Lambda^\bullet \mathfrak X(M)$, $M = \Omega^\bullet(M)$ (so classical Cartan calculus on a manifold), and $c = \omega$ an $n$-plectic form, then $\mathcal{O}(G,M;c)$ precisely recovers Rogers’ $L_\infty$-algebra of observables on $(M,\omega)$  . In degree 0, $\mathcal{O}^0$ consists of Hamiltonian $(n!-!1)$-forms (with their Hamiltonian vector fields), which are exactly Rogers’ observables. The brackets $\ell_r$ coincide with those defined by Rogers (up to sign conventions), and one can check the $L_\infty$ identities by the same calculations in Cartan calculus . This generality shows the power of the BV-module approach: any example of a Gerstenhaber algebra + cocycle yields such an $L_\infty$. For instance, one could even take noncommutative analogues (with a suitable cyclic cocycle playing the role of $c$) to get  "$L_\infty$-observables " in noncommutative geometry  , although we won’t explore that in this talk.}
+
+
+%-----------------------------------------------------------%
+\ifstandalone
+% https://en.wikibooks.org/wiki/LaTeX/Bibliographies_with_biblatex_and_biber
+\begin{frame}[t,allowframebreaks]{Bibliography}
+	%\nocite{*}
+	\printbibliography
+\end{frame}
+\fi
+%-----------------------------------------------------------%
+
+
+
+%-----------------------------------------------------------+
+\end{document}
+%-----------------------------------------------------------+
+
+
+
+
+\begin{frame}{Conclusion / Summary}
+\begin{itemize}
+  \item Algebraic formalism for $L_\infty$ observables via BV-modules.
+  \item Generalizes Rogers' result.
+  \item Enables reduction via constraint triples.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Outlook}
+\begin{itemize}
+  \item Homotopy momentum maps.
+  \item Operadic reformulation.
+  \item Applications to field theory.
+\end{itemize}
+\end{frame}
+
+
+
+
+
+We now turn to the second main part: **reduction** of the $L_\infty$-algebra of observables in the presence of constraints or symmetries. In symplectic geometry, reduction is accomplished by the Marsden-Weinstein quotient: one restricts to the zero level set of a momentum map and then quotients by the symmetry group. Algebraically, this corresponds to first imposing ideal relations (for the constraints) and then modding out by gauge symmetries. The **constraint triple** formalism packages these two steps (subobject and quotient) in a single algebraic structure .
+
+- **Constraint Triples:** A **constraint triple** (or **coisotropic triple**) in general consists of:
+    1. An algebra (or other structure) $A$ representing the full system’s observables.
+    2. A subalgebra $C \subset A$ representing the *constraints* (for example, functions vanishing on a certain submanifold, or first-class constraint algebra in Dirac’s theory).
+    3. A quotient (factor) algebra $\overline{A} = A/ I$ for some ideal $I$ related to $C$, representing the *reduced* algebra of observables after constraints are imposed and quotiented.
+    
+    These are equipped with structure maps (inclusions and projections) satisfying compatibility conditions (e.g. $I$ is the ideal of relations defining $C$) . Intuitively, one has $C$ as the "constraint algebra" (functions that vanish on the constraint surface) and $\overline{A}$ as the algebra of functions on the quotient of that constraint surface by symmetries. Dippel, Esposito & Waldmann formalized this in the context of Poisson algebras and deformation quantization , showing that many reduction procedures can be understood as functors on such triples.
+    
+    We adopt this idea in our setting: we will consider **constraint Gerstenhaber algebras** and **constraint BV-modules**, which are triples $(G, G_C, \overline{G})$ and $(M, M_C, \overline{M})$ capturing the full, constraint, and reduced parts of our algebraic Cartan calculus . All the structure (brackets, differentials, etc.) is assumed to exist on each part and to be compatible. For instance, a *constraint Gerstenhaber algebra* means $G$ is a Gerstenhaber algebra, $G_C \subset G$ a subalgebra (constraints), and $\overline{G} = G/G_C$ (some quotient) such that the wedge and bracket operations map triples to triples (roughly $[![G, G]!]$ sends $G_C$ to $G_C$ and induces well-defined operations on the quotient) . Similarly, a *constraint BV-module* $(M, M_C, \overline{M})$ has $M_C$ a submodule (the  "constraints on forms ") and $\overline{M}=M/M_C$ the quotient module, with differential $d$ and contractions $i_X$ etc. respecting the triples (so that, e.g., $d(M_C)\subseteq M_C$ and induces a differential on $\overline{M}$) . This is a bit of structure to keep track of, but conceptually it means we have *Cartan calculus not just on one algebra, but simultaneously on a sub- and a quotient algebra*.
+    
+    - **Origin in Geometry:** If one has a manifold $M$ with a coisotropic submanifold $C\subset M$ (the constraint surface) and a group $G$ acting with gauge orbits, one can form a *constraint manifold* in the sense of Dippel-Kern 2025 . The algebra of smooth functions on a constraint manifold is exactly a constraint triple $(A, C, \overline{A})$ in which $C$ are the functions vanishing on the constraint surface and $\overline{A}$ functions on the quotient (when nice). Likewise, vector fields tangent to $C$ etc. form a constraint Lie-Rinehart algebra, and so on. Indeed, it has been shown that a **constraint Lie-Rinehart algebra** naturally induces a constraint Gerstenhaber algebra and constraint BV-module structures . So this framework is not lacking examples - it generalizes classical constrained Hamiltonian systems.
+- **Constraint $L_\infty$ of Observables:** Once we have constraint versions of $G$ and $M$ **and** a *constraint cocycle* $c = (c, c_C, \overline{c})$ (meaning $c$ lies in $M$, $c_C$ in $M_C$ and $\overline{c}$ is its class in $\overline{M}$, with each closed under their respective differentials), we can perform the same construction as before *in the category of constraint complexes*. That is, we define the **constraint Hamiltonian pairs** as triples $((X, X_C, \overline{X}), (m, m_C, \overline{m}))$ such that $i_X(c) = d m$, $i_{X_C}(c_C) = d m_C$ and these are compatible/projection of the first (so $\overline{X}$ and $\overline{m}$ are the images of $X,m$, etc.) . All such triples form a constraint graded space of observables. **Theorem C** asserts that this constraint observables space carries a **constraint $L_\infty$-algebra** structure . By  "constraint $L_\infty$-algebra, " we mean an $L_\infty$ whose underlying structure is also a triple $(L, L_C, \overline{L})$: there are brackets $\ell_r$ on each of $L, L_C, \overline{L}$, and the inclusion/projection maps intertwine these (so that $L_C$ is an $L_\infty$-subalgebra and $\overline{L}$ the quotient $L_\infty$) . The brackets are defined using the same formulas as in the unconstrained case, applied levelwise to $(G, M, c)$, $(G_C, M_C, c_C)$ and inducing $(\overline{G}, \overline{M}, \overline{c})$ . The $L_\infty$ identities hold simultaneously on each level by the same reasoning as before, thanks to the compatibility of the constraint data.
+- **Reduction Functor:** Once we have a constraint $L_\infty$-algebra of observables, *reducing it* means passing to the **quotient part** of the constraint triple. In categorical terms, there is a forgetful functor sending a constraint object $(X, X_C, \overline{X})$ to the quotient $\overline{X}$. When we apply this to the constraint $L_\infty$ of observables, we obtain an $L_\infty$-algebra on $\overline{L}$, which we interpret as the **reduced $L_\infty$-algebra of observables** of the constrained system. Intuitively, this $\overline{L}$ encodes observables that are invariant under the symmetry and defined on the constraint surface (since we mod out those that vanish or differ by constraint terms) . By construction, all the $L_\infty$ brackets descend to $\overline{L}$, so the homotopy Lie structure is well-defined on the quotient. This algebra $\overline{L}$ is the algebraic analog of the Poisson algebra of the reduced phase space in classical reduction, but here it can handle the homotopy brackets arising from a multisymplectic form and even if no nice manifold quotient exists (e.g. in singular cases).
+- **Recovery of Known Results:** Our general reduction scheme, when applied to the **geometric case** of a multisymplectic manifold with a group action, reproduces the results of our earlier work (Blacker-Miti-Ryvkin, SIGMA 2024) . In that work, we constructed a reduced $L_\infty$ of observables by more ad-hoc means; now we see it fits into the constraint triple framework. Specifically, given a Lie group $G$ acting on an $n$-plectic manifold $(M,\omega)$ with a covariant momentum map $\mu$ , one can form the constraint triple:
+    - $A = $ observables $L_\infty$ on $(M,\omega)$,
+    - $A_C = $ those observables that vanish on the constraint (e.g. forms pulled back by $\mu$ setting to zero, etc.),
+    - $\overline{A} = $ observables on the reduced space (when $0$ level set mod $G$ is nice, these correspond to forms on the quotient).
+    
+    Our formalism shows that $\overline{A}$ inherits an $L_\infty$-algebra structure automatically . No assumptions of regularity or freeness are needed in the algebraic approach - even if the quotient is singular, $\overline{A}$ is well-defined as a homotopy algebra. This extends the multisymplectic reduction of Blacker 2021 (which assumed regularity) to a far more general context . Moreover, within our algebraic setting we identify an object called the **residue defect**, which measures the slight difference between naive and actual reduction in the homotopy context. In the earlier work, this residue term appeared somewhat mysteriously to satisfy the homotopy Jacobi identities; here we can interpret it cleanly as arising from the constraint differential and the failure of a certain exactness on the constraint submodule. Our framework **clarifies the role of the  "residue defect "**: it is an intrinsic part of the constraint $L_\infty$ structure that vanishes under appropriate conditions (like when the momentum map level is regular) .
+    
+- **Summary of Main Results:** We can summarize the main technical results (theorems) as follows:
+    - **Theorem A:** *Given any Gerstenhaber algebra $G$ with a BV-module $M$ and a closed element $c\in M$, the graded space of Hamiltonian pairs $\mathcal{O}(G,M;c)$ admits an $L_\infty$-algebra structure (observables algebra), defined by the multilinear maps derived from Cartan calculus.* 
+    - **Theorem B:** *If $(A,E)$ is a **constraint** Lie-Rinehart algebra (constraint version of derivations over a constraint algebra $A$), then one naturally obtains a constraint Gerstenhaber algebra and a constraint BV-module $(G, M)$ out of it. (In short, classical constraint manifolds yield constraint Cartan calculus algebraically.)
+    - **Theorem C:** *Given a constraint Gerstenhaber algebra and BV-module with a constraint cocycle $c$, one can construct a **constraint** $L_\infty$-algebra of observables. Moreover, its **reduced part** $\overline{\mathcal{O}}$ (the quotient level) is an $L_\infty$-algebra that describes the observables of the reduced system.* 
+    
+    As an application, Theorem C applied to multisymplectic manifolds with symmetries recovers the reduced $L_\infty$ in  and explains the extra terms (residue defect) in a categorical way .
+    
+
+## **Conclusion and Outlook**
+
+We have developed a **purely algebraic toolkit** for constructing and reducing $L_\infty$-algebras of observables, extending concepts from symplectic geometry to multisymplectic and even noncommutative settings . This framework shows the power of combining homotopy algebra (for observables) with constraint category theory (for reduction). It provides a unified perspective where classical geometric reduction is just one instance of an algebraic functor acting on $L_\infty$-algebras .
+
+Some directions for further research include:
+
+- **Homotopy Momentum Maps:** Relating our constraint $L_\infty$-reduction to the notion of *homotopy momentum maps* (which appear in alternative higher reduction approaches, e.g. the work of Callies-Frégier-Rogers-Zambon on $L_\infty$-moment maps . It would be interesting to connect the **Leibniz-algebra-valued momentum maps** used here  with homotopy moment maps in an $L_\infty$-context.
+- **Operadic Formulation:** The constraint triple constructions hint at an operadic or higher-categorical organization. One could aim to describe the entire process (Cartan calculus + constraints + $L_\infty$) in terms of operads or properads encoding these algebraic relations . This might streamline proofs and allow further generalizations (e.g. to quantum or $A_\infty$ settings).
+- **Applications to Field Theory:** Ultimately, multisymplectic forms arise in classical field theory (e.g. the 2-form in mechanics vs. a 3-form in 2-dimensional field theory). Our algebraic observables $L_\infty$ could serve as a foundation for understanding *higher Poisson brackets* on the phase space of fields and their reduction under symmetries. Recent works on polysymplectic and polycontact reduction provide complementary geometric approaches; linking those with our algebraic method is a promising avenue.
+
+**References:** *(Selected key references in context)* Rogers (2012) for the original multisymplectic $L_\infty$-algebra construction; Dippel-Esposito-Waldmann (2019) for constraint (coisotropic) triples in Poisson algebra setting; Blacker-Miti-Ryvkin (2024) for algebraic multisymplectic reduction; and our work Miti-Ryvkin (2025) (Differential Geom. Appl.) which this talk is based on, for full details and proofs. The methods presented exemplify how **pure algebraic techniques can not only recover but also enlighten classical geometric results** in higher symplectic geometry, broadening the scope to singular and noncommutative realms.

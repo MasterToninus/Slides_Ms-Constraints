@@ -1,0 +1,195 @@
+%- HandOut Flag ----------------------
+\makeatletter
+\@ifundefined{ifHandout}{%
+  \expandafter\newif\csname ifHandout\endcsname
+}{}
+\makeatother
+
+%- D0cum3nt ----------------------------------------------------------------------------------------------
+%\documentclass[beamer,10pt]{standalone}   
+\documentclass[beamer,10pt,handout]{standalone}  \Handouttrue  
+
+\ifHandout
+	\setbeameroption{show notes} %print notes   
+\fi
+
+	
+%- Packages ----------------------------------------------------------------------------------------------
+\usepackage{custom-style}
+\usepackage{math}
+
+
+
+%--Beamer Style-----------------------------------------------------------------------------------------------
+\usetheme{toninus}
+\usepackage{animate}
+\usetikzlibrary{positioning, arrows}
+\usetikzlibrary{shapes}
+
+
+%- Bibliography (Biber) ----------------------------------------------------------------------------------
+\usepackage[backend=biber,style=alphabetic,maxnames=2]{biblatex}
+\bibliography{bibfile.bib}
+
+%===========================================================%
+\begin{document}
+%===========================================================%
+\checkpoint
+
+
+%-----------------------------------------------------------+
+\begin{frame}{Lie-Rinehart Algebras}
+
+  \begin{defblock}[Lie-Rinehart Algebra]
+    A pair $(A,E)$ where
+    \begin{itemize}
+      \item $A$ is a commutative, associative algebra,
+      \item $E$ is an $A$-module and a Lie algebra,
+      \item there is an anchor map $\rho: E \to \mathrm{Der}(A)$ satisfying the Leibniz rule:
+        \[
+          [X, aY] = a[X,Y] + (\rho(X)a)Y, \quad \forall X,Y \in E, a \in A.
+        \]
+    \end{itemize}
+  \end{defblock}  
+
+
+\begin{itemize}
+  \item Encodes derivations + Lie algebra structure.
+\end{itemize}
+
+  \begin{exblock}
+    If $A=C^\infty(M)$, then $E=\Gamma(TM)$ with $\rho=\mathrm{id}$ is a Lie-Rinehart algebra.
+
+    Lie-Rinehart algebras are algebraic analogues of Lie algebroids (and every Lie algebroid gives a Lie-Rinehart algebra)
+  \end{exblock}
+
+\end{frame}
+\note[itemize]{
+  \item To generalize the above geometric structures, we introduce the algebraic counterparts of  "multivector fields " and  "differential forms with Cartan calculus. " 
+  \item  A  Lie-Rinehart algebra  $(A,E)$ consists of a commutative associative algebra $A$ (think of $A=C^\infty(M)$) and an $A$-module $E$ (think of $E=\mathfrak X(M)$, the vector fields) which is also a Lie algebra, together with an *anchor* map $\rho: E \to \mathop{\mathrm{Der}}(A)$ (derivations of $A$) satisfying a Leibniz rule: $[X, aY] = a[X,Y] + (\rho(X)a),Y$. This abstractly encodes the notion of derivations of $A$ with an $A$-linear Lie bracket. 
+  \item Example: If $A=C^\infty(M)$, then $E=\Gamma(TM)$ (the module of vector fields) with the identity anchor $\rho(X)=X$ is a Lie-Rinehart algebra. 
+  \item   In fact, Lie-Rinehart algebras are algebraic analogues of Lie algebroids (and every Lie algebroid gives a Lie-Rinehart algebra).}
+%-----------------------------------------------------------+
+
+
+%-----------------------------------------------------------+
+\begin{frame}{Gerstenhaber Algebras}
+  \emph{A graded algebra that captures the structure of exterior algebra of multivector fields.}
+  %
+  \begin{defblock}[Gerstenhaber Algebra]
+    A triple $(\mathcal{G}, \wedge, [\cdot,\cdot])$ where
+    \begin{itemize}
+      \item $\mathcal{G} = \bigoplus_{i\in\mathbb{Z}} \mathcal{G}^i$ is a $\mathbb{Z}$-graded vector space,
+      \item $\wedge: \mathcal{G}^p \times \mathcal{G}^q \to \mathcal{G}^{p+q}$ is a graded-commutative, associative product (degree $0$ operation),
+      \item $[\cdot,\cdot]: \mathcal{G}^p \times \mathcal{G}^q \to \mathcal{G}^{p+q-1}$ is a bracket of degree $-1$, making $\mathcal{G}$ into a graded Lie algebra,
+      \item Compatibility (Leibniz rule): The bracket is a derivation of the product:
+        \[
+          [x, y\wedge z] = [x,y]\wedge z + (-1)^{(\deg x -1)\deg y} y\wedge [x,z]
+        \]
+        for homogeneous $x,y,z$.
+    \end{itemize}
+
+    \begin{exblock}%{Example}
+      If $(A,E)$ is a Lie-Rinehart algebra, the exterior algebra of $E$ (with a degree shift) carries a natural Gerstenhaber structure.
+    \end{exblock}
+
+    \begin{exblock}%{Example}
+      Take $\mathcal{G} = \Lambda^\bullet E$ (the exterior wedge algebra of $E$ treated as a graded space of multivectors). The wedge product is the usual wedge of multivectors, and the bracket is the Schouten-Nijenhuis bracket extending the Lie bracket on $E$ to all multivectors. This $(\Lambda E,\wedge,[\cdot,\cdot]_{SN})$ is a Gerstenhaber algebra, prototypical in geometry (for $E=\mathfrak X(M)$ one recovers the standard Gerstenhaber algebra of multivector fields on $M$).
+    \end{exblock}
+ 
+\end{frame}
+\note[itemize]{
+  \item  A Gerstenhaber algebra is a graded algebra that captures the structure of exterior algebra of multivector fields. 
+  \item Compatibility (Leibniz rule): The bracket is a derivation of the product: $[x, y\wedge z] = [x,y]\wedge z + (-1)^{(\deg x -1)\deg y} y\wedge [x,z]$ for homogeneous $x,y,z$. This is the defining Gerstenhaber identity, generalizing the fact that the Lie bracket of vector fields satisfies a Leibniz rule with respect to wedge of forms or functions.
+}
+%-----------------------------------------------------------+
+
+
+
+%-----------------------------------------------------------+
+\begin{frame}{Gerstenhaber Modules}
+  %
+  \begin{defblock}[Gerstenhaber Module]
+    A Gerstenhaber module over a Gerstenhaber algebra $(\mathcal{G}, \wedge, [\cdot,\cdot])$ is a graded module $\mathcal{M} = \bigoplus_{i\in\mathbb{Z}} \mathcal{M}^i$ together with an action
+    \[
+      \iota: \mathcal{G}^p \times \mathcal{M}^q \to \mathcal{M}^{q - p}
+    \]
+    satisfying:
+    \begin{itemize}
+      \item $\iota$ is $A$-linear in the second argument,
+      \item **Compatibility:** For homogeneous $x,y\in \mathcal{G}$ and $m\in \mathcal{M}$,
+        \[
+          \iota_{[x,y]} m = \iota_x (\iota_y m) - (-1)^{(\deg x -1)(\deg y -1)} \iota_y (\iota_x m).
+        \]
+    \end{itemize}
+
+
+\begin{itemize}
+  \item $G$-module $M$ with contraction $\iota_X$ of degree $-\deg X$.
+  \item Induced Lie derivative $L_X = [d,\iota_X]$ when $d$ is defined.
+\end{itemize}
+\end{frame}
+\note[itemize]{
+  \item Gerstenhaber Module extends the idea of a multivector acting on forms by contraction. 
+  \item Concretely, for each element $X\in G^p$, we have a degree $-p$ operator $i_X: M^\ast \to M^{\ast-p}$ (interpreted as interior product by $X$) satisfying a compatible set of identities (graded derivations, etc.). 
+  \item We also typically get an induced Lie derivative action $L_X$ of degree 0 defined by $L_X := [D,;i_X]$ once a differential $D$ is present (see below). We won’t detail the full set of axioms here, but essentially a Gerstenhaber module gives an algebraic version of the pair of operations $(i_X, L_X)$ acting on a  "forms " module, with $i$ being antiderivations and $L$ Lie derivations.
+  \item (The literature sometimes refers to this structure as a  "TTN (Tsygan-Tamarkin-Nest) calculus " .)}
+%-----------------------------------------------------------+
+
+
+%-----------------------------------------------------------+
+\begin{frame}{BV-Modules}
+  %
+  \begin{defblock}[Batalin-Vilkovisky Module]
+    A Batalin-Vilkovisky module (BV-module) over a Gerstenhaber algebra $(\mathcal{G}, \wedge, [\cdot,\cdot])$ is a Gerstenhaber module $(\mathcal{M}, \iota)$ together with a differential $d: \mathcal{M}^i \to \mathcal{M}^{i+1}$ (i.e. $d^2=0$) satisfying the Cartan identity:
+    \[
+      L_x := [d, \iota_x] = d \circ \iota_x + (-1)^{\deg x -1} \iota_x \circ d
+    \]
+    for all homogeneous $x\in \mathcal{G}$, where $L_x$ is the Lie derivative induced by the Gerstenhaber module structure.
+  \end{defblock}
+
+\end{frame}
+\note[itemize]{
+  \item Batalin-Vilkovisky Modules (BV-Modules): A BV-module is a Gerstenhaber module that is also equipped with a differential of degree $+1$ (like an exterior derivative) satisfying Cartan’s formula. 
+  \item Formally, let $G$ be a Gerstenhaber algebra and $(M,d)$ a cochain complex (so $d: M^i \to M^{i+1}$ with $d^2=0$). We say $M$ is a BV-module over $G$ if $M$ is a Gerstenhaber $G$-module and, for all $X\in G$, we have the Cartan identity $L_X = [d,; i_X]$ (and automatically $[L_X, i_Y] = i_{[X,Y]}$, etc.)  . 
+  \item In other words, $M$ carries an action of $G$ by contraction $i_X$ and Lie derivative $L_X$ such that together with the differential $d$ they satisfy the standard graded commutation relations of Cartan calculus. \item We often call $d$ the BV differential.}
+%-----------------------------------------------------------+
+
+
+%-----------------------------------------------------------+
+\begin{frame}{Abstract Cartan Calculus}
+\begin{itemize}
+  \item A Gerstenhaber module $M$ with differential $d$.
+  \item Cartan identity: $L_X = [d,\iota_X]$.
+  \item Encodes full algebraic Cartan calculus.
+\end{itemize}
+
+
+  \begin{itemize}
+  \item $(G,M,d)$ with $G$ Gerstenhaber, $M$ BV-module, $d^2=0$.
+  \item Examples: $(\mathfrak{X}^\bullet(M),\Omega^\bullet(M), d)$.
+  \item Extends to noncommutative and algebraic settings.
+\end{itemize}
+\end{frame}
+\note{Example (Classical Cartan Calculus): Take $G = \Lambda^\bullet \mathfrak X(M)$ (Gerstenhaber algebra of multivector fields on a manifold) and $M=\Omega^\bullet(M)$ (the de Rham complex of differential forms). This is a canonical example of a BV-module  : the differential $d$ is the exterior derivative, the contraction $i_X$ is the usual insertion of a multivector $X$ into a form, and the Lie derivative $L_X$ is the usual one acting on forms. These satisfy $L_X = d \circ i_X + i_X \circ d$ (Cartan formula) and all other Cartan identities. In fact, this example exactly recovers the classical Cartan calculus on $M$ as a BV-module structure on $\Omega^\bullet(M)$, with $G$ playing the role of  "polyvector fields " . This justifies the abstractions: any Gerstenhaber algebra + BV-module pair can be seen as a generalized  "space of multivectors and forms " with a full Cartan calculus available . We emphasize that such structures exist in much more general settings, including noncommutative geometry (where $A$ is a noncommutative algebra and one considers analogues of forms and multivectors  ), but for our purposes we stick to the algebraic axioms.}
+%-----------------------------------------------------------+
+
+
+%-----------------------------------------------------------%
+\ifstandalone
+% https://en.wikibooks.org/wiki/LaTeX/Bibliographies_with_biblatex_and_biber
+\begin{frame}[t,allowframebreaks]{Bibliography}
+	%\nocite{*}
+	\printbibliography
+\end{frame}
+\fi
+%-----------------------------------------------------------%
+
+
+%-----------------------------------------------------------+
+\end{document}
+%-----------------------------------------------------------+
+
+
+
+

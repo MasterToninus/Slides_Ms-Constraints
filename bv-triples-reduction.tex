@@ -1,0 +1,91 @@
+%- HandOut Flag -----------------------------------------------------------------------------------------
+\makeatletter
+\@ifundefined{ifHandout}{%
+  \expandafter\newif\csname ifHandout\endcsname
+}{}
+\makeatother
+
+%- D0cum3nt ----------------------------------------------------------------------------------------------
+%\documentclass[beamer,10pt]{standalone}   
+\documentclass[beamer,10pt,handout]{standalone}  \Handouttrue  
+
+\ifHandout
+	\setbeameroption{show notes} %print notes   
+\fi
+
+	
+%- Packages ----------------------------------------------------------------------------------------------
+\usepackage{custom-style}
+\usepackage{math}
+
+
+
+
+%--Beamer Style-----------------------------------------------------------------------------------------------
+\usetheme{toninus}
+\usepackage{animate}
+\usetikzlibrary{positioning, arrows}
+\usetikzlibrary{shapes}
+
+%===========================================================%
+\begin{document}
+%===========================================================%
+\checkpoint
+
+\begin{frame}{Constraint Triples}
+\begin{itemize}
+  \item Triple $(A, A_C, \overline{A})$ with inclusion/projection.
+  \item $A_C$ encodes constraints, $\overline{A} = A/I$ reduced algebra.
+  \item Adapted to Gerstenhaber and BV-module settings.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Constraint BV-Modules}
+\begin{itemize}
+  \item Triples $(G, G_C, \overline{G})$, $(M, M_C, \overline{M})$.
+  \item Structures compatible with Cartan calculus.
+  \item Closed cocycle triple $c = (c, c_C, \overline{c})$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Constraint $L_\infty$ Algebra Associated with…}
+\begin{itemize}
+  \item Construct observables $\mathcal{O} = (\mathcal{O}, \mathcal{O}_C, \overline{\mathcal{O}})$.
+  \item Each component carries an $L_\infty$ structure.
+  \item Brackets compatible with inclusions/projections.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Reduction Functor}
+\begin{itemize}
+  \item Quotient part $\overline{\mathcal{O}}$ inherits $L_\infty$ structure.
+  \item Encodes reduced observables algebra.
+  \item No need for regular quotient at geometric level.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Recovering Old Results}
+\begin{itemize}
+  \item Applies to multisymplectic reduction (Blacker-Miti-Ryvkin 2024).
+  \item Explains residue defect in homotopy Jacobi identity.
+  \item Matches geometric reduction under regularity.
+\end{itemize}
+\end{frame}
+
+%-----------------------------------------------------------%
+\ifstandalone
+% https://en.wikibooks.org/wiki/LaTeX/Bibliographies_with_biblatex_and_biber
+\begin{frame}[t,allowframebreaks]{Bibliography}
+	%\nocite{*}
+	\printbibliography
+\end{frame}
+\fi
+%-----------------------------------------------------------%
+
+
+
+%-----------------------------------------------------------+
+\end{document}
+%-----------------------------------------------------------+
+
+
