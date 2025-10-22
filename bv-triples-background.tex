@@ -39,139 +39,265 @@
 
 %-----------------------------------------------------------+
 \begin{frame}{Lie-Rinehart Algebras}
-
+  
+  \begin{quote}
+    \centering
+    \emph{... generalize the structure of vector fields acting as derivations ...}
+  \end{quote}
+ 
   \begin{defblock}[Lie-Rinehart Algebra]
-    A pair $(A,E)$ where
-    \begin{itemize}
+    A \underline{triple} $(A,\mathfrak{L},\rho)$ where
+    \begin{itemize}[label=$\triangleright$]
       \item $A$ is a commutative, associative algebra,
-      \item $E$ is an $A$-module and a Lie algebra,
-      \item there is an anchor map $\rho: E \to \mathrm{Der}(A)$ satisfying the Leibniz rule:
-        \[
-          [X, aY] = a[X,Y] + (\rho(X)a)Y, \quad \forall X,Y \in E, a \in A.
-        \]
+      \item $\mathfrak{L}$ is an $A$-module and a Lie algebra,
+      \item there is an anchor map $\rho: \mathfrak{L} \to \mathrm{Der}(A)$ satisfying the Leibniz rule:
+      
+      \vspace{-.5em}
+        $$
+          [X, aY] = a[X,Y] + (\rho(X)a)Y, \quad \forall X,Y \in \mathfrak{L}, a \in A.
+        $$
     \end{itemize}
+
   \end{defblock}  
+  \pause\vfill
 
-
-\begin{itemize}
-  \item Encodes derivations + Lie algebra structure.
-\end{itemize}
-
-  \begin{exblock}
-    If $A=C^\infty(M)$, then $E=\Gamma(TM)$ with $\rho=\mathrm{id}$ is a Lie-Rinehart algebra.
-
-    Lie-Rinehart algebras are algebraic analogues of Lie algebroids (and every Lie algebroid gives a Lie-Rinehart algebra)
+  \begin{exblock}[Derivations]
+    $$
+      A=\text{any commutative algebra}~, \qquad \mathfrak{L}=\mathrm{Der}(A)~,\qquad \rho=\mathrm{id}
+    $$ 
   \end{exblock}
+  \pause\vfill
+
+  \begin{exblock}[Vector fields]
+    $$
+      A=C^\infty(M)~,  \qquad \mathfrak{L}=\Gamma(TM)~,\qquad \rho=\mathrm{id}
+    $$ 
+    \begin{quotation}
+      \centering
+      Lie-Rinehart algebras are algebraic analogues of Lie algebroids
+      \\
+      (and every Lie algebroid gives a Lie-Rinehart algebra)
+    \end{quotation} 
+  \end{exblock}
+  \vfill
 
 \end{frame}
 \note[itemize]{
+    \item Let ${A}$ be a commutative  algebra over a field $\mathbb{k}$.
+  Denote by $\X(A)=\Der_{\mathbb{k}}(A)$ its Lie algebra of derivations, which naturally forms an $A$-submodule of $\End(A)$ with the action $A\action \End(A)$ given by postmultiplying with the element of $A$.
+  \item In the context of differential geometry, a primary example is when $A = C^\infty(M)$, the algebra of smooth functions on a smooth manifold $M$. In this case, $\mathfrak{X}(A)$ is isomorphic to the standard $C^\infty(M)$-module of smooth vector fields on $M$, often denoted by $\mathfrak{X}(M)$.
   \item To generalize the above geometric structures, we introduce the algebraic counterparts of  "multivector fields " and  "differential forms with Cartan calculus. " 
-  \item  A  Lie-Rinehart algebra  $(A,E)$ consists of a commutative associative algebra $A$ (think of $A=C^\infty(M)$) and an $A$-module $E$ (think of $E=\mathfrak X(M)$, the vector fields) which is also a Lie algebra, together with an *anchor* map $\rho: E \to \mathop{\mathrm{Der}}(A)$ (derivations of $A$) satisfying a Leibniz rule: $[X, aY] = a[X,Y] + (\rho(X)a),Y$. This abstractly encodes the notion of derivations of $A$ with an $A$-linear Lie bracket. 
-  \item Example: If $A=C^\infty(M)$, then $E=\Gamma(TM)$ (the module of vector fields) with the identity anchor $\rho(X)=X$ is a Lie-Rinehart algebra. 
-  \item   In fact, Lie-Rinehart algebras are algebraic analogues of Lie algebroids (and every Lie algebroid gives a Lie-Rinehart algebra).}
+  \item The anchor map $\rho: E \to \mathop{\mathrm{Der}}(A)$ abstractly encodes the notion of derivations of $A$ with an $A$-linear Lie bracket. 
+  \item   In fact, Lie-Rinehart algebras are algebraic analogues of Lie algebroids (and every Lie algebroid gives a Lie-Rinehart algebra).
+  \item singular foliations in the sense of Androulidakis and Skandalis can be viewed as Lie--Rinehart algebras
+  \item a Lie--Rinehart algebra over $C^{\infty}(M)$ that is projective as a module is equivalent to a Lie algebroid,  
+}
 %-----------------------------------------------------------+
 
 
 %-----------------------------------------------------------+
 \begin{frame}{Gerstenhaber Algebras}
-  \emph{A graded algebra that captures the structure of exterior algebra of multivector fields.}
+
+  \begin{quote}
+    \centering
+    \emph{... generalize the structure of the exterior algebra of multivector fields ...}
+  \end{quote}
   %
   \begin{defblock}[Gerstenhaber Algebra]
-    A triple $(\mathcal{G}, \wedge, [\cdot,\cdot])$ where
-    \begin{itemize}
-      \item $\mathcal{G} = \bigoplus_{i\in\mathbb{Z}} \mathcal{G}^i$ is a $\mathbb{Z}$-graded vector space,
-      \item $\wedge: \mathcal{G}^p \times \mathcal{G}^q \to \mathcal{G}^{p+q}$ is a graded-commutative, associative product (degree $0$ operation),
-      \item $[\cdot,\cdot]: \mathcal{G}^p \times \mathcal{G}^q \to \mathcal{G}^{p+q-1}$ is a bracket of degree $-1$, making $\mathcal{G}$ into a graded Lie algebra,
-      \item Compatibility (Leibniz rule): The bracket is a derivation of the product:
-        \[
-          [x, y\wedge z] = [x,y]\wedge z + (-1)^{(\deg x -1)\deg y} y\wedge [x,z]
-        \]
-        for homogeneous $x,y,z$.
-    \end{itemize}
+    A \underline{triple} $(G, \wedge, \lbrace\cdot,\cdot\rbrace)$ where
+    \begin{itemize}[label=$\triangleright$]
+		\item $G$ is a $\mathbb{Z}$-graded vector space;
+		\item $\wedge : G \otimes G \to G$ is a graded commutative, associative product;
+		\item $\{\blank,\blank\} :G[1]\otimes G[1]\to G[1]$ is a graded Lie bracket,
+  \end{itemize}
+Compatibility: The bracket is a derivation of $\wedge$:
+	\begin{align*}\label{eq:Gerstenhaber-derivationProperty}
+		\{a, b \wedge c\} = \{a, b\} \wedge c + (-1)^{(|a|-1)|b|} b \wedge \{a, c\}
+		&& \forall~ a, b, c \in G.
+	\end{align*}
 
-    \begin{exblock}%{Example}
-      If $(A,E)$ is a Lie-Rinehart algebra, the exterior algebra of $E$ (with a degree shift) carries a natural Gerstenhaber structure.
-    \end{exblock}
+  \end{defblock}  
+    \vfill\pause
+ 
 
-    \begin{exblock}%{Example}
-      Take $\mathcal{G} = \Lambda^\bullet E$ (the exterior wedge algebra of $E$ treated as a graded space of multivectors). The wedge product is the usual wedge of multivectors, and the bracket is the Schouten-Nijenhuis bracket extending the Lie bracket on $E$ to all multivectors. This $(\Lambda E,\wedge,[\cdot,\cdot]_{SN})$ is a Gerstenhaber algebra, prototypical in geometry (for $E=\mathfrak X(M)$ one recovers the standard Gerstenhaber algebra of multivector fields on $M$).
+    \begin{exblock}[Exterior algebra of a Lie-Rinehart algebra]
+      $G = \Lambda^\bullet \mathfrak{L}$ for a Lie-Rinehart algebra $(A,\mathfrak{L},\rho)$ with $\lbrace\cdot,\cdot\rbrace$ the Schouten-Nijenhuis bracket extending the Lie bracket on $E$.
     \end{exblock}
+ 
  
 \end{frame}
 \note[itemize]{
-  \item  A Gerstenhaber algebra is a graded algebra that captures the structure of exterior algebra of multivector fields. 
-  \item Compatibility (Leibniz rule): The bracket is a derivation of the product: $[x, y\wedge z] = [x,y]\wedge z + (-1)^{(\deg x -1)\deg y} y\wedge [x,z]$ for homogeneous $x,y,z$. This is the defining Gerstenhaber identity, generalizing the fact that the Lie bracket of vector fields satisfies a Leibniz rule with respect to wedge of forms or functions.
+  \item  The bracket $\{\blank,\blank\}$ could also be reinterpreted as a degree $-1$ bracket on the desuspended $\Z$-graded vector space $G$, coincides with the definition of $1$-Poisson algebra of \cite{Cattaneo2006b}.
+  \item The Schouten--Nijenhuis bracket is the unique graded Lie bracket satisfying the following properties:
+\begin{itemize}
+	\item It restricts to the given Lie bracket on $\Lambda_A^1 \mathfrak{L} = \mathfrak{L}$;
+	\item It vanishes on $A = \Lambda_A^0 \mathfrak{L}$;
+	\item It satisfies the graded Leibniz rule with respect to the wedge product.
+\end{itemize}
+%
+Explicitly, for homogeneous elements $x_1, \dots, x_m, y_1, \dots, y_n \in \mathfrak{L}$ and $f \in A$, it is given by
+\begin{align*}
+	[x_1 \wedge \cdots \wedge x_m,\; y_1 \wedge \cdots \wedge y_n] 
+	&= \sum_{i,j} (-1)^{i+j} [x_i, y_j] \wedge x_1 \wedge \cdots \widehat{x_i} \cdots \wedge x_m \wedge y_1 \wedge \cdots \widehat{y_j} \cdots \wedge y_n~.
+\end{align*}
 }
 %-----------------------------------------------------------+
 
-
-
-%-----------------------------------------------------------+
+ %-----------------------------------------------------------+
 \begin{frame}{Gerstenhaber Modules}
   %
-  \begin{defblock}[Gerstenhaber Module]
-    A Gerstenhaber module over a Gerstenhaber algebra $(\mathcal{G}, \wedge, [\cdot,\cdot])$ is a graded module $\mathcal{M} = \bigoplus_{i\in\mathbb{Z}} \mathcal{M}^i$ together with an action
-    \[
-      \iota: \mathcal{G}^p \times \mathcal{M}^q \to \mathcal{M}^{q - p}
-    \]
-    satisfying:
-    \begin{itemize}
-      \item $\iota$ is $A$-linear in the second argument,
-      \item **Compatibility:** For homogeneous $x,y\in \mathcal{G}$ and $m\in \mathcal{M}$,
-        \[
-          \iota_{[x,y]} m = \iota_x (\iota_y m) - (-1)^{(\deg x -1)(\deg y -1)} \iota_y (\iota_x m).
-        \]
+  \begin{quote}
+    \centering
+    \emph{... generalize the structure of (Grassmann) algebra of differential forms...}
+  \end{quote}
+  %
+  \begin{defblock}[Gerstenhaber Module ~~{\small( over a Gers. Alg. $G$ )}]
+    A \underline{graded vector space} $V$ equipped with a \emph{Gerstenhaber algebra structure} \\ on $G\oplus V^{\mathrm{rev}}$ such that:
+    \begin{itemize}[label=$\triangleright$]
+      \item $G \hookrightarrow G\oplus V^{\mathrm{rev}}$ is a  Gerstenhaber subalgebra,
+      \item Both brackets and associative multiplication vanish when restricted to $V^{\rev}$
     \end{itemize}
+  \end{defblock}
+  \vfill\pause
 
+  \begin{exblock}[Chevalley--Eilenberg Algebra]
+    The Chevalley--Eilenberg algebra for the Lie-Rinehart algebra $(A,\mathfrak{L},\rho)$:
+    $$
+    \CE(\mathfrak{L}) := \left((\Lambda_A^\bullet \mathfrak{L})^*\right)^{\rev}$$ 
 
-\begin{itemize}
-  \item $G$-module $M$ with contraction $\iota_X$ of degree $-\deg X$.
-  \item Induced Lie derivative $L_X = [d,\iota_X]$ when $d$ is defined.
-\end{itemize}
+    carries a canonical structure of Gerstenhaber module over $\Lambda_A^\bullet \mathfrak{L}$. 
+  \end{exblock}
+
 \end{frame}
 \note[itemize]{
-  \item Gerstenhaber Module extends the idea of a multivector acting on forms by contraction. 
-  \item Concretely, for each element $X\in G^p$, we have a degree $-p$ operator $i_X: M^\ast \to M^{\ast-p}$ (interpreted as interior product by $X$) satisfying a compatible set of identities (graded derivations, etc.). 
-  \item We also typically get an induced Lie derivative action $L_X$ of degree 0 defined by $L_X := [D,;i_X]$ once a differential $D$ is present (see below). We won’t detail the full set of axioms here, but essentially a Gerstenhaber module gives an algebraic version of the pair of operations $(i_X, L_X)$ acting on a  "forms " module, with $i$ being antiderivations and $L$ Lie derivations.
-  \item (The literature sometimes refers to this structure as a  "TTN (Tsygan-Tamarkin-Nest) calculus " .)}
+  \item  meta-concept: given a type of algebraic structure $\Gamma$ (e.g., associative, Poisson, Gerstenhaber, or Lie algebra) and a $\Gamma$-algebra $A$, the data of a module structure over $A$ can often be encoded as a $\mathbb{k}$-vector space $M$ together with a $\Gamma$-structure on $A \oplus M$, which:
+	\begin{itemize}
+		\item the inclusion $A \hookrightarrow A \oplus M$ is a $\Gamma$-algebra morphism,
+		\item squares to zero, i.e., the structure is trivial when restricting everything to $M$.
+	\end{itemize}
+  \item The two grading reversals from in the example cancel out, i.e. we have a Gerstenhaber algebra structure on $\Lambda\mathfrak{L}\oplus(\Lambda\mathfrak{L})^*$. However, if one omits both reversals, the formulas and gradings one obtains become inconsistent with the literature.
+  \item The algebra $\CE^\bullet(\mathfrak{L})$ is canonically endowed with the wedge product
+  \item $*$ stands for the $A$-linear dual. $\Hom_A(\Lambda_A^k \mathfrak{L}, A)$.
+  \item $\rev$ indicates the reversal of the grading, i.e., $(V^{\rev})^k = V^{-k}$.  
+}
 %-----------------------------------------------------------+
-
 
 %-----------------------------------------------------------+
 \begin{frame}{BV-Modules}
   %
+  \begin{quote}
+    \centering
+    \emph{... generalize the structure of (the de Rham) algebra ...}
+  \end{quote}
+  %
   \begin{defblock}[Batalin-Vilkovisky Module]
-    A Batalin-Vilkovisky module (BV-module) over a Gerstenhaber algebra $(\mathcal{G}, \wedge, [\cdot,\cdot])$ is a Gerstenhaber module $(\mathcal{M}, \iota)$ together with a differential $d: \mathcal{M}^i \to \mathcal{M}^{i+1}$ (i.e. $d^2=0$) satisfying the Cartan identity:
-    \[
-      L_x := [d, \iota_x] = d \circ \iota_x + (-1)^{\deg x -1} \iota_x \circ d
-    \]
-    for all homogeneous $x\in \mathcal{G}$, where $L_x$ is the Lie derivative induced by the Gerstenhaber module structure.
+    Is a \underline{graded vector space} $V$ together with
+    \begin{itemize}[label=$\triangleright$]
+      \item a differential $\d: V^i \to V^{i+1}$ (i.e. $d^2=0$),
+      \item a Gerstenhaber module structure over a Gerstenhaber algebra $(G, \wedge, \lbrace\cdot,\cdot\rbrace)$,
+    \end{itemize}
+    Compatibility wrt the Lie algebra action $\Lie:G\action V$: 
+    $$
+      \Lie_x = [\iota_x, \d]~, \qquad \forall x \in G~.
+    $$
   \end{defblock}
+  \vfill\pause
+
+    \begin{exblock}[Chevalley--Eilenberg Algebra]
+    The Chevalley--Eilenberg algebra  $\CE(\mathfrak{L})$
+    carries a canonical differential
+\begin{align*}
+	\dCE(\alpha)&(x_1 \wedge \dotsb \wedge x_{k+1})
+  \qquad\qquad\qquad {\tiny(
+  \forall \alpha \in \CE^k(\mathfrak{L})~, x_1, \dotsc, x_{k+1} \in \mathfrak{L})}
+  \\
+  =&~\phantom{+} \sum_{i=1}^{k+1} (-1)^{i+1} \rho(x_i)\big(\alpha(x_1 \wedge \dotsb \widehat{x_i} \dotsb \wedge x_{k+1})\big) \\
+	&~+ \sum_{1 \leq i < j \leq k+1} (-1)^{i+j} \alpha\big(\lbrace x_i, x_j\rbrace \wedge x_1 \wedge \dotsb \widehat{x_i} \dotsb \widehat{x_j} \dotsb \wedge x_{k+1}\big)~,\\
+  &~.
+\end{align*}
+  \end{exblock}
 
 \end{frame}
 \note[itemize]{
-  \item Batalin-Vilkovisky Modules (BV-Modules): A BV-module is a Gerstenhaber module that is also equipped with a differential of degree $+1$ (like an exterior derivative) satisfying Cartan’s formula. 
-  \item Formally, let $G$ be a Gerstenhaber algebra and $(M,d)$ a cochain complex (so $d: M^i \to M^{i+1}$ with $d^2=0$). We say $M$ is a BV-module over $G$ if $M$ is a Gerstenhaber $G$-module and, for all $X\in G$, we have the Cartan identity $L_X = [d,; i_X]$ (and automatically $[L_X, i_Y] = i_{[X,Y]}$, etc.)  . 
-  \item In other words, $M$ carries an action of $G$ by contraction $i_X$ and Lie derivative $L_X$ such that together with the differential $d$ they satisfy the standard graded commutation relations of Cartan calculus. \item We often call $d$ the BV differential.}
+  \item usually $\d$ is called \emph{BV differential}.
+  \item The algebra $\CE^\bullet(\mathfrak{L})$ is canonically endowed with the wedge product and a differential $\dCE \colon \CE^k(\mathfrak{L}) \to \CE^{k+1}(\mathfrak{L})$. The notation $\widehat{X_i}$ indicates omission of the $i$-th term from the wedge product.  
+  
+}
 %-----------------------------------------------------------+
 
 
 %-----------------------------------------------------------+
 \begin{frame}{Abstract Cartan Calculus}
-\begin{itemize}
-  \item A Gerstenhaber module $M$ with differential $d$.
-  \item Cartan identity: $L_X = [d,\iota_X]$.
-  \item Encodes full algebraic Cartan calculus.
-\end{itemize}
+  %
+  \begin{quote}
+    \centering
+    \emph{BV-module $(V,\d)$ over $(G,\wedge,\lbrace\cdot,\cdot\rbrace)$ encode a full Cartan calculus}
+  \end{quote}
+  %
+  \vfill\pause
+  \begin{denotblock}
+    \begin{itemize}
+      \item $\d$ the degree $1$ differential on $V$;
+	    \item $\iota$ the associative algebra action\footnote{$\iota_{x\wedge y}=\iota_x\iota_y~, \qquad \forall x,y\in G$.} of $(G,\wedge)$ on $V$;
+  	  \item $\Lie$ the Lie algebra action\footnote{$\Lie_{x\wedge y}=\iota_x\Lie_y + (-1)^{|y|}\Lie_x \iota_y~, \qquad \forall  x,y\in G$.} of $(G,\{\blank,\blank\})$ on $V$ of degree $-1$.
+    \end{itemize}   
+  \end{denotblock}
+  \vfill\pause
 
+  \begin{lemblock}[Cartan identities]
+ The operators $\d$, $\iota_x$, and $\Lie_x$ satisfy six graded commutation relations:
+	%
+  \begin{align*}
+	  \d^2                            &= 0,            &&&
+	\iota_X \iota_Y + \iota_Y \iota_X  &= 0 ~,         \\
+\iota_X \d   +	\d \iota_X      &= \Lie_X ~,    &&&
+	\d \Lie_X - \Lie_X \d          &= 0 ~,    \\
+	\Lie_X \iota_Y - \iota_Y \Lie_X    &= \iota_{[X,Y]}~,  &&&
+	\Lie_X \Lie_Y - \Lie_Y \Lie_X      &= \Lie_{[X,Y]}~. 
+\end{align*}
+	%
+  \end{lemblock}
+  \vfill\pause
 
-  \begin{itemize}
-  \item $(G,M,d)$ with $G$ Gerstenhaber, $M$ BV-module, $d^2=0$.
-  \item Examples: $(\mathfrak{X}^\bullet(M),\Omega^\bullet(M), d)$.
-  \item Extends to noncommutative and algebraic settings.
-\end{itemize}
+  \begin{exblock}[Classical Cartan Calculus]
+    \vspace{-0.5em}
+    $$ A=C^\infty(M)~,  \quad \mathfrak{L}=\X(M)~,\quad
+     G=\Lambda^\bullet \X(M)~, \quad V=\Omega^\bullet(M)~. $$
+  \end{exblock}
+  %
 \end{frame}
-\note{Example (Classical Cartan Calculus): Take $G = \Lambda^\bullet \mathfrak X(M)$ (Gerstenhaber algebra of multivector fields on a manifold) and $M=\Omega^\bullet(M)$ (the de Rham complex of differential forms). This is a canonical example of a BV-module  : the differential $d$ is the exterior derivative, the contraction $i_X$ is the usual insertion of a multivector $X$ into a form, and the Lie derivative $L_X$ is the usual one acting on forms. These satisfy $L_X = d \circ i_X + i_X \circ d$ (Cartan formula) and all other Cartan identities. In fact, this example exactly recovers the classical Cartan calculus on $M$ as a BV-module structure on $\Omega^\bullet(M)$, with $G$ playing the role of  "polyvector fields " . This justifies the abstractions: any Gerstenhaber algebra + BV-module pair can be seen as a generalized  "space of multivectors and forms " with a full Cartan calculus available . We emphasize that such structures exist in much more general settings, including noncommutative geometry (where $A$ is a noncommutative algebra and one considers analogues of forms and multivectors  ), but for our purposes we stick to the algebraic axioms.}
+\note[itemize]{
+  \item 	A pair $(G, V)$ consisting of a Gerstenhaber algebra and a BV module is often called a \emph{Tsygan–Tamarkin–Nest noncommutative differential calculus}~\cite[Def.~4.4]{Tsygan2004}.
+  \item Denote Gerstenhaber algebra structure on $G \oplus V^{\rev}$ by $(\star,\llbracket\blank,\blank\rrbracket)$. For a homogeneous element $x \in G$, denote by $\iota_x$ and $\Lie_x$ the corresponding operators on $V$.
+  \item These actions are induced by restricting the Gerstenhaber structure $(\star,\llbracket\blank,\blank\rrbracket)$ on $G \oplus V^{\rev}$ to $G \otimes V^{\rev} \subset (G \oplus V^{\rev})^{\otimes 2}$.
+ \item The associative action $\iota$ is defined by
+	\[
+	\morphism{\iota}{G \otimes V^{\rev}}{V^{\rev}}{(x,\alpha)}{\iota_x \alpha := x \star \alpha},
+	\]
+	and satisfies
+	\[
+	\iota_{x \wedge y} \alpha = \iota_x \iota_y \alpha \quad \text{and} \quad \iota_x \alpha = (-1)^{|x||\alpha|} \alpha \star x.
+	\]
+
+	\item The Lie action $\Lie$ is defined by
+	\[
+	\morphism{\Lie}{G \otimes V^{\rev}}{V^{\rev}[-1]}{(x,\alpha)}{\Lie_x \alpha := \llbracket x, \alpha \rrbracket},
+	\]
+	and satisfies
+	\[
+	\Lie_{\{x,y\}} \alpha = \Lie_x \Lie_y \alpha + (-1)^{(|x|-1)(|y|-1)} \Lie_y \Lie_x \alpha,
+	\]
+	as well as the graded antisymmetry identity
+	\[
+	\Lie_x \alpha = -(-1)^{|x||\alpha|} \llbracket \alpha, x \rrbracket.
+	\]
+ \item The compatibility between $\star$ and $\llbracket\blank,\blank\rrbracket$ in $G \oplus V^{\rev}$ implies the following \emph{mixed Leibniz rules} (see \cite[Def.~2.1]{Kowalzig2015}):
+  \begin{align}
+	  \iota_{\{x,y\}} \alpha &= \Lie_x \iota_y \alpha - (-1)^{(|x|-1)|y|} \iota_y \Lie_x \alpha, \\
+	  \Lie_{x \wedge y} \alpha &= \iota_x \Lie_y \alpha + (-1)^{|x||y|} \iota_y \Lie_x \alpha. \label{eq:mixedleib}
+  \end{align}
+  \item The use of the reverse grading on $V$ in the definition ensures that for any homogeneous $x \in G^k$, the operators $\iota_x$ and $\Lie_x$ have degrees $-k$ and $1-k$, respectively, when viewed as endomorphisms of $V$.
+}
 %-----------------------------------------------------------+
 
 

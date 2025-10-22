@@ -1,13 +1,60 @@
+%|--------------------------------------------------------------------|
+%| Beamer Outer Theme: "toninus"  (with framesubtitle support)
+%| Purpose: frame title layout + horizontal rule + optional subtitle
+%| Author: Toninus
+%| Last updated: 2025-10-22
+%|--------------------------------------------------------------------|
+
 \mode<presentation>
 
-% Frame title
-%\defbeamertemplate*{frametitle}{toninus}[1][] { }
+%========================= User settings ==============================%
+% Title row
+\providecommand{\toninus@titleindent}{2ex}                   % left indent of title
+\providecommand{\toninus@numindent}{1ex}                     % right indent before frame number
+\providecommand{\toninus@titlefont}{\normalsize\normalfont\bfseries}
+
+% Rule below title
+\providecommand{\toninus@rulecolor}{structure.fg}            % line color (inherits theme color)
+\providecommand{\toninus@rulethickness}{0.4pt}               % line thickness
+\providecommand{\toninus@rulelift}{0.5\baselineskip}         % baseline lift for the rule
+
+% Subtitle row
+\providecommand{\toninus@subtitlevspace}{0.35\baselineskip}  % space between rule and subtitle
+\providecommand{\toninus@subtitlefont}{\small\normalfont}    % subtitle font
+\providecommand{\toninus@subtitlecolor}{black!70}            % subtitle color (dimmed)
+
+% Beamer font hook (keeps compatibility with theme)
 \setbeamerfont{frametitle}{size=\normalsize,series=\normalfont}
+\setbeamercolor{framesubtitle}{fg=\toninus@subtitlecolor} % can be overridden in color theme
+
+%======================= Frame title template ========================%
+\makeatletter
 \setbeamertemplate{frametitle}{%
-    \hspace*{2ex}\bfseries\insertframetitle \hfill {\small\insertframenumber} \hspace*{1ex}%
-    \vphantom{g}% To avoid fluctuations per frame
-    \par\hspace*{-\dimexpr0.5\paperwidth-0.5\textwidth}\rule[0.5\baselineskip]{\paperwidth}{0.4pt}
-    \par\vspace*{-\baselineskip}% <-- reduce vertical space after rule
+  % Title row: left title and right frame number
+  \hspace*{\toninus@titleindent}%
+  {\toninus@titlefont\insertframetitle}%
+  \hfill{\small\insertframenumber}\hspace*{\toninus@numindent}%
+  \vphantom{g}% prevents vertical jitter
+  % Horizontal rule
+  \par\nointerlineskip%
+  \hspace*{-\dimexpr0.5\paperwidth-0.5\textwidth}%
+  \textcolor{\toninus@rulecolor}{\rule[\toninus@rulelift]{\paperwidth}{\toninus@rulethickness}}%
+  % Optional subtitle (only if nonempty)
+  \begingroup
+    \edef\@toninus@sub{\unexpanded{\insertframesubtitle}}%
+    \ifx\@toninus@sub\@empty
+      % no subtitle
+      \vspace*{-\baselineskip}% keep the original tight spacing
+    \else
+      \par\nointerlineskip\medskipamount=\toninus@subtitlevspace
+      \vspace*{\medskipamount}%
+      \hspace*{\toninus@titleindent}%
+      {\usebeamercolor[fg]{framesubtitle}\toninus@subtitlefont\insertframesubtitle\par}%
+      \vspace*{-0.6\baselineskip}% tighten after subtitle
+    \fi
+  \endgroup
 }
+\makeatother
 
 \mode<all>
+%|--------------------------------------------------------------------|

@@ -1,18 +1,43 @@
+%|--------------------------------------------------------------------|
+%| Beamer Color Theme: "toninus"
+%| Purpose: define main palette and base color assignments
+%| Author: Toninus
+%| Last updated: 2025-10-22
+%|--------------------------------------------------------------------|
+
 \mode<presentation>
 
-% Settings
+%========================= Base palette ===============================%
 \definecolor{UniGreen}{RGB}{0,102,0}
-\setbeamercolor*{title page header}{fg=UniGreen}
-\setbeamercolor*{author}{fg=UniGreen}
-\setbeamercolor*{date}{fg=UniGreen}
-\setbeamercolor{title}{fg=UniGreen}
-\setbeamercolor{frametitle}{fg=UniGreen,bg=gray}
-\setbeamercolor{structure}{fg=UniGreen}
+\colorlet{toninus@maincolor}{UniGreen}
+
+\definecolor{toninus@linkcolor}{HTML}{2A1B81}
+\definecolor{toninus@lightgray}{gray}{0.85}
+\definecolor{toninus@notebg}{gray}{0.97}
+
+%========================= Beamer colors ==============================%
+\setbeamercolor{structure}{fg=toninus@maincolor}
+
+\setbeamercolor*{title page header}{fg=toninus@maincolor}
+\setbeamercolor*{author}{fg=toninus@maincolor}
+\setbeamercolor*{date}{fg=toninus@maincolor}
+\setbeamercolor*{title}{fg=toninus@maincolor}
+
+\setbeamercolor{frametitle}{fg=toninus@maincolor,bg=toninus@lightgray}
+
 \setbeamercolor{note page}{bg=white}
 \setbeamercolor{note title}{bg=white!90!black, fg=black}
-%\setbeamercolor{note date}{fg=yellow}
-\definecolor{links}{HTML}{2A1B81}
-\hypersetup{colorlinks,linkcolor=,urlcolor=links}
+% \setbeamercolor{note date}{fg=yellow}
 
-\mode
-<all>
+%=========================== Hyperlinks ===============================%
+\AtBeginDocument{%
+  \hypersetup{
+    colorlinks=true,
+    linkcolor=toninus@linkcolor,
+    urlcolor=toninus@linkcolor,
+    citecolor=toninus@linkcolor
+  }%
+}
+
+\mode<all>
+%|--------------------------------------------------------------------|

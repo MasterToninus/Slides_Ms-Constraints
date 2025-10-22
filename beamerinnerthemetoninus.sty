@@ -1,32 +1,56 @@
-%%%%%%%%%%%%%%
-%%
-%% Inner theme
-%%
-%%%%%%%%%%%%%%
-
+%|--------------------------------------------------------------------|
+%| Beamer Inner Theme: "toninus"
+%| Purpose: lists, footnotes, ToC subsection entry
+%| Author: Toninus
+%| Last updated: 2025-10-22
+%|--------------------------------------------------------------------|
 
 \mode<presentation>
 
-% Title page
-%\defbeamertemplate*{title page}{toninus}[1][]{ }
+%========================= User settings ==============================%
+% Bullet symbols (math mode tokens). Override in the main .tex if needed.
+\providecommand{\toninusitembullet}{$\blacktriangleright$}
+\providecommand{\toninussubitembullet}{\toninusitembullet}
+\providecommand{\toninussubsubitembullet}{\toninusitembullet}
 
-%\useinnertheme{rounded}
-\setbeamertemplate{itemize items}[triangle]
+% ToC subsection indent & bullet
+\newlength{\toninus@tocsubindent}
+\setlength{\toninus@tocsubindent}{5.65ex}
+\providecommand{\toninus@tocbullet}{\toninusitembullet}
 
-% Footnotes
+% Optional: footnote font size
+% \setbeamerfont{footnote}{size=\scriptsize}
+
+%=========================== List styles ==============================%
+% Adapted from beamerinnerthemedfault.sty (geometric, compact bullets)
+\setbeamertemplate{itemize item}%
+  {\scriptsize\raise1.25pt\hbox{\donotcoloroutermaths\toninusitembullet}}
+\setbeamertemplate{itemize subitem}%
+  {\tiny\raise1.5pt\hbox{\donotcoloroutermaths\toninussubitembullet}}
+\setbeamertemplate{itemize subsubitem}%
+  {\tiny\raise1.5pt\hbox{\donotcoloroutermaths\toninussubsubitembullet}}
+
+\setbeamertemplate{enumerate item}{\insertenumlabel.}
+\setbeamertemplate{enumerate subitem}{\insertenumlabel.\insertsubenumlabel}
+\setbeamertemplate{enumerate subsubitem}{\insertenumlabel.\insertsubenumlabel.\insertsubsubenumlabel}
+\setbeamertemplate{enumerate mini template}{\insertenumlabel}
+
+%============================ Footnotes ==============================%
+% Clean layout: no extra indent, aligned mark
 \setbeamertemplate{footnote}{%
-%	\footnoterule\parindent 1em\noindent%
-  \parindent 0em\noindent%
-%  \raggedleft
-  \usebeamercolor{footnote}\hbox to 0.8em{\hfil\insertfootnotemark}\insertfootnotetext\par%
+  \parindent 0em\noindent
+  \usebeamercolor{footnote}%
+  \hbox to 0.8em{\hfil\insertfootnotemark}%
+  \insertfootnotetext\par
 }
 
+%=============================== ToC =================================%
+% Subsection entries with matching bullet and controlled indent
 \setbeamertemplate{subsection in toc}{%
-\leavevmode\leftskip=5.65ex%
-  \llap{\raisebox{0.2ex}{\textcolor{structure}{$\blacktriangleright$}}\kern1ex}%
-  \inserttocsubsection\par%
+  \leavevmode\leftskip=\toninus@tocsubindent
+  \llap{\raisebox{0.2ex}{\textcolor{structure}{\toninus@tocbullet}}\kern1ex}%
+  \inserttocsubsection\par
 }
 
-
-\mode
-<all>
+\mode<all>
+%|--------------------------------------------------------------------|

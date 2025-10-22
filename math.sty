@@ -1,23 +1,149 @@
 %+----------------------------------------------------------------------------+
-%| Style file: mathematical macros 
+%| Package: math.sty
+%| Purpose: Common math macros for the project (merged & de-duplicated)
+%|
+%| Source files blended:
+%|  - math.sty (Leo & Tony): core sets, Cartan calculus, categories, extras
+%|  - math.sty (project):    BV/observables helpers, vector-field notations
+%|
+%| Notes:
+%|  * Keeps the "thin" differential \d = \mathop{}\!\mathrm{d}.
+%|  * Sets \L = \mathcal{L}. To use \mathscr{L}, see the toggle below.
+%|  * Uses \providecommand wherever possible to avoid redefinition warnings.
 %+----------------------------------------------------------------------------+
+
 \ProvidesPackage{math}
-\RequirePackage{custom-style}
 
+%------------------------------------------------------------------------------
+% Dependencies
+%------------------------------------------------------------------------------
+\RequirePackage{amsmath,amssymb}
+\RequirePackage{mathbbol}   % for \mathbb
+\RequirePackage{tikz-cd}    % commutative diagrams
+\RequirePackage{stmaryrd}   % \llbracket \rrbracket for Gerstenhaber-style brackets
 
+% Optional local style: load only if present / not already loaded
+\makeatletter
+\@ifpackageloaded{custom-style}{}{%
+  \IfFileExists{custom-style.sty}{\RequirePackage{custom-style}}{}%
+}
+\makeatother
 
-\newcommand{\g}{\mathfrak{g}}
-\renewcommand{\d}{\mathrm{d}}
-\newcommand{\X}{\mathfrak{X}}
-\renewcommand{\L}{\mathcal{L}}
+%------------------------------------------------------------------------------
+% Sets, fields, frak letters, cal/scr letters
+%------------------------------------------------------------------------------
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\K}{\mathbb{K}}
 
-\providecommand{\vHam}{\mathscr{v}}
-\providecommand{\vAct}{v}
+\providecommand{\g}{\mathfrak{g}}
+\providecommand{\h}{\mathfrak{h}}
+\providecommand{\k}{\mathfrak{k}}
+\providecommand{\t}{\mathfrak{t}}
+
+\providecommand{\A}{\mathcal{A}}
+\providecommand{\B}{\mathcal{B}}
+\providecommand{\G}{\mathcal{G}}
+\providecommand{\M}{\mathcal{M}}
+\providecommand{\O}{\mathcal{O}}
+\providecommand{\W}{\mathcal{W}}
+\providecommand{\X}{\mathfrak{X}}
+
+% Lie derivative style: choose \mathcal{L} (default) or \mathscr{L}.
+\providecommand{\Lscr}{\mathscr{L}}
+\providecommand{\Lcal}{\mathcal{L}}
+\renewcommand{\L}{\Lcal} % <-- toggle to \Lscr if you prefer script L
+
+%------------------------------------------------------------------------------
+% Basics & typography
+%------------------------------------------------------------------------------
+\renewcommand{\i}{\mathrm{i}}
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\emptyset}{\varnothing}
+
+% Prefer inclusive subset/superset by default
+\renewcommand{\subset}{\subseteq}
+\renewcommand{\supset}{\supseteq}
+
+%------------------------------------------------------------------------------
+% Differential, Lie derivative, and Cartan calculus helpers
+%------------------------------------------------------------------------------
+% Thin differential "d" with correct spacing
+\renewcommand{\d}{\mathop{}\!\mathrm{d}} % chosen from the first source
+\providecommand{\Lie}{\mathcal{L}}
+
+%------------------------------------------------------------------------------
+% Actions, Ham, and related symbols
+%------------------------------------------------------------------------------
 \providecommand{\action}{\curvearrowright}
+\providecommand{\Ham}{\mathsf{Ham}}
 \providecommand{\ham}{\text{ham}}
 
-\newcommand{\fgmodule}{\mathfrak{X}_{\g}}
-\newcommand{\tgtvanform}{I_{\Omega}(N)}
-\newcommand{\tgtvf}{\mathfrak X_N(M)}
-\newcommand{\vanvf}{I_{\mathfrak{X}}(N)}%{I_N^{\mathfrak X}}
-\newcommand{\Ham}{\mathsf{Ham}}
+% Vector-field notations (from the second source)
+\providecommand{\vHam}{\mathscr{v}}
+\providecommand{\vAct}{v}
+
+%------------------------------------------------------------------------------
+% Algebra/Category helpers
+%------------------------------------------------------------------------------
+\providecommand{\ad}{\mathrm{ad}}
+\providecommand{\Ad}{\mathrm{Ad}}
+\providecommand{\Hom}{\mathrm{Hom}}
+\providecommand{\End}{\mathrm{End}}
+\providecommand{\Der}{\mathrm{Der}}
+\providecommand{\CE}{\mathrm{CE}}
+\providecommand{\dCE}{\d_{\CE}}
+\providecommand{\rev}{\mathrm{rev}}
+\providecommand{\blank}{{\mathord{\text{\textvisiblespace}}}}
+
+% Category-style morphism display
+\providecommand{\morphism}[5]{%
+  \begin{tikzcd}[
+    column sep=2em,
+    row sep=-.5ex,
+    ampersand replacement=\&
+  ]
+  #1\colon~ \&[-3em]
+  #2\vphantom{#3} \arrow[r] \&
+  #3\vphantom{#2} \\
+  \&
+  #4\vphantom{#5} \arrow[r,mapsto] \&
+  #5\vphantom{#4} 
+  \end{tikzcd}%
+}
+
+%------------------------------------------------------------------------------
+% BV / Gerstenhaber & reduction-related helpers
+%------------------------------------------------------------------------------
+% Project-specific frak/calligraphic vector fields and ideals
+\providecommand{\fgmodule}{\mathfrak{X}_{\g}}
+\providecommand{\tgtvanform}{I_{\Omega}(N)}
+\providecommand{\tgtvf}{\mathfrak{X}_N(M)}
+\providecommand{\vanvf}{I_{\mathfrak{X}}(N)}
+
+% Brackets and reduction tag
+\providecommand{\GerstBracket}[2][]{\llbracket #1 , #2 \rrbracket}
+\providecommand{\red}{\textrm{red}}
+
+% Internal-hom style
+\providecommand{\iHom}{\mathrm{iHom}}
+
+%------------------------------------------------------------------------------
+% Dippel–Esposito–Waldmann style "constraint triple" helpers
+%------------------------------------------------------------------------------
+\providecommand{\Total}{{\scriptscriptstyle T}}
+\providecommand{\Wobs}{{\scriptscriptstyle N}}
+\providecommand{\Null}{{\scriptscriptstyle 0}}
+
+\providecommand{\colvec}[1]{%
+  \left(\begin{array}{l}#1\end{array}\right)
+}
+\providecommand{\triple}[1]{(#1_{\Total}, #1_{\Wobs}, #1_{\Null})}
+\providecommand{\Triple}[1]{\colvec{#1_{\Total}\\ #1_{\Wobs}\\ #1_{\Null}}}
+
+%------------------------------------------------------------------------------
+% End of package
+%------------------------------------------------------------------------------
