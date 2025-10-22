@@ -1,4 +1,4 @@
-%- HandOut Flag -----------------------------------------------------------------------------------------
+%- HandOut Flag ----------------------
 \makeatletter
 \@ifundefined{ifHandout}{%
   \expandafter\newif\csname ifHandout\endcsname
@@ -20,78 +20,133 @@
 
 
 
-
 %--Beamer Style-----------------------------------------------------------------------------------------------
 \usetheme{toninus}
 \usepackage{animate}
 \usetikzlibrary{positioning, arrows}
 \usetikzlibrary{shapes}
 
+
+%- Bibliography (Biber) ----------------------------------------------------------------------------------
+\usepackage[backend=biber,style=alphabetic,maxnames=2]{biblatex}
+\bibliography{bibfile.bib}
+
 %===========================================================%
 \begin{document}
 %===========================================================%
 \checkpoint
 
-\begin{frame}{Hamiltonian Pairs}
-\begin{itemize}
-  \item Data: $G$, $M$ BV-module, $c \in M$ closed.
-  \item Pair $(X,m)$ with $\iota_X c = d m$.
-  \item Generalizes $(X_f, f)$ in symplectic geometry.
-\end{itemize}
+%-----------------------------------------------------------%
+\begin{frame}[fragile]{Abstract Hamiltonian Pairs}
+  \begin{quote}
+    \emph{Rogers construction naturally generalizes to a purely algebraic setting.}
+  \end{quote}
+  \vfill\pause
+
+  Data:
+  \begin{itemize}
+    \item $G = (G,\wedge,\lbrace \cdot, \cdot \rbrace)$ a Gerstenhaber algebra;
+    \item $V = (V,\d,\iota,\Lie)$ a BV-module over $G$;
+    \item $\omega \in V^{k{+}1}$ a fixed cocycle, i.e. $\d \omega = 0$, for $k\geq 1$.
+  \end{itemize}
+  \vfill\pause
+
+  \begin{defblock}[Hamiltonian Pairs]
+    Elements of the graded vector space:
+	  $$
+		\Ham^0(V, \omega) := \left\{ (\alpha, X) \in V^{k-1} \oplus G^1 \mid \iota_X \omega = -\d\alpha \right\},
+    $$
+  \end{defblock}
+  \vfill\pause
+
+  \begin{remblock}[$\Ham^0(V, \omega)$ can also be viewed as the fibered product \( V^{k-1} \times_{V^k} G^1 \)]
+     over the following pullback in the category of vector spaces:
+	\begin{displaymath}
+		\begin{tikzcd}
+			\Ham^0(V, \omega) \arrow[r] \arrow[d] \ar[dr,"\lrcorner",very near start,phantom]& G^1 \ar[d,"\iota_{\blank}\omega"] \\
+			V^{k-1} \arrow[r, "-\d"] & V^{k}
+		\end{tikzcd}
+	\end{displaymath}
+  \end{remblock}
 \end{frame}
-\note{Given an algebraic Cartan calculus as above, we can now construct the $L_\infty$-algebra of observables in complete generality. The construction mirrors the one Rogers gave on manifolds, but now in purely algebraic terms.
+\note[itemize]{
+  \item The construction of the Roger's $L_\infty$-algebra  can be carried out for any BV-module equipped with a fixed $k+1$-cocycle $\omega$, i.e., for which $\d \omega = 0 $ with respect to the differential $\d$, since being a BV-module provides the structure of a complete Cartan calculus, which is all we need. 
+}
+%-----------------------------------------------------------%
 
-- **Data:** Let $G$ be a Gerstenhaber algebra, $M$ a BV-module over $G$ with differential $d$, and let $c \in M^k$ be a fixed *cocycle*, meaning $d c = 0$. 
-Think of $c$ as the algebraic analog of a closed multisymplectic form (indeed in geometry $c$ could be $\omega$, which is closed by assumption). We also assume $c$ is *nondegenerate* in the sense that it induces the relevant pairings (this is automatic in the geometric case and can be treated as a cocycle condition in the algebraic case; for simplicity, we proceed assuming $c$ behaves like a  "volume form " or  "top form " to contract with).
-- **Hamiltonian Pairs:** We define a **Hamiltonian pair** as a pair $(X, m)$ with $X \in G$ (a multivector) and $m \in M$ (an element of the module) such that $X$ and $m$ are related by the cocycle $c$ via:
 
-    $i_X(c) = d m$.
+%-----------------------------------------------------------%
+\begin{frame}{Abstract {$L_\infty$}-algebra of Observables}
 
-    In other words, $m$ is an element whose BV-differential equals the contraction of $c$ with $X$. This is directly analogous to the condition $i_{X_f}\omega = d f$ in the geometric case (here $X$ plays the role of $X_f$ and $m$ plays the role of the observable like $f$ or $\alpha$). We denote by $\mathsf{Ham}(G,M;c)$ the set of all Hamiltonian pairs. In graded terms, one typically considers homogeneous $X$ and $m$ of complementary degrees summing to $k-1$ (so that $i_X c$ has the same degree as $d m$).
-    
-    **Intuition:** A Hamiltonian pair $(X,m)$ means that $m$ is an *observable* whose  "derived bracket " with the cocycle $c$ yields $X$. If $c$ is nondegenerate, $X$ is uniquely determined by $m$ (just as a symplectic form gives a unique $X_f$ for each $f$), so we can think of $m$ as the *observable element* and $X$ as its *Hamiltonian generator*. However, in singular or degenerate cases, there could be multiple $X$ for a given $m$ or vice versa, hence it is safer to keep the pair. (In the construction we actually consider an appropriate quotient to identify pairs that give the same physical observable; more formally $\mathsf{Ham}(G,M;c)$ can be constructed as a fiber product $G \times_{M} M$ via the maps $X \mapsto i_X c$ and $m \mapsto d m$ .)}
 
-\begin{frame}{The Space and the Multibrackets}
-\begin{itemize}
-  \item Graded space $\mathcal{O}(G,M;c)$.
-  \item Brackets $\ell_k$ built from $d$, $\iota_X$, $L_X$, $[\cdot,\cdot]$.
-  \item $\ell_1 = d$, $\ell_2 = $ Lie + derived terms, $\ell_3 = i_{X_1}i_{X_2}i_{X_3}(c)$.
-\end{itemize}
+\begin{defblock}[{$L_\infty$}-algebra of Observables]
+  The graded vector space $\Ham(V, \omega)$  given by
+  $$
+  \Ham(V, \omega)^i := \begin{cases}
+    V^{k-1 + i} & i \leq -1, \\
+    \Ham^0(V, \omega) & i = 0,\\
+    0 & i \geq 1~;
+  \end{cases} 
+  $$
+  with degree $(2-j)$ multibrackets $l_j\colon \Ham^{\otimes j}(V, \omega) \to \Ham(V, \omega)[2-j]$, given by:
+
+	\begin{itemize}
+		\item $
+			      l_1(\alpha) = \begin{cases}
+				      \d\alpha      & \text{if } i < -1, \\
+				      (\d\alpha, 0) & \text{if } i = -1, \\
+				      0             & \text{if } i = 0;
+			      \end{cases} $\\
+		\item $
+        l_2\big( (\alpha_1, X_1), (\alpha_2, X_2) \big) = \big( \iota_{X_1} \iota_{X_2} \omega, \{X_1, X_2\} \big);
+		      $\\
+		\item $
+          l_{j\geq 3}\big( (\alpha_1, X_1), \dots, (\alpha_j, X_j) \big) = -\iota_{X_1} \dots \iota_{X_j} \omega;
+		      $\\
+		\item All multibrackets of arity greater than or equal to $2$ vanish when evaluated on at least one degree nonzero element.
+	\end{itemize}
+\end{defblock}
+%
+
+
 \end{frame}
-\note{- \textbf{Graded observables space:} We assemble the observables into a graded vector space as follows.
+\note[itemize]{
+    \item 	The verification that the above definition yields an honest $L_\infty$-algebra can be directly adapted from~\cite[Thm. 5.2]{rogers2012linfty} noticing that their proof is purely algebraic in nature and relies only on the Cartan calculus axioms.
+}
+%-----------------------------------------------------------%
 
-\[
-\mathcal{O}(G,M;c)\;=\;\bigoplus_{j\ge 0}\mathcal{O}^j,
-\]
+%-----------------------------------------------------------%
+\begin{frame}[fragile]{Abstract {$L_\infty$}-algebra of Observables (examples)}
 
-where:
+  \begin{exblock}[Observables $L_\infty$-algebra associated with a Lie--Rinehart algebra]
+    Let $(A, \mathfrak{L})$ be a Lie--Rinehart algebra, $\omega \in \CE(\mathfrak{L})^{k+1}$ a cocycle.
+    \\
+    We get an $L_\infty$-structure on the complex
+	\begin{displaymath}
+		\begin{tikzcd}[]
+			A \arrow[r] &
+			\mathfrak{L}^* \arrow[r] &
+			\cdots \arrow[r] &
+			(\Lambda^{k-2} \mathfrak{L})^* \arrow[r] &
+			(\Lambda^{k-1} \mathfrak{L})^* \times_{(\Lambda^k \mathfrak{L})^*} \mathfrak{L}
+		\end{tikzcd}~.
+	\end{displaymath}
+\end{exblock}
+  \vfill\pause
 
-- $\mathcal{O}^0$ (degree~0 part) is the space of Hamiltonian pairs $(X,m)$ as above (with $i_X c = d m$).
-- For higher degrees $j>0$, roughly speaking $\mathcal{O}^j$ consists of elements of $M$ of degree $(k-1+j)$ (or related shifts) corresponding to forms of lower degree than $c$. In fact, in Rogers' original construction for an $n$-plectic manifold, the $L_\infty$-algebra of observables was an $n$-term complex concentrated in degrees $0,1,\dots,n-1$. Here $k=n+1$ (degree of $c$), so one can show $\mathcal{O}(G,M;c)$ is concentrated in degrees $0$ up to $n-1$ (i.e. $0$ up to $k-2$). Degree~0 are Hamiltonian $(n-1)$-forms (with vector fields), degree~1 would be Hamiltonian $(n-2)$-forms, ..., up to degree $n-1$ corresponding to Hamiltonian $0$-forms (basic observables). We will not need the explicit formula for each degree in this talk; the key is that this graded space includes all would-be observables and their "Hamiltonian partners."}
+\begin{exblock} 
+	When 
+   $$ A=C^\infty(M)~, \qquad  \mathfrak{L}=\mathfrak{X}(M)$$
+   we retrieve the Roger's construction (given in the context of closed differential forms).
+\end{exblock}
 
-\begin{frame}{Examples}
-\begin{itemize}
-  \item Classical: $G=\mathfrak{X}^\bullet(M)$, $M=\Omega^\bullet(M)$, $c=\omega$.
-  \item Recovers Rogers’ multisymplectic $L_\infty$.
-  \item Other contexts: algebraic, noncommutative, etc.
-\end{itemize}
 \end{frame}
-\note{- **$L_{\infty}$-Algebra Structure:** **Theorem A** (Miti-Ryvkin 2025) states that under the above setup, $\mathcal{O}(G,M;c)$ carries a natural structure of an $L_\infty$-algebra (homotopy Lie algebra) whose brackets are defined using the data of the Gerstenhaber algebra $G$, the BV-module operations, and the cocycle $c$ . Concretely, the multilinear $L_\infty$ operations $\ell_r: \mathcal{O}^{\otimes r} \to \mathcal{O}$ (of degree $2-r$) are given by formulas analogous to those in the multisymplectic manifold case :
-    - The unary bracket $\ell_1$ (degree $+1$ map) is essentially induced by the BV differential $d$ on the observable part (it maps a degree~1 element to degree~0 by $\ell_1(m) = (X,d m)$ or something similar, and is zero on degree~0 pairs in the fully nondegenerate case).
-    - The binary bracket $\ell_2((X_1,m_1), (X_2,m_2))$ has a result in degree~0 and is given by
+\note[itemize]{
+    \item b
+}
+%-----------------------------------------------------------%
 
-        \[
-        \ell_2((X_1,m_1),(X_2,m_2)) \;=\; \big([X_1,X_2],\; L_{X_1}m_2 * (-1)^{|X_1|\cdot|X_2|}L_{X_2}m_1\big),
-        \]
 
-        which in the simplest case recovers the Poisson bracket structure (when $m$’s are functions, $L_{X_1}m_2 = X_1(m_2)$). The precise formula involves appropriate Koszul signs for graded elements .
-        
-    - A tertiary bracket $\ell_3((X_1,m_1),(X_2,m_2),(X_3,m_3))$ can be defined using the cocycle $c$: essentially one can take $i_{X_1}i_{X_2}i_{X_3}(c)$ (which is an element of $M$) as part of the output (this corresponds to evaluating the 3-form on three vector fields to get a number or top-form), ensuring that the Jacobi identity holds up to homotopy.
-    - Higher brackets $\ell_r$ for $r>3$ may be zero or determined similarly by $c$ if its degree is larger. In fact, for an $(n+1)$-form $c$, all brackets $\ell_r$ with $r> n$ will vanish (so the $L_\infty$ is  "finite " or $n$-term) .
-    
-    The upshot is that **all these brackets are built out of the operations $[\cdot,\cdot]$ in $G$, $i_X$, $L_X$, $d$, and contraction with $c$**, mimicking the standard formulas in coordinates. It is nontrivial but true that these operations satisfy the required homotopy Jacobi identities. The verification is essentially a translation of Rogers’ original proof to this abstract setting - since Rogers’ proof was  "purely algebraic in nature, " it adapts directly here . We have thus constructed an **$L_\infty$-algebra of observables** $\mathcal{O}(G,M;c)$ associated to any BV-module with a cocycle. This is the main result of the first part of the talk.
-
-    Example (Geometric Case): If we take $G = \Lambda^\bullet \mathfrak X(M)$, $M = \Omega^\bullet(M)$ (so classical Cartan calculus on a manifold), and $c = \omega$ an $n$-plectic form, then $\mathcal{O}(G,M;c)$ precisely recovers Rogers’ $L_\infty$-algebra of observables on $(M,\omega)$  . In degree 0, $\mathcal{O}^0$ consists of Hamiltonian $(n!-!1)$-forms (with their Hamiltonian vector fields), which are exactly Rogers’ observables. The brackets $\ell_r$ coincide with those defined by Rogers (up to sign conventions), and one can check the $L_\infty$ identities by the same calculations in Cartan calculus . This generality shows the power of the BV-module approach: any example of a Gerstenhaber algebra + cocycle yields such an $L_\infty$. For instance, one could even take noncommutative analogues (with a suitable cyclic cocycle playing the role of $c$) to get  "$L_\infty$-observables " in noncommutative geometry  , although we won’t explore that in this talk.}
 
 
 %-----------------------------------------------------------%
@@ -110,24 +165,7 @@ where:
 \end{document}
 %-----------------------------------------------------------+
 
-
-
-
-\begin{frame}{Conclusion / Summary}
-\begin{itemize}
-  \item Algebraic formalism for $L_\infty$ observables via BV-modules.
-  \item Generalizes Rogers' result.
-  \item Enables reduction via constraint triples.
-\end{itemize}
-\end{frame}
-
-\begin{frame}{Outlook}
-\begin{itemize}
-  \item Homotopy momentum maps.
-  \item Operadic reformulation.
-  \item Applications to field theory.
-\end{itemize}
-\end{frame}
+%===========================================================%
 
 
 
