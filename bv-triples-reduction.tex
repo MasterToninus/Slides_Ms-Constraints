@@ -6,8 +6,8 @@
 \makeatother
 
 %- D0cum3nt ----------------------------------------------------------------------------------------------
-%\documentclass[beamer,10pt]{standalone}   
-\documentclass[beamer,10pt,handout]{standalone}  \Handouttrue  
+\documentclass[beamer,10pt]{standalone}   
+%\documentclass[beamer,10pt,handout]{standalone}  \Handouttrue  
 
 \ifHandout
 	\setbeameroption{show notes} %print notes   
@@ -33,7 +33,7 @@
 
 %===========================================================%
 \begin{document}
-%===========================================================%
+%===========================================================% 
 \checkpoint
 
 %- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%	
@@ -381,10 +381,8 @@ induces a graded Leibniz rule on ${G}_{\red}$, showing that ${G}_{\red}$ forms i
 \begin{frame}[shrink]{Constraint $L_\infty$ Algebra Associated with a constraint BV-module}
 	%
 	\begin{defblock}[Constraint $L_\infty$-algebras] 
-	A constraint vector space $L=\triple{L}$  equipped with a collection of constraint multilinear maps
-	\begin{displaymath}
-		l_j \colon L^{\otimes j} \to L[2-j]
-	\end{displaymath}
+	A constraint vector space $L=\triple{L}$  equipped with \\
+	a collection of constraint multilinear maps $l_j \colon L^{\otimes j} \to L[2-j]$\\
 	such that $(L_\Total, (l_j)_\Total)$ is an $L_\infty$-algebra.
 	\end{defblock}
 	\pause\vfill
@@ -392,7 +390,7 @@ induces a graded Leibniz rule on ${G}_{\red}$, showing that ${G}_{\red}$ forms i
 	
 	Let $V$ a cons. BV-module over a cons. Gerst. algebra $G$,  $\omega\in V_\Wobs^{k+1}$ a cocycle.
 	\begin{defblock}[Constraint vector space of Hamiltonian pairs]\label{def:constraint-algebraicham0}
-		The	 constraint graded vector space:
+		The	 \emph{constraint ungraded vector space}:
 		$$
 		\Ham^0(V, \omega) := 
 		\colvec{
@@ -439,27 +437,30 @@ induces a graded Leibniz rule on ${G}_{\red}$, showing that ${G}_{\red}$ forms i
 
 %- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%
 \begin{frame}{Reduction Functor}
-\begin{itemize}
-  \item Quotient part $\overline{\mathcal{O}}$ inherits $L_\infty$ structure.
-  \item Encodes reduced observables algebra.
-  \item No need for regular quotient at geometric level.
-\end{itemize}
-\end{frame}
-\note[itemize]{
-	\item  
-}
-%- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%
 
-%- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%
-\begin{frame}{Recovering Old Results}
-\begin{itemize}
-  \item Applies to multisymplectic reduction (Blacker-Miti-Ryvkin 2024).
-  \item Explains residue defect in homotopy Jacobi identity.
-  \item Matches geometric reduction under regularity.
-\end{itemize}
+	\begin{remblock}[Reduction functor]\label{rk:red-functor}
+		The very purpose of introducing categories of constraint objects is to assume the existence of a corresponding \emph{reduction functor} $\red$ that assigns to each constraint object its reduced counterpart.
+	\end{remblock}
+	\vfill\pause
+
+	\begin{exblock}[Constraint associative algebras]
+	A constraint associative algebra is equivalently given by a triple $A = \triple{A}$, where $A_\Wobs \subset A_\Total$ is a subalgebra, and $A_\Null \subset A_\Wobs$ is a (two-sided) ideal. i.e.:
+		$$
+			\red: \textbf{ConAlg} \to \textbf{Alg}~, \quad \mathcal A \mapsto \red(\mathcal A) := \mathcal A_\Wobs / \mathcal A_\Null~,
+		$$
+	\end{exblock}
+	\vfill\pause
+
+	\begin{upshotblocktitle}[Reduction functor for the $L_\infty$-algebra of observables]
+		The $\Null$ part of $\Ham(V, \omega)$ is an $L_\infty$-ideal in the $\Wobs$ part. 
+		\\
+		Thus, the reduction functor applied to the constraint $L_\infty$-algebra of observables space gives a honest $L_\infty$-algebra.
+	\end{upshotblocktitle}
+
 \end{frame}
 \note[itemize]{
-	\item  This framework provides a unified approach to understanding various geometric and algebraic structures.
+	\item  	The reduction functor $\red$ assigns to each object $V$ the quotient vector space $\red(V) := V_\Wobs/V_\Null$, and to each morphism $f: V \to V'$ the induced map $\red(f): V_\Wobs/V_\Null \to V'_\Wobs/V'_\Null$.
+
 }
 %- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%
 

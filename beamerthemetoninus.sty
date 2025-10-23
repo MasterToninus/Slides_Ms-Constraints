@@ -160,6 +160,11 @@
     \node[minimum width=1cm,xshift=0.8cm] at (frame.west) {\tcbtitle};
   }
 }
+\newtcolorbox{claimblocktitle}[1][]{
+  coltitle=blue!70!black,
+  colframe=blue!70!black,
+  title={Upshot: \strut#1}
+}
 
 \newtcolorbox{exblock}[1][]{
   coltitle=black!90!white,
@@ -201,6 +206,12 @@
   coltitle=black!70!orange,
   colframe=black!70!orange,
   title={Remark: \strut#1}
+}
+
+\newtcolorbox{outlookblock}[1][]{
+  coltitle=orange!70!purple,
+  colframe=orange!70!purple,
+  title={Outlooks: \strut#1}
 }
 
 %======================================================================%

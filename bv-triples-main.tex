@@ -59,10 +59,10 @@
 
 %- T1tle P4g3 -------------------------------------------------------------------------------------------
 \title{Construction and Reduction of the $L_\infty$ Algebra of Observables Associated with a BV-Module} 
-\subtitle{\href{https://www.mat.uniroma2.it/~ricerca/algebr/page-AREA_files/page-AREA-2_files/talks.html}{- ARTS - Algebra and Representation Theory Seminar in Roma "Tor Vergata"}}
+\subtitle{}
 \author[AMM]{
-	\href{https://www.antoniomiti.it/}{Antonio Michele Miti}
-	{\small joint work w/ Leonid Ryvkin}
+	\href{https://www.antoniomiti.it/}{Antonio Michele Miti} \\
+	{(\small joint work w/ \href{https://www.ryvkin.eu}{Leonid Ryvkin})}
 }
 \institute[SUR]{
 	Sapienza Università di Roma \\
@@ -75,7 +75,10 @@
 }
 \date[TorV25] % (optional, should be abbreviation of conference name)
 {	
+	
 	{\vskip 1ex}
+	\href{https://www.mat.uniroma2.it/~ricerca/algebr/page-AREA_files/page-AREA-2_files/talks.html}{- ARTS - Algebra and Representation Theory Seminar in Roma "Tor Vergata"}
+	\\
 	Universit\'a di Roma - Tor Vergata, October 2025
 }
 
@@ -135,21 +138,18 @@ The results are part of a collaboration with Leonid Ryvkin, published in *Differ
 %+----------------------------------------------------------+
 \section{BV-Modules: Algebraic Cartan Calculus}
 %+----------------------------------------------------------+
-	\checkpoint	
 	\input{bv-triples-background}
 %-----------------------------------------------------------%
 
 %+----------------------------------------------------------+
 \section{$L_\infty$ Algebra Associated with a BV-Module}
 %+----------------------------------------------------------+
-	\checkpoint	
 	\input{bv-triples-Rogers-generalized}
 %-----------------------------------------------------------%
 
 %+----------------------------------------------------------+
 \section{An Application: Multisymplectic Reduction}
 %+----------------------------------------------------------+
-	\checkpoint	
 	\input{bv-triples-reduction}
 %-----------------------------------------------------------%
 
@@ -157,39 +157,36 @@ The results are part of a collaboration with Leonid Ryvkin, published in *Differ
 
 %--------------------------------------------------------------------------------------------------%
 	\addtocounter{framenumber}{-1}
-		\begin{frame}{Conclusion:}
-			\vfill
-		  \centering 
-		  \onslide<2->{\Huge\color{red} 
-		  \emph{Thank you for your attention!}\normalsize \color{black}}
+		\begin{frame}{Conclusions}
+			\begin{upshotblocktitle}[Algebraic formalism for $L_\infty$ observables]
+				We generalized Rogers' construction to constraint BV-modules.
+			\end{upshotblocktitle}
+			\vfill\pause
+
+			\begin{upshotblocktitle}[Recovered previous reduction procedures]
+				 Emploied this machinery to provide a conceptual framework for algebraic multisymplectic reduction of observables via constraint triples 
+				 \smallskip
+
+				 \fullcite{Blacker-M-Ryvkin-2024}\nocite{Blacker-M-Ryvkin-2024}
+			\end{upshotblocktitle}
+			\vfill\pause
+
+			\begin{outlookblock}[An operadic reformulation]
+				Rather than defining suitable constraint triples "by hand", it could be interesting to provide a systematic treatment, e.g. within the language of operads.
+			\end{outlookblock}
+			\vfill\pause
+
+		  	\centering 
+		  	{\Huge\color{red} 
+		  	\emph{Thank you for your attention!}\normalsize \color{black}}
 			\vfill
 			%
  
 		\end{frame}
 		\note[itemize]{
-			\item
+			\item 				The constraint triples formalism provides a powerful tool to treat singular geometric (and algebraic) settings. 
 		}
 %------------------------------------------------------------------------------------------------
-
-%-------------------------------------------------------+
-\begin{frame}{Conclusion / Summary}
-\begin{itemize}
-  \item Algebraic formalism for $L_\infty$ observables via BV-modules.
-  \item Generalizes Rogers' result.
-  \item Enables reduction via constraint triples.
-\end{itemize}
-\end{frame}
-%-------------------------------------------------------+
-
-%-------------------------------------------------------+
-\begin{frame}{Outlook}
-\begin{itemize}
-  \item Homotopy momentum maps.
-  \item Operadic reformulation.
-  \item Applications to field theory.
-\end{itemize}
-\end{frame}
-%-------------------------------------------------------+
 
 
 
@@ -205,31 +202,10 @@ The results are part of a collaboration with Leonid Ryvkin, published in *Differ
 %------------------------------------------------------------------------------------------------
 
 %------------------------------------------------------------------------------------------------
-\section{References \& Aknowledgments}
+\section{References \& Aknowledgements}
 %------------------------------------------------------------------------------------------------
-
-
-%- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%
-\begin{frame}[t,allowframebreaks]{Aknowledgments}
-	\begin{itemize}
-		\item MW reduction as "restriction to level sets", C. Lessig,
-			\href{https://arxiv.org/abs/1206.3302}{arXiv:1206.3302}
-		\item Several tex code snippets and slides in appendix are due to \href{https://www.ryvkin.eu/}{Leonid Ryvkin}.
-		\item Some tex code snippets are due to \href{https://math.gmu.edu/~cblacke/}{Casey Blacker}.
-		
-	\end{itemize}
-\end{frame}
-%- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%
-
-
-
-%- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%
-% https://en.wikibooks.org/wiki/LaTeX/Bibliographies_with_biblatex_and_biber
-\begin{frame}[t,allowframebreaks]{Bibliography}
-	%\nocite{*}
-	\printbibliography
-\end{frame}
-%- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%
+	\input{bv-triples-acknowledgements}
+	
 
 %+----------------------------------------------------------+
 \end{document}
