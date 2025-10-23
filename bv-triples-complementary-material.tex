@@ -1,0 +1,226 @@
+%- HandOut Flag ----------------------
+\makeatletter
+\@ifundefined{ifHandout}{%
+  \expandafter\newif\csname ifHandout\endcsname
+}{}
+\makeatother
+
+%- D0cum3nt ----------------------------------------------------------------------------------------------
+%\documentclass[beamer,10pt]{standalone}   
+\documentclass[beamer,10pt,handout]{standalone}  \Handouttrue  
+
+\ifHandout
+	\setbeameroption{show notes} %print notes   
+\fi
+
+	
+%- Packages ----------------------------------------------------------------------------------------------
+\usepackage{custom-style}
+\usepackage{math}
+
+
+
+%--Beamer Style-----------------------------------------------------------------------------------------------
+\usetheme{toninus}
+\usepackage{animate}
+\usetikzlibrary{positioning, arrows}
+\usetikzlibrary{shapes}
+
+
+%- Bibliography (Biber) ----------------------------------------------------------------------------------
+\usepackage[backend=biber,style=alphabetic,maxnames=2]{biblatex}
+\bibliography{bibfile.bib}
+
+%===========================================================%
+\begin{document}
+%===========================================================%
+\checkpoint
+
+%- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%	
+\subsection{Reduction} 
+%- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%	
+
+%- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%
+\begin{frame}{Reminder: momentum maps in symplectic geometry}\label{frame:symplecticmomaps}
+	Consider $\theta:G\curvearrowright M$ symplectic,~~ $\underline{\cdot}:\mathfrak{g}\to \mathfrak{X}(M)$ infinitesimal action.
+	\vfill
+
+	\begin{columns}[T]
+		\setlength{\belowdisplayskip}{5pt}
+		\begin{column}{.50\linewidth}
+			%
+			\centering \it
+			\onslide<2->{
+				\begin{defblock}[Equivariant moment map]
+					Smooth map $$\mu:M\to \mathfrak{g}^\ast$$
+					such that:
+					\begin{itemize}
+						\item[i.] $d\langle \mu,\xi\rangle = -\iota_{\underline{\xi}}\omega$ 
+						~\qquad, $\forall \xi \in \mathfrak{g}$
+						\item[ii.] $\mu \circ \theta_g = Ad_g^\ast \circ \mu$
+						 \qquad\small, $\forall g \in G$
+					\end{itemize}
+				\end{defblock}
+			}
+		\end{column}	
+		%
+		\onslide<2->{\vrule{}}
+		%
+		\begin{column}{.50\linewidth}
+			\onslide<3->{			
+				\begin{defblock}[Comoment map]
+					Linear map $$\widetilde{\mu}: \mathfrak{g}\to C^\infty(M,\omega)$$
+					such that:
+					\begin{itemize}
+						\item[i.] $d\widetilde{\mu}(\xi) = -\iota_{\underline{\xi}}\omega$ 
+						\qquad~\small, $\forall \xi \in \mathfrak{g}$
+						\item[ii.] $\widetilde{\mu}([\xi,\eta]) = \lbrace\widetilde{\mu}(\xi),\widetilde{\mu}(\eta)\rbrace$ \small, $\forall \xi,\eta \in \mathfrak{g}$
+					\end{itemize}
+				\end{defblock}
+			}
+		\end{column}	
+	\end{columns}	
+	%
+	\pause
+	\vspace{1em}
+	%
+	\begin{columns}[]
+		\setlength{\belowdisplayskip}{5pt}
+		\begin{column}{.40\linewidth}
+			%
+			\centering \it
+			\onslide<5->{
+				\begin{upshotblocktitle}[Duality]
+					\begin{displaymath}
+						\mu(x) : \mathfrak{\xi} \mapsto \widetilde{\mu}(\xi)\big\vert_x
+					\end{displaymath}
+					%
+					\emph{
+					\small
+					"duality wrt. the currying operation"					
+					}
+				\end{upshotblocktitle}
+			}
+		\end{column}	
+		%
+		%
+		\begin{column}{.60\linewidth}
+			\onslide<4->{			
+				\begin{upshotblocktitle}[$\widetilde{\mu}$ as a lift]
+					\begin{displaymath}
+						\begin{tikzcd}[ampersand replacement = \&]
+						 \& C^\infty(M,\omega) \ar[d,"\vHam"]
+						 \\
+						 \mathfrak{g} \ar[ur,dashed,sloped,"\widetilde{\mu}"]\ar[r,"\underline{\cdot}"'] \& \mathfrak{X}(M)
+						\end{tikzcd}
+					\end{displaymath}
+					%
+					\emph{
+					\small
+					"it is a lift (in the Lie category) of the infinitesimal action by the assigment of hamiltonian v.fields."					
+					}
+				\end{upshotblocktitle}
+			}
+		\end{column}	
+	\end{columns}		
+\end{frame}
+\note[itemize]{
+		\item Moment maps are instrumental to the proper formalization of reduction in symplectic geometry.
+		\item consider an action preserving the symplectic form.
+		\item[-] $\langle \cdot, \cdot \rangle$ is the natural pairing of $\mathfrak{g}$ and $\mathfrak{g}^\ast$.
+			\item[-] $\theta_g$ is the diffeomorphism associated to $g\in G$ via $\theta:G\curvearrowright M$
+			\item[-] $Ad^\ast_g$ is the coadjoint action $G\curvearrowright \mathfrak{g}^\ast$
+		\item The moment map can be reexpressed as a comomentum map.
+		\item Observe that ii. on the left always implies ii. on the right. The converse is trure only if $G$ is connected.
+		\item $G\curvearrowright M$ is said "Hamiltonian" (see slide \ref{frame:gisthamaction} in appendix) iff $\exists$ comoment map $\widetilde{\mu}$.
+		\item \emph{moment map: Describe ${\color{orange}G\curvearrowright M}$ in terms of $\color{blue}C^\infty(M)\to\X(M)$.}
+		\begin{center}
+		\begin{tikzpicture}[scale=1.5]
+			\node[orange] (A) at (0,0) {$\g$};
+			\node[gray] (A1) at (0,-.3) {$\xi$};
+			\node[blue] (B) at (1,1) {$C^\infty(M)$};
+			\node[gray] (B2) at (1.55,1) {$f$};
+			\node[orange] (C) at (1,0) {$\X(M)$};
+			\node[gray] (C1) at (1,-.3) {$\underline\xi$};
+			\node[gray] (C2) at (1.55,0) {$X_f$};
+	
+			\path[->,blue,dashed] (A) edge node[above left] {$\langle\mu,\cdot\,\rangle$} (B);
+			\path[->,orange] (A) edge (C);
+			\path[->] (B) edge (C);
+			\path[|->,gray] (A1) edge (C1);
+			\path[|->,gray] (B2) edge (C2);
+	
+			\begin{scope}[xshift=3cm]
+				\node at (-.32,.8) {as Lie algebras};
+				\node at (-.13,.2) {i.e., {\color{blue}$\mu_\xi$} generates {\color{orange}$\underline\xi$}};
+			\end{scope}
+		\end{tikzpicture}
+		
+			\footnotesize		(\emph{moment map:} ${\color{blue}\mu:M\to\g^*}$, 
+		 \emph{Hamiltonian $G$-space:} 	$(M,\omega,G,\mu)$)
+		\end{center}
+		\item
+		 $\alpha\mapsto X_\alpha$ is a homomorphism of Leibniz algebras:
+		$$\d\{\alpha,\beta\} = \d\L_{X_\alpha}\beta = \L_{X_\alpha}\iota_{X_\beta}\omega = \iota_{[X_\alpha,X_\beta]}\omega ~{\color{black!80} \implies}~
+		X_{\{\alpha,\beta\}} = [X_\alpha,X_\beta]$$
+}
+%- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%
+
+
+
+%- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%
+\begin{frame}{Other approaches to singular reduction}
+ 	Many singular reduction schemes adhere to this pattern!
+ 	\vfill
+ 	\pause
+\begin{table}[]
+	\begin{tabular}{l|l|l||l}
+		algebra $\mathcal{A}_T$ & subalgebra $\mathcal{A}_N$ & ideal $\mathcal{A}_0$ & comment \\
+		\hline
+		
+		$C^\infty(M)$&      $N_S$     &   $I_S$   &  $\substack{S=\mu^{-1}(0),~ I_S=\{f~|~f|_S=0\}}$ \\
+			&&&  $\substack{N_S= \{ f | gf-f\in I_S \forall g\in G\}}$ \\
+	& & & \color{red} not Poisson \\ 
+	\hline	\pause
+	$C^\infty(M)$&   $F_S$         &   $I_S$   &  $\substack{F_S=\{f~|~\{f,I_S\}\subset I_S\}}$ \\
+	& & & \color{red} if $I_S\subset F_S$\\
+	\hline \pause
+	
+	$C^\infty(M)$&   $C^\infty(M)^G$         &   $(I_S)^G$   &  $\substack{C^\infty(M)^G=\{f~|~gf=f\forall g\in G\}}$ \\
+	\hline \pause
+		$C^\infty(M)$&   $C^\infty(M)^G$         &   $(I_\mu)^G$   & $\substack{I_\mu=\{\sum_{i=1}^k f_i\langle \mu,\xi_i\rangle|~f_i\in C^\infty(M), \xi_i\in \mathfrak g\}}$\\
+		\hline \pause
+	$C^\infty(M)$&      $N_\mu$     &   $I_\mu$   & $\substack{N_\mu= \{ f | gf-f\in I_\mu \forall g\in G\}}$ \footnote{When $G$ connected $N_\mu=N(I_\mu):=\{f~|~\{f,I_\mu\}\subset I_\mu\}$.}\\
+	\hline 
+		
+	\end{tabular}\pause
+\end{table}
+	\vfill
+	{\bf Remarks }names in order: 'naive' , Dirac, Sniatycki, Arms-Cushman-Gotay, Sniatycki-Weinstein.
+
+\end{frame}
+\note[itemize]{
+	\item \emph{(Credits to \href{https://www.ryvkin.eu/}{Leonid Ryvkin} for the tex code of this slide.)}
+}
+%- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%
+ 
+
+
+
+%-----------------------------------------------------------%
+\ifstandalone
+% https://en.wikibooks.org/wiki/LaTeX/Bibliographies_with_biblatex_and_biber
+\begin{frame}[t,allowframebreaks]{Bibliography}
+	%\nocite{*}
+	\printbibliography
+\end{frame}
+\fi
+%-----------------------------------------------------------%
+
+
+
+%-----------------------------------------------------------+
+\end{document}
+%-----------------------------------------------------------+
+
+

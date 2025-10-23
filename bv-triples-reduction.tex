@@ -44,7 +44,7 @@
 	\textbf{\color{UniGreen}Symplectic reduction:}~~
 	\\ 
 	{\it \small
-	Procedure associating to any (suitably regular) pair of symplectic manifold and Hamiltonian action another symplectic manifold of smaller dimension.}
+	Procedure associating to any (suitably regular) pair of \textbf{symplectic manifold} and \textbf{Hamiltonian action} another symplectic manifold of smaller dimension.}
 	\vfill
 
 	\pause
@@ -90,140 +90,23 @@
 
  
 %- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%
-\begin{frame}{Reminder: momentum maps in symplectic geometry}\label{frame:symplecticmomaps}
-	Consider $\theta:G\curvearrowright M$ symplectic,~~ $\underline{\cdot}:\mathfrak{g}\to \mathfrak{X}(M)$ infinitesimal action.
-	\vfill
-
-	\begin{columns}[T]
-		\setlength{\belowdisplayskip}{5pt}
-		\begin{column}{.50\linewidth}
-			%
-			\centering \it
-			\onslide<2->{
-				\begin{defblock}[Equivariant moment map]
-					Smooth map $$\mu:M\to \mathfrak{g}^\ast$$
-					such that:
-					\begin{itemize}
-						\item[i.] $d\langle \mu,\xi\rangle = -\iota_{\underline{\xi}}\omega$ 
-						~\qquad, $\forall \xi \in \mathfrak{g}$
-						\item[ii.] $\mu \circ \theta_g = Ad_g^\ast \circ \mu$
-						 \qquad\small, $\forall g \in G$
-					\end{itemize}
-				\end{defblock}
-			}
-		\end{column}	
-		%
-		\onslide<2->{\vrule{}}
-		%
-		\begin{column}{.50\linewidth}
-			\onslide<3->{			
-				\begin{defblock}[Comoment map]
-					Linear map $$\widetilde{\mu}: \mathfrak{g}\to C^\infty(M,\omega)$$
-					such that:
-					\begin{itemize}
-						\item[i.] $d\widetilde{\mu}(\xi) = -\iota_{\underline{\xi}}\omega$ 
-						\qquad~\small, $\forall \xi \in \mathfrak{g}$
-						\item[ii.] $\widetilde{\mu}([\xi,\eta]) = \lbrace\widetilde{\mu}(\xi),\widetilde{\mu}(\eta)\rbrace$ \small, $\forall \xi,\eta \in \mathfrak{g}$
-					\end{itemize}
-				\end{defblock}
-			}
-		\end{column}	
-	\end{columns}	
-	%
-	\pause
-	\vspace{1em}
-	%
-	\begin{columns}[]
-		\setlength{\belowdisplayskip}{5pt}
-		\begin{column}{.40\linewidth}
-			%
-			\centering \it
-			\onslide<5->{
-				\begin{upshotblocktitle}[Duality]
-					\begin{displaymath}
-						\mu(x) : \mathfrak{\xi} \mapsto \widetilde{\mu}(\xi)\big\vert_x
-					\end{displaymath}
-					%
-					\emph{
-					\small
-					"duality wrt. the currying operation"					
-					}
-				\end{upshotblocktitle}
-			}
-		\end{column}	
-		%
-		%
-		\begin{column}{.60\linewidth}
-			\onslide<4->{			
-				\begin{upshotblocktitle}[$\widetilde{\mu}$ as a lift]
-					\begin{displaymath}
-						\begin{tikzcd}[ampersand replacement = \&]
-						 \& C^\infty(M,\omega) \ar[d,"\vHam"]
-						 \\
-						 \mathfrak{g} \ar[ur,dashed,sloped,"\widetilde{\mu}"]\ar[r,"\underline{\cdot}"'] \& \mathfrak{X}(M)
-						\end{tikzcd}
-					\end{displaymath}
-					%
-					\emph{
-					\small
-					"it is a lift (in the Lie category) of the infinitesimal action by the assigment of hamiltonian v.fields."					
-					}
-				\end{upshotblocktitle}
-			}
-		\end{column}	
-	\end{columns}		
-\end{frame}
-\note[itemize]{
-		\item Moment maps are instrumental to the proper formalization of reduction in symplectic geometry.
-		\item consider an action preserving the symplectic form.
-		\item[-] $\langle \cdot, \cdot \rangle$ is the natural pairing of $\mathfrak{g}$ and $\mathfrak{g}^\ast$.
-			\item[-] $\theta_g$ is the diffeomorphism associated to $g\in G$ via $\theta:G\curvearrowright M$
-			\item[-] $Ad^\ast_g$ is the coadjoint action $G\curvearrowright \mathfrak{g}^\ast$
-		\item The moment map can be reexpressed as a comomentum map.
-		\item Observe that ii. on the left always implies ii. on the right. The converse is trure only if $G$ is connected.
-		\item $G\curvearrowright M$ is said "Hamiltonian" (see slide \ref{frame:gisthamaction} in appendix) iff $\exists$ comoment map $\widetilde{\mu}$.
-		\item \emph{moment map: Describe ${\color{orange}G\curvearrowright M}$ in terms of $\color{blue}C^\infty(M)\to\X(M)$.}
-		\begin{center}
-		\begin{tikzpicture}[scale=1.5]
-			\node[orange] (A) at (0,0) {$\g$};
-			\node[gray] (A1) at (0,-.3) {$\xi$};
-			\node[blue] (B) at (1,1) {$C^\infty(M)$};
-			\node[gray] (B2) at (1.55,1) {$f$};
-			\node[orange] (C) at (1,0) {$\X(M)$};
-			\node[gray] (C1) at (1,-.3) {$\underline\xi$};
-			\node[gray] (C2) at (1.55,0) {$X_f$};
-	
-			\path[->,blue,dashed] (A) edge node[above left] {$\langle\mu,\cdot\,\rangle$} (B);
-			\path[->,orange] (A) edge (C);
-			\path[->] (B) edge (C);
-			\path[|->,gray] (A1) edge (C1);
-			\path[|->,gray] (B2) edge (C2);
-	
-			\begin{scope}[xshift=3cm]
-				\node at (-.32,.8) {as Lie algebras};
-				\node at (-.13,.2) {i.e., {\color{blue}$\mu_\xi$} generates {\color{orange}$\underline\xi$}};
-			\end{scope}
-		\end{tikzpicture}
-		
-			\footnotesize		(\emph{moment map:} ${\color{blue}\mu:M\to\g^*}$, 
-		 \emph{Hamiltonian $G$-space:} 	$(M,\omega,G,\mu)$)
-		\end{center}
-		\item
-		 $\alpha\mapsto X_\alpha$ is a homomorphism of Leibniz algebras:
-		$$\d\{\alpha,\beta\} = \d\L_{X_\alpha}\beta = \L_{X_\alpha}\iota_{X_\beta}\omega = \iota_{[X_\alpha,X_\beta]}\omega ~{\color{black!80} \implies}~
-		X_{\{\alpha,\beta\}} = [X_\alpha,X_\beta]$$
-}
-%- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%
-
-
-%- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%
 \begin{frame}[fragile]{Marsden-Weinstein-Meyer reduction}
+	Consider: \quad $(M,\omega)$ symplectic,\quad $\theta:G\curvearrowright M$ $G$-action,\quad $\underline{\cdot}:\mathfrak{g}\to \mathfrak{X}(M)$ $\g$-action.
+	\vfill\pause
+
+	\begin{defblock}[Equivariant moment map]
+		Smooth map $\quad\mu:M\to \mathfrak{g}^\ast\quad$ such that:
+		
+		\quad {\it i)} $\d\langle \mu,\xi\rangle = -\iota_{\underline{\xi}}\omega$,
+		\qquad {\it ii)}  $\mu \circ \theta_g = Ad_g^\ast \circ \mu$,
+		\qquad $\forall \xi \in \mathfrak{g},~ \forall g \in G$.
+	\end{defblock}
+	\vfill\pause
+
 	\begin{thmblock}[Marsden-Weinstein reduction \cite{MarsdenWeinstein74}]
 		\vspace{-.4em}\hspace{-1em}
 		\begin{tabular}{l p{14cm}}
-			Given: & $(M,\omega)$ symplectic
-			\\
-			& $\color{orange}G\curvearrowright M$ symplectic with equivariant momap. $\mu:M\to \mathfrak{g}^*$
+			Given: &   $\mu:M\to \mathfrak{g}^*$ equivariant moment map for $\color{orange}G\curvearrowright M$ $G$
 			\\[.2em]
 			Assume: & ${\color{blue}\phi} \in \mathfrak{g}^*$ regular value of $\mu$ 
 			\qquad\quad \footnotesize \textcolor{gray}{($\Rightarrow$ $\mu^{-1}(\phi)\hookrightarrow M$ smooth embedding)}
@@ -257,10 +140,7 @@
 		\end{scope}
 	\end{tikzpicture}
 	\end{center}
-	\pause
-	\vfill
-	\centering
-	The action of $G$ on $\mu^{-1}(0)$ is free and proper $\Rightarrow$ $0$ is reg. val. of $\mu$
+
 
 \end{frame}
 \note[itemize]{
@@ -275,6 +155,8 @@
 %	\arrow["\begin{array}{c} i\\ \substack{inclusion~of~subspace} \end{array}"', hook', from=1-4, to=1-1]
 %	\arrow["\begin{array}{c} \pi\\ \substack{quotient~by~relation} \end{array}", two heads, from=1-4, to=1-7]
 %\end{tikzcd}\]
+	\item 	The action of $G$ on $\mu^{-1}(0)$ is free and proper $\Rightarrow$ $0$ is reg. val. of $\mu$
+
 
 }
 %- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%
@@ -307,7 +189,7 @@
 			Then: & 
 			$\displaystyle \left[\sfrac{C^\infty(M)}{I_\mu}\right]^G$
 			admits a Poisson algebra structure 
-			\footnote{$I_\mu$ = associative ideal generated by $\widetilde{\mu}(\g)$}			
+			\footnote{$I_\mu$ = associative ideal generated by $\check{\mu}(\g)$ with $\check{\mu}(\xi):=\langle\mu,\xi\rangle$ the comomentum map.}			
 			\\
 			& it agrees with the M--W reduction in the regular case.		
 		\end{tabular}
@@ -428,74 +310,134 @@ Equivalently:
 
 
 %- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%
-\begin{frame}{Other approaches to singular reduction}
- 	Many singular reduction schemes adhere to this pattern!
- 	\vfill
- 	\pause
-\begin{table}[]
-	\begin{tabular}{l|l|l||l}
-		algebra $\mathcal{A}_T$ & subalgebra $\mathcal{A}_N$ & ideal $\mathcal{A}_0$ & comment \\
-		\hline
-		
-		$C^\infty(M)$&      $N_S$     &   $I_S$   &  $\substack{S=\mu^{-1}(0),~ I_S=\{f~|~f|_S=0\}}$ \\
-			&&&  $\substack{N_S= \{ f | gf-f\in I_S \forall g\in G\}}$ \\
-	& & & \color{red} not Poisson \\ 
-	\hline	\pause
-	$C^\infty(M)$&   $F_S$         &   $I_S$   &  $\substack{F_S=\{f~|~\{f,I_S\}\subset I_S\}}$ \\
-	& & & \color{red} if $I_S\subset F_S$\\
-	\hline \pause
-	
-	$C^\infty(M)$&   $C^\infty(M)^G$         &   $(I_S)^G$   &  $\substack{C^\infty(M)^G=\{f~|~gf=f\forall g\in G\}}$ \\
-	\hline \pause
-		$C^\infty(M)$&   $C^\infty(M)^G$         &   $(I_\mu)^G$   & $\substack{I_\mu=\{\sum_{i=1}^k f_i\langle \mu,\xi_i\rangle|~f_i\in C^\infty(M), \xi_i\in \mathfrak g\}}$\\
-		\hline \pause
-	$C^\infty(M)$&      $N_\mu$     &   $I_\mu$   & $\substack{N_\mu= \{ f | gf-f\in I_\mu \forall g\in G\}}$ \footnote{When $G$ connected $N_\mu=N(I_\mu):=\{f~|~\{f,I_\mu\}\subset I_\mu\}$.}\\
-	\hline 
-		
-	\end{tabular}\pause
-\end{table}
-	\vfill
-	{\bf Remarks }names in order: 'naive' , Dirac, Sniatycki, Arms-Cushman-Gotay, Sniatycki-Weinstein.
+\begin{frame}{Constraint Gerstenhaber-Modules}
+
+%
+\begin{defblock}[Constraint Gerstenhaber algebra {(\cite[Def. 2.25]{dippelkern})}]
+	A constraint algebra $G=\triple{G}$ equipped with a constraint bilinear map
+	\begin{displaymath}
+		\{ \blank, \blank \} \colon G[1] \otimes G[1] \to G[1]
+	\end{displaymath}
+	such that $G_\Total$ is a Gerstenhaber algebra. 
+\end{defblock}
+\pause\vfill
+%
+
+ \begin{remblock}[$G$ can be seen as a triple of Gerstenhaber subalgebras]\label{rk:constraintgerst-as-triple}
+	 $G_\Null \subseteq G_\Wobs \subseteq (G_\Total, \wedge,\lbrace\blank,\blank\rbrace)$ such that $G_\Null$ is a Gerstenhaber ideal in $G_\Wobs$. 
+\end{remblock}
+\pause\vfill
+%
+
+\begin{defblock}[Constraint Gerstenhaber module]\label{def:constraintgerstmodule}
+	A constraint vector space $V=\triple{V}$ endowed with a constraint Gerstenhaber algebra structure on the space $G \oplus V^\rev$ such that the multiplication and the bracket are trivial when restricted to $V^\rev$.
+\end{defblock}
+\vfill
 
 \end{frame}
 \note[itemize]{
-	\item \emph{(Credits to \href{https://www.ryvkin.eu/}{Leonid Ryvkin} for the tex code of this slide.)}
+	\item  We have seen how the notion of BV-modules can be understood as a Cartan calculus. In this section, we will adapt this notion to the setting of constraint algebras and modules.
+	\item Details: constraint morphisms, tensor products, strongness.
+	\item the following four equations hold:
+	%
+	\begin{align*}
+		\{ G_\Wobs, G_\Wobs \} &\subseteq G_\Wobs~,&& G_\Wobs \wedge G_\Wobs \subseteq G_\Wobs~, \\
+		\{ G_\Null, G_\Wobs \} &\subseteq G_\Null~,&& G_\Wobs \wedge G_\Null \subseteq G_\Null ~.
+	\end{align*}
+	For a strong Gerstenhaber algebra, we would also need to check $G_\Null \wedge G_\Total \subseteq G_\Null$ as the only additional condition.
+	\item Since every constraint Gerstenhaber algebra is, in particular, a graded constraint algebra and a graded constraint Lie algebra, we know that ${G}_{\red}$ carries the structures of a graded algebra and a graded Lie algebra. Moreover, it is easy to see that the graded Leibniz rule on ${G}$
+induces a graded Leibniz rule on ${G}_{\red}$, showing that ${G}_{\red}$ forms itself a Gerstenhaber algebra.
+	\item An \emph{(embedded, $\mathbb Z$-graded) constraint vector space} $V$ is given by a triple $V=(V_\Total,V_\Wobs,V_\Null)$, where $V_\Total$ is a $\mathbb Z$-graded vector space and $V_\Null\subset V_\Wobs\subset V_\Total$ are subspaces. A \emph{morphism} $f:V\to V'$ of constraint vector spaces is a linear map $f:V_\Total\to V'_\Total$ such that $f(V_\Wobs)\subset V'_\Wobs$ and $f(V_\Null)\subset V'_\Null$.
 }
 %- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%
  
 
+%- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%
+\begin{frame}{Constraint Cartan calculus}
+%
+\begin{defblock}[Constraint BV-module]\label{def:constraintbv}
+	A Gerstenhaber module $V=\triple{V}$ endowed with a constraint degree $1$ homomorphism
+	$$
+		\d \colon V \to V[1]~,
+	$$
+	such that $(V_\Total, \d_\Total)$ is a BV-module over $G_\Total$.
+\end{defblock}
+\pause\vfill
+%
 
+\begin{remblock}[Constraint Cartan calculus]
+	The con. BV-module structure implies the existence of constraint morphisms
+	$$ \iota: G\otimes V^{\rev} \to V^{\rev}, \d: V \to V[1] \text{ and } \Lie: G\otimes V^{\rev} \to V^{\rev}[-1] $$ satisfying six commutation rules as before.
+\end{remblock}
+\vfill
 
-
-%------------------------------------------------------------------------------------------------
-
-
-\begin{frame}{Constraint Triples}
-\begin{itemize}
-  \item Triple $(A, A_C, \overline{A})$ with inclusion/projection.
-  \item $A_C$ encodes constraints, $\overline{A} = A/I$ reduced algebra.
-  \item Adapted to Gerstenhaber and BV-module settings.
-\end{itemize}
 \end{frame}
+\note[itemize]{
+	\item 
+}
+%- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%
 
+%- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%
+\begin{frame}[shrink]{Constraint $L_\infty$ Algebra Associated with a constraint BV-module}
+	%
+	\begin{defblock}[Constraint $L_\infty$-algebras] 
+	A constraint vector space $L=\triple{L}$  equipped with a collection of constraint multilinear maps
+	\begin{displaymath}
+		l_j \colon L^{\otimes j} \to L[2-j]
+	\end{displaymath}
+	such that $(L_\Total, (l_j)_\Total)$ is an $L_\infty$-algebra.
+	\end{defblock}
+	\pause\vfill
+	%
+	
+	Let $V$ a cons. BV-module over a cons. Gerst. algebra $G$,  $\omega\in V_\Wobs^{k+1}$ a cocycle.
+	\begin{defblock}[Constraint vector space of Hamiltonian pairs]\label{def:constraint-algebraicham0}
+		The	 constraint graded vector space:
+		$$
+		\Ham^0(V, \omega) := 
+		\colvec{
+			\big\{ (\alpha, X) \in V^{k-1}_\Total \oplus G_\Total^1 \mid \iota_X \omega = -\d\alpha \big\}
+			\\
+			\Ham^0(V, \omega) \cap \big(V_\Wobs \oplus G_\Wobs\big)
+			\\
+			\Ham^0(V, \omega) \cap \big( V_\Null \oplus G_\Null \big)
+		}
+		~.
+		$$
+	\end{defblock}
+	\pause\vfill
+	%
 
-
-\begin{frame}{Constraint BV-Modules}
-\begin{itemize}
-  \item Triples $(G, G_C, \overline{G})$, $(M, M_C, \overline{M})$.
-  \item Structures compatible with Cartan calculus.
-  \item Closed cocycle triple $c = (c, c_C, \overline{c})$.
-\end{itemize}
+	\begin{defthmblock}[Constraint $L_\infty$-algebra of observables]
+		The \emph{constraint $\Z$-graded vector space}
+  		$$
+  		\Ham(V, \omega)^i := 
+		\begin{cases}
+    		V^{k-1 + i} & i \leq -1, \\
+    		\Ham^0(V, \omega) & i = 0,\\
+    		0 & i \geq 1~;
+  		\end{cases} 
+  		$$
+	endowed with the family of cons. multilinear maps \( l_j \colon \Ham^{\otimes j}(V, \omega) \to \Ham(V, \omega)[2-j] \) defined via cons. multicontractions with $\omega$.
+	\end{defthmblock}
+ 
+	
 \end{frame}
+\note[itemize]{
+	\item  Building on the chosen embedded constraint setting, one can further define constraint $L_\infty$-algebras in close analogy with the classical case.
+	\item 	Since we work in the embedded setting, a constraint $L_\infty$-algebra $L$ as per \autoref{def:constraintlinfty} is given by a sequence of $L_\infty$-subalgebras $L_\Null \subseteq L_\Wobs \subseteq (L_\Total,(l_j)_\Total)$ such that $L_\Null$ is in particular an $L_\infty$-ideal  in $L_\Wobs$ in the following sense:
+	\begin{displaymath}
+		l_j\big(L_\Null, L_\Wobs,\dots, L_\Wobs\big)
+		\subseteq L_\Null~, \quad \forall j \geq 1~.
+	\end{displaymath}
+	Therefore, is assured that the $L_\infty$-algebra structure on $L_\Total$ induces a well-defined $L_\infty$-algebra structure on the reduced space $\red(L) := L_\Wobs / L_\Null$ (compare with \autoref{rk:constraintalgebras-as-triples}).
+	\item 	The space of Hamiltonian pairs can be interpreted as the fibered product \( V^{k-1} \times_{V^k} G^1 \) in the category of constraint vector spaces. 
+	This perspective yields, in particular, three pullback diagrams, one for each component of the constraint vector space described.
+}
+%- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%
 
-\begin{frame}{Constraint $L_\infty$ Algebra Associated with…}
-\begin{itemize}
-  \item Construct observables $\mathcal{O} = (\mathcal{O}, \mathcal{O}_C, \overline{\mathcal{O}})$.
-  \item Each component carries an $L_\infty$ structure.
-  \item Brackets compatible with inclusions/projections.
-\end{itemize}
-\end{frame}
 
+%- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%
 \begin{frame}{Reduction Functor}
 \begin{itemize}
   \item Quotient part $\overline{\mathcal{O}}$ inherits $L_\infty$ structure.
@@ -503,7 +445,12 @@ Equivalently:
   \item No need for regular quotient at geometric level.
 \end{itemize}
 \end{frame}
+\note[itemize]{
+	\item  
+}
+%- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%
 
+%- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%
 \begin{frame}{Recovering Old Results}
 \begin{itemize}
   \item Applies to multisymplectic reduction (Blacker-Miti-Ryvkin 2024).
@@ -511,6 +458,11 @@ Equivalently:
   \item Matches geometric reduction under regularity.
 \end{itemize}
 \end{frame}
+\note[itemize]{
+	\item  This framework provides a unified approach to understanding various geometric and algebraic structures.
+}
+%- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%
+
 
 %-----------------------------------------------------------%
 \ifstandalone
