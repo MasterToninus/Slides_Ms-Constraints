@@ -270,6 +270,8 @@ Equivalently:
 }
 %- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%
 
+
+
 %- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%
 \begin{frame}{Constraint Algebras} 
 	\begin{block}{Idea:}
@@ -308,6 +310,42 @@ Equivalently:
 %- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%
 
 
+%- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%
+\begin{frame}{A plethora of approaches to singular reduction}
+ 	Many singular reduction schemes adhere to this pattern!
+ 	\vfill
+ 	\pause
+\begin{table}[]
+	\begin{tabular}{l|l|l||l}
+		algebra $\mathcal{A}_T$ & subalgebra $\mathcal{A}_N$ & ideal $\mathcal{A}_0$ & comment \\
+		\hline
+		
+		$C^\infty(M)$&      $N_S$     &   $I_S$   &  $\substack{S=\mu^{-1}(0),~ I_S=\{f~|~f|_S=0\}}$ \\
+			&&&  $\substack{N_S= \{ f | gf-f\in I_S \forall g\in G\}}$ \\
+	& & & \color{red} not Poisson \\ 
+	\hline	\pause
+	$C^\infty(M)$&   $F_S$         &   $I_S$   &  $\substack{F_S=\{f~|~\{f,I_S\}\subset I_S\}}$ \\
+	& & & \color{red} if $I_S\subset F_S$\\
+	\hline \pause
+	
+	$C^\infty(M)$&   $C^\infty(M)^G$         &   $(I_S)^G$   &  $\substack{C^\infty(M)^G=\{f~|~gf=f\forall g\in G\}}$ \\
+	\hline \pause
+		$C^\infty(M)$&   $C^\infty(M)^G$         &   $(I_\mu)^G$   & $\substack{I_\mu=\{\sum_{i=1}^k f_i\langle \mu,\xi_i\rangle|~f_i\in C^\infty(M), \xi_i\in \mathfrak g\}}$\\
+		\hline \pause
+	$C^\infty(M)$&      $N_\mu$     &   $I_\mu$   & $\substack{N_\mu= \{ f | gf-f\in I_\mu \forall g\in G\}}$ \footnote{When $G$ connected $N_\mu=N(I_\mu):=\{f~|~\{f,I_\mu\}\subset I_\mu\}$.}\\
+	\hline 
+		
+	\end{tabular}\pause
+\end{table}
+	\vfill
+	{\bf Remarks }names in order: 'naive' , Dirac, Sniatycki, Arms-Cushman-Gotay, Sniatycki-Weinstein.
+
+\end{frame}
+\note[itemize]{
+	\item \emph{(Credits to \href{https://www.ryvkin.eu/}{Leonid Ryvkin} for the tex code of this slide.)}
+}
+%- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%
+
 
 %- . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - . - .%
 \begin{frame}{Constraint Gerstenhaber-Modules}
@@ -316,7 +354,7 @@ Equivalently:
 \begin{defblock}[Constraint Gerstenhaber algebra {(\cite[Def. 2.25]{dippelkern})}]
 	A constraint algebra $G=\triple{G}$ equipped with a constraint bilinear map
 	\begin{displaymath}
-		\{ \blank, \blank \} \colon G[1] \otimes G[1] \to G[1]
+		\{ \cdot, \cdot \} \colon G[1] \otimes G[1] \to G[1]
 	\end{displaymath}
 	such that $G_\Total$ is a Gerstenhaber algebra. 
 \end{defblock}
@@ -324,7 +362,7 @@ Equivalently:
 %
 
  \begin{remblock}[$G$ can be seen as a triple of Gerstenhaber subalgebras]\label{rk:constraintgerst-as-triple}
-	 $G_\Null \subseteq G_\Wobs \subseteq (G_\Total, \wedge,\lbrace\blank,\blank\rbrace)$ such that $G_\Null$ is a Gerstenhaber ideal in $G_\Wobs$. 
+	 $G_\Null \subseteq G_\Wobs \subseteq (G_\Total, \wedge,\lbrace\cdot,\cdot\rbrace)$ such that $G_\Null$ is a Gerstenhaber ideal in $G_\Wobs$. 
 \end{remblock}
 \pause\vfill
 %

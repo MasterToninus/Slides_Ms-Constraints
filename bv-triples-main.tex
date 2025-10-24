@@ -14,7 +14,7 @@
 
 %- HandOut Flag -----------------------------------------------------------------------------------------
 	\newif\ifHandout\Handoutfalse
-%	\Handouttrue  %uncomment for the printable version
+	\Handouttrue  %uncomment for the printable version
 	%Handling of flags it is not preserved when passing to standalone-subfiles!
 
 
@@ -77,7 +77,7 @@
 {	
 	
 	{\vskip 1ex}
-	\href{https://www.mat.uniroma2.it/~ricerca/algebr/page-AREA_files/page-AREA-2_files/talks.html}{- ARTS - Algebra and Representation Theory Seminar in Roma "Tor Vergata"}
+	\href{https://www.mat.uniroma2.it/~ricerca/algebr/page-AREA_files/page-AREA-2_files/talks.html}{- ARTS - Algebra and Representation Theory Seminar}
 	\\
 	Universit\'a di Roma - Tor Vergata, October 2025
 }
@@ -93,6 +93,7 @@
 %----------------------------------------------------------------------------------+
 \begin{frame}  % Alternative: \maketitle outside of frame
 	\titlepage
+	% Handout watermark
 	\ifHandout
 		\tikz[overlay,remember picture]
 		{
@@ -106,7 +107,20 @@
 	        		at ($(current page.north east)-(1,1)$) [rotate=-45] {\textcolor{red}{Handout version}};
 		}
 	\fi
-\end{frame}
+	% European Commission	
+		\tikz[overlay,remember picture]
+		{
+	    	%	\node at ($(current page.west)+(1.5,0)$) [rotate=90] {\Huge\textcolor{gray}{\today}};
+	    	\node[        
+	    		text width = 3.5cm
+			]
+	        		at ($(current page.south west)+(2.0,2.0)$) [rotate=0] {
+
+					\href{https://dipartimenti.unicatt.it/dmf-home?rdeLocaleAttr=it}{\includegraphics[width=\textwidth]{./Logos/Eu-h2020}}
+ 		
+	        		};
+		}
+	\end{frame}
 \addtocounter{framenumber}{-1}
 \note{
 	%\textbf{\underline{OUTLINE}}:
@@ -163,12 +177,12 @@ The results are part of a collaboration with Leonid Ryvkin, published in *Differ
 			\end{upshotblocktitle}
 			\vfill\pause
 
-			\begin{upshotblocktitle}[Recovered previous reduction procedures]
+			\begin{claimblocktitle}[Recovered previous reduction procedures]
 				 Emploied this machinery to provide a conceptual framework for algebraic multisymplectic reduction of observables via constraint triples 
 				 \smallskip
 
 				 \fullcite{Blacker-M-Ryvkin-2024}\nocite{Blacker-M-Ryvkin-2024}
-			\end{upshotblocktitle}
+			\end{claimblocktitle}
 			\vfill\pause
 
 			\begin{outlookblock}[An operadic reformulation]

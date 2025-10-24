@@ -54,7 +54,7 @@
     \begin{itemize}[label=$\triangleright$]
       \item $A$ is a commutative, associative algebra,
       \item $\mathfrak{L}$ is an $A$-module and a Lie algebra,
-      \item there is an anchor map $\rho: \mathfrak{L} \to \mathrm{Der}(A)$ satisfying the Leibniz rule:
+      \item $\rho: \mathfrak{L} \to \mathrm{Der}(A)$ is an $A$-linear maps satisfying the Leibniz rule:
       
       \vspace{-.5em}
         $$
@@ -88,7 +88,7 @@
 \end{frame}
 \note[itemize]{
     \item Let ${A}$ be a commutative  algebra over a field $\mathbb{k}$.
-  Denote by $\X(A)=\Der_{\mathbb{k}}(A)$ its Lie algebra of derivations, which naturally forms an $A$-submodule of $\End(A)$ with the action $A\action \End(A)$ given by postmultiplying with the element of $A$.
+  Denote by $\X(A)=\Der_{\mathbb{k}}(A)$ its Lie algebra of derivations, which naturally forms an $A$-submodule of $\End(A)$ with the action $A\curvearrowright \End(A)$ given by postmultiplying with the element of $A$.
   \item In the context of differential geometry, a primary example is when $A = C^\infty(M)$, the algebra of smooth functions on a smooth manifold $M$. In this case, $\mathfrak{X}(A)$ is isomorphic to the standard $C^\infty(M)$-module of smooth vector fields on $M$, often denoted by $\mathfrak{X}(M)$.
   \item To generalize the above geometric structures, we introduce the algebraic counterparts of  "multivector fields " and  "differential forms with Cartan calculus. " 
   \item The anchor map $\rho: E \to \mathop{\mathrm{Der}}(A)$ abstractly encodes the notion of derivations of $A$ with an $A$-linear Lie bracket. 
@@ -117,7 +117,7 @@
     \begin{itemize}[label=$\triangleright$]
 		\item $G$ is a $\mathbb{Z}$-graded vector space;
 		\item $\wedge : G \otimes G \to G$ is a graded commutative, associative product;
-		\item $\{\blank,\blank\} :G[1]\otimes G[1]\to G[1]$ is a graded Lie bracket,
+		\item $\{\cdot,\cdot\} :G[1]\otimes G[1]\to G[1]$ is a graded Lie bracket,
   \end{itemize}
 Compatibility: The bracket is a derivation of $\wedge$:
 	\begin{align*}\label{eq:Gerstenhaber-derivationProperty}
@@ -136,7 +136,7 @@ Compatibility: The bracket is a derivation of $\wedge$:
  
 \end{frame}
 \note[itemize]{
-  \item  The bracket $\{\blank,\blank\}$ could also be reinterpreted as a degree $-1$ bracket on the desuspended $\Z$-graded vector space $G$, coincides with the definition of $1$-Poisson algebra of \cite{Cattaneo2006b}.
+  \item  The bracket $\{\cdot,\cdot\}$ could also be reinterpreted as a degree $-1$ bracket on the desuspended $\Z$-graded vector space $G$, coincides with the definition of $1$-Poisson algebra of \cite{Cattaneo2006b}.
   \item The Schouten--Nijenhuis bracket is the unique graded Lie bracket satisfying the following properties:
 \begin{itemize}
 	\item It restricts to the given Lie bracket on $\Lambda_A^1 \mathfrak{L} = \mathfrak{L}$;
@@ -213,7 +213,7 @@ Explicitly, for homogeneous elements $x_1, \dots, x_m, y_1, \dots, y_n \in \math
       \item a differential $\d: V^i \to V^{i+1}$ (i.e. $d^2=0$),
       \item a Gerstenhaber module structure over a Gerstenhaber algebra $(G, \wedge, \lbrace\cdot,\cdot\rbrace)$,
     \end{itemize}
-    Compatibility wrt the Lie algebra action $\Lie:G\action V$: 
+    Compatibility wrt the Lie algebra action $\Lie:G\curvearrowright V$: 
     $$
       \Lie_x = [\iota_x, \d]~, \qquad \forall x \in G~.
     $$
@@ -248,7 +248,7 @@ Explicitly, for homogeneous elements $x_1, \dots, x_m, y_1, \dots, y_n \in \math
   %
   \begin{quote}
     \centering
-    \emph{BV-module $(V,\d)$ over $(G,\wedge,\lbrace\cdot,\cdot\rbrace)$ encode a full Cartan calculus}
+    \emph{a BV-module $(V,\d)$ over $(G,\wedge,\lbrace\cdot,\cdot\rbrace)$ encodes a full Cartan calculus}
   \end{quote}
   %
   \vfill\pause
@@ -256,13 +256,14 @@ Explicitly, for homogeneous elements $x_1, \dots, x_m, y_1, \dots, y_n \in \math
     \begin{itemize}
       \item $\d$ the degree $1$ differential on $V$;
 	    \item $\iota$ the associative algebra action\footnote{$\iota_{x\wedge y}=\iota_x\iota_y~, \qquad \forall x,y\in G$.} of $(G,\wedge)$ on $V$;
-  	  \item $\Lie$ the Lie algebra action\footnote{$\Lie_{x\wedge y}=\iota_x\Lie_y + (-1)^{|y|}\Lie_x \iota_y~, \qquad \forall  x,y\in G$.} of $(G,\{\blank,\blank\})$ on $V$ of degree $-1$.
+  	  \item $\Lie$ the Lie algebra action
+      of $(G,\{\cdot,\cdot\})$ on $V$ of degree $-1$.
     \end{itemize}   
   \end{denotblock}
   \vfill\pause
 
   \begin{lemblock}[Cartan identities]
- The operators $\d$, $\iota_x$, and $\Lie_x$ satisfy six graded commutation relations:
+ The operators $\d$, $\iota_x$, and $\Lie_x$ satisfy six\footnote{There's also: $\Lie_{x\wedge y}=\iota_x\Lie_y + (-1)^{|y|}\Lie_x \iota_y~, \qquad \forall  x,y\in G$.}  graded commutation relations:
 	%
   \begin{align*}
 	  \d^2                            &= 0,            &&&
@@ -285,8 +286,8 @@ Explicitly, for homogeneous elements $x_1, \dots, x_m, y_1, \dots, y_n \in \math
 \end{frame}
 \note[itemize]{
   \item 	A pair $(G, V)$ consisting of a Gerstenhaber algebra and a BV module is often called a \emph{Tsygan–Tamarkin–Nest noncommutative differential calculus}~\cite[Def.~4.4]{Tsygan2004}.
-  \item Denote Gerstenhaber algebra structure on $G \oplus V^{\rev}$ by $(\star,\llbracket\blank,\blank\rrbracket)$. For a homogeneous element $x \in G$, denote by $\iota_x$ and $\Lie_x$ the corresponding operators on $V$.
-  \item These actions are induced by restricting the Gerstenhaber structure $(\star,\llbracket\blank,\blank\rrbracket)$ on $G \oplus V^{\rev}$ to $G \otimes V^{\rev} \subset (G \oplus V^{\rev})^{\otimes 2}$.
+  \item Denote Gerstenhaber algebra structure on $G \oplus V^{\rev}$ by $(\star,\llbracket\cdot,\cdot\rrbracket)$. For a homogeneous element $x \in G$, denote by $\iota_x$ and $\Lie_x$ the corresponding operators on $V$.
+  \item These actions are induced by restricting the Gerstenhaber structure $(\star,\llbracket\cdot,\cdot\rrbracket)$ on $G \oplus V^{\rev}$ to $G \otimes V^{\rev} \subset (G \oplus V^{\rev})^{\otimes 2}$.
  \item The associative action $\iota$ is defined by
 	\[
 	\morphism{\iota}{G \otimes V^{\rev}}{V^{\rev}}{(x,\alpha)}{\iota_x \alpha := x \star \alpha},
@@ -308,7 +309,7 @@ Explicitly, for homogeneous elements $x_1, \dots, x_m, y_1, \dots, y_n \in \math
 	\[
 	\Lie_x \alpha = -(-1)^{|x||\alpha|} \llbracket \alpha, x \rrbracket.
 	\]
- \item The compatibility between $\star$ and $\llbracket\blank,\blank\rrbracket$ in $G \oplus V^{\rev}$ implies the following \emph{mixed Leibniz rules} (see \cite[Def.~2.1]{Kowalzig2015}):
+ \item The compatibility between $\star$ and $\llbracket\cdot,\cdot\rrbracket$ in $G \oplus V^{\rev}$ implies the following \emph{mixed Leibniz rules} (see \cite[Def.~2.1]{Kowalzig2015}):
   \begin{align}
 	  \iota_{\{x,y\}} \alpha &= \Lie_x \iota_y \alpha - (-1)^{(|x|-1)|y|} \iota_y \Lie_x \alpha, \\
 	  \Lie_{x \wedge y} \alpha &= \iota_x \Lie_y \alpha + (-1)^{|x||y|} \iota_y \Lie_x \alpha. \label{eq:mixedleib}
